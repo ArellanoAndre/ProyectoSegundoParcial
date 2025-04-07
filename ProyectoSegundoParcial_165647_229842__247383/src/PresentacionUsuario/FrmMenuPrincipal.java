@@ -3,13 +3,14 @@ package PresentacionUsuario;
 
 /**
  *
- * @author aleja
+ * @author Carlos Clark
  */
-public class FrmMenuUsuario extends javax.swing.JFrame {
+public class FrmMenuPrincipal extends javax.swing.JFrame {
 
-    public FrmMenuUsuario() {
+    public FrmMenuPrincipal() {
         initComponents();
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -18,10 +19,10 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         jpFondo = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblVolver = new javax.swing.JLabel();
-        btnRegistrarConsumo = new javax.swing.JButton();
-        btnReporteConsumo = new javax.swing.JButton();
-        lblSeleccioneUnaOpcion = new javax.swing.JLabel();
+        btnCliente = new javax.swing.JButton();
+        btnAdministrador = new javax.swing.JButton();
+        lblTexto = new javax.swing.JLabel();
+        lblTexto2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -33,46 +34,40 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Paneles Solares");
 
-        lblVolver.setText("Volver");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(lblVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblVolver)
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
-        btnRegistrarConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnRegistrarConsumo.setText("Registrar Consumo");
-        btnRegistrarConsumo.addActionListener(new java.awt.event.ActionListener() {
+        btnCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarConsumoActionPerformed(evt);
+                btnClienteActionPerformed(evt);
             }
         });
 
-        btnReporteConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnReporteConsumo.setText("Reporte de Consumo");
-        btnReporteConsumo.addActionListener(new java.awt.event.ActionListener() {
+        btnAdministrador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAdministrador.setText("Administrador");
+        btnAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteConsumoActionPerformed(evt);
+                btnAdministradorActionPerformed(evt);
             }
         });
 
-        lblSeleccioneUnaOpcion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblSeleccioneUnaOpcion.setForeground(new java.awt.Color(0, 0, 0));
-        lblSeleccioneUnaOpcion.setText("Seleccione una opción:");
+        lblTexto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblTexto.setForeground(new java.awt.Color(0, 0, 0));
+        lblTexto.setText("Bienvenido a Paneles Solares S.A de C.V");
+
+        lblTexto2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblTexto2.setForeground(new java.awt.Color(0, 0, 0));
+        lblTexto2.setText("Elija un usuario:");
 
         javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
         jpFondo.setLayout(jpFondoLayout);
@@ -80,27 +75,36 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpFondoLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporteConsumo)
-                    .addComponent(btnRegistrarConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSeleccioneUnaOpcion)
-                .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTexto))
+                    .addGroup(jpFondoLayout.createSequentialGroup()
+                        .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdministrador)
+                            .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpFondoLayout.createSequentialGroup()
+                                    .addGap(75, 75, 75)
+                                    .addComponent(lblTexto2))
+                                .addGroup(jpFondoLayout.createSequentialGroup()
+                                    .addGap(54, 54, 54)
+                                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpFondoLayout.setVerticalGroup(
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSeleccioneUnaOpcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTexto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTexto2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnCliente)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrarConsumo)
-                .addGap(18, 18, 18)
-                .addComponent(btnReporteConsumo)
-                .addGap(87, 87, 87))
+                .addComponent(btnAdministrador)
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,19 +115,19 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarConsumoActionPerformed
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarConsumoActionPerformed
+    }//GEN-LAST:event_btnClienteActionPerformed
 
-    private void btnReporteConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteConsumoActionPerformed
+    private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnReporteConsumoActionPerformed
+    }//GEN-LAST:event_btnAdministradorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -139,31 +143,31 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMenuUsuario().setVisible(true);
+                new FrmMenuPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarConsumo;
-    private javax.swing.JButton btnReporteConsumo;
+    private javax.swing.JButton btnAdministrador;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jpFondo;
-    private javax.swing.JLabel lblSeleccioneUnaOpcion;
-    private javax.swing.JLabel lblVolver;
+    private javax.swing.JLabel lblTexto;
+    private javax.swing.JLabel lblTexto2;
     // End of variables declaration//GEN-END:variables
 }
