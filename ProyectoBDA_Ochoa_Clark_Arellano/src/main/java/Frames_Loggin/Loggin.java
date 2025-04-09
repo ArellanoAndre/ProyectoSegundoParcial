@@ -5,6 +5,7 @@
 package Frames_Loggin;
 
 import Frames_Usuario.FrmRegistarUsuario;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Loggin extends javax.swing.JFrame {
      */
     public Loggin() {
         initComponents();
-        this.setTitle("Ingrese Nombre y Contraseña....");
+        this.setTitle("Inicio de Sesión");
         this.setResizable(false); // Evita que la ventana se pueda redimensionar
     }
 
