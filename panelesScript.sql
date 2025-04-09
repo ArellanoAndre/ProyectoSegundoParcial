@@ -1,0 +1,75 @@
+#BASE DE DATOS DEL PROYECTO SEGUNDO PARCIAL OCHOA, CLARK, ARELLANO
+CREATE DATABASE paneles;
+use paneles;
+CREATE TABLE IF NOT EXISTS USUARIO(
+ID INT auto_increment primary key,
+NOMBRE VARCHAR(15),
+CONTRASEÑA VARCHAR(255) NOT NULL,
+APELLIDO_PATERNO VARCHAR(100) NOT NULL,
+APELLIDO_MATERNO VARCHAR(100) NOT NULL,
+CELULAR VARCHAR(100) NOT NULL,
+DIRECCION VARCHAR(100) NOT NULL,
+CORREO VARCHAR(100) NOT NULL
+);
+
+
+
+#--- CREAR
+DELIMITER $$
+CREATE PROCEDURE sp_CrearUsuario(
+    IN p_nombre VARCHAR(50),
+    IN p_apellido_paterno VARCHAR(50),
+    IN p_apellido_materno VARCHAR(50),
+    IN p_celular VARCHAR(15),
+    IN p_direccion VARCHAR(255),
+    IN p_correo VARCHAR(100),
+    IN p_contrasena VARCHAR(255)
+)
+BEGIN
+    INSERT INTO USUARIO (NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO, CELULAR, DIRECCION, CORREO, CONTRASEÑA)
+    VALUES (p_nombre, p_apellido_paterno, p_apellido_materno, p_celular, p_direccion, p_correo, p_contrasena);
+END $$
+
+DELIMITER ;
+
+#----LEER
+DELIMITER //
+CREATE PROCEDURE sp_ObtenerUsuario(
+    IN p_ID INT
+)
+BEGIN
+    SELECT * FROM USUARIO WHERE ID = p_ID;
+END //
+DELIMITER ;
+
+#----ACTUALIZAR
+DELIMITER //
+CREATE PROCEDURE sp_ActualizarUsuario(
+    IN p_ID INT,
+    IN p_Nombre VARCHAR(15),
+    IN p_Contraseña VARCHAR(255)
+)
+BEGIN
+    UPDATE USUARIO SET NOMBRE = p_Nombre, CONTRASEÑA = p_Contraseña WHERE ID = p_ID;
+END //
+DELIMITER ;
+
+#----ELIMINAR
+DELIMITER //
+CREATE PROCEDURE sp_EliminarUsuario(
+    IN p_ID INT
+)
+BEGIN
+    DELETE FROM USUARIO WHERE ID = p_ID;
+END //
+DELIMITER ;
+#------------------
+# ----- Loggin
+DELIMITER //
+CREATE PROCEDURE SP_Loggin(
+    IN p_Nombre VARCHAR(15)
+)
+BEGIN
+    SELECT ID, CONTRASEÑA FROM USUARIO WHERE NOMBRE = p_Nombre;
+END //
+DELIMITER ;
