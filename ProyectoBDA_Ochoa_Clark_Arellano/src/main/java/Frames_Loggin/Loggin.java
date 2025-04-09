@@ -4,6 +4,8 @@
  */
 package Frames_Loggin;
 
+import Frames_Usuario.FrmRegistarUsuario;
+
 /**
  *
  * @author Arell
@@ -32,6 +34,7 @@ public class Loggin extends javax.swing.JFrame {
         Contraseña = new javax.swing.JPasswordField();
         Registrar = new javax.swing.JLabel();
         Login_Foto = new javax.swing.JLabel();
+        BtnInicio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,11 +71,20 @@ public class Loggin extends javax.swing.JFrame {
 
         Login_Foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/loginbda2.jpg"))); // NOI18N
 
+        BtnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnInicioMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(BtnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -91,7 +103,10 @@ public class Loggin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(382, Short.MAX_VALUE)
+                .addComponent(BtnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -133,9 +148,17 @@ public class Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_ContraseñaActionPerformed
 
     private void RegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseClicked
-        //        UsuarioNuevo UN = new UsuarioNuevo();
-        //        UN.setVisible(true);
+        FrmRegistarUsuario fru = new FrmRegistarUsuario();
+        fru.setVisible(true);
+         this.dispose();
+                
     }//GEN-LAST:event_RegistrarMouseClicked
+
+    private void BtnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnInicioMouseClicked
+        True t = new True();
+        t.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnInicioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -173,6 +196,7 @@ public class Loggin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BtnInicio;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel Login_Foto;
     private javax.swing.JTextField NombreUsuario;
