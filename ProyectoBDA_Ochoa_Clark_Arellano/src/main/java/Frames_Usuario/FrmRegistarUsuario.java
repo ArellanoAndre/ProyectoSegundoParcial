@@ -1,7 +1,8 @@
 
 package Frames_Usuario;
 
-import Control.Conexion;
+import Control.Control_Usuario;
+import Entidades.Rol;
 import Entidades.Usuario;
 import Frames_Loggin.Main;
 import javax.swing.JOptionPane;
@@ -24,23 +25,19 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblAgregarUsuario = new javax.swing.JLabel();
         lblVolver = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
+        lblNombreCompleto = new javax.swing.JLabel();
         lblPaterno = new javax.swing.JLabel();
-        lblMaterno = new javax.swing.JLabel();
-        lblCelular = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
         lblCorreeo = new javax.swing.JLabel();
         lblContrasena = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtApellidoPaterno = new javax.swing.JTextField();
-        txtMaterno = new javax.swing.JTextField();
-        txtCelular = new javax.swing.JTextField();
+        txtNombreCompleto = new javax.swing.JTextField();
+        txtNombreUsuario = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
-        txtConfirmaContra = new javax.swing.JTextField();
         lblCorreeo1 = new javax.swing.JLabel();
+        txtConfirmaContra = new javax.swing.JPasswordField();
+        txtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,20 +77,12 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblNombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombre.setText("Nombre");
+        lblNombreCompleto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblNombreCompleto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNombreCompleto.setText("Nombre Completo");
 
         lblPaterno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblPaterno.setText("Apellido Paterno");
-
-        lblMaterno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMaterno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMaterno.setText("Apellido Materno");
-
-        lblCelular.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCelular.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCelular.setText("Celular");
+        lblPaterno.setText("Nombre Usuario");
 
         lblDireccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -106,6 +95,12 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
         lblContrasena.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblContrasena.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblContrasena.setText("Confirmar contra");
+
+        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreUsuarioActionPerformed(evt);
+            }
+        });
 
         btnSiguiente.setBackground(new java.awt.Color(153, 255, 153));
         btnSiguiente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -127,77 +122,64 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(btnSiguiente))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblCorreeo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(103, 103, 103)
+                            .addComponent(btnSiguiente))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCelular, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblContrasena, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblNombreCompleto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblCorreeo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblCorreeo1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblCorreeo1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtConfirmaContra, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtConfirmaContra, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblContrasena)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombreCompleto)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPaterno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaterno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCelular))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDireccion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreeo)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCorreeo))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreeo1)
-                    .addComponent(txtConfirmaContra, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtConfirmaContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContrasena)
                     .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnSiguiente)
                 .addContainerGap())
         );
@@ -219,38 +201,23 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
        // Verificar que no haya campos vacíos
-    if (txtNombre.getText().isEmpty() || txtApellidoPaterno.getText().isEmpty() || txtMaterno.getText().isEmpty() ||
-        txtCelular.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtCorreo.getText().isEmpty() ||
-        txtContra.getText().isEmpty() || txtConfirmaContra.getText().isEmpty()) {
+    if (txtNombreCompleto.getText().isEmpty() || txtNombreUsuario.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtCorreo.getText().isEmpty() ||
+        txtConfirmaContra.getText().isEmpty() || txtContra.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
         return; // Salir del método si hay campos vacíos
     }
 
-    // Validar nombre
-    if (!isValidName(txtNombre.getText())) {
-        JOptionPane.showMessageDialog(this, "El nombre solo puede contener letras y espacios.", "Error", JOptionPane.WARNING_MESSAGE);
-        txtNombre.setText(""); // Limpiar el campo del nombre
-        return; // Salir del método si el nombre no es válido
-    }
 
-    // Validar apellido paterno
-    if (!isValidName(txtApellidoPaterno.getText())) {
+    // Validar Nombre Completo
+    if (!isValidName(txtNombreCompleto.getText())) {
         JOptionPane.showMessageDialog(this, "El apellido paterno solo puede contener letras y espacios.", "Error", JOptionPane.WARNING_MESSAGE);
-        txtApellidoPaterno.setText(""); // Limpiar el campo del apellido paterno
+        txtNombreUsuario.setText(""); // Limpiar el campo del apellido paterno
         return; // Salir del método si no es válido
     }
-
-    // Validar apellido materno
-    if (!isValidName(txtMaterno.getText())) {
-        JOptionPane.showMessageDialog(this, "El apellido materno solo puede contener letras y espacios.", "Error", JOptionPane.WARNING_MESSAGE);
-        txtMaterno.setText(""); // Limpiar el campo del apellido materno
-        return; // Salir del método si no es válido
-    }
-
-    // Validar celular
-    if (!isValidPhoneNumber(txtCelular.getText())) {
-        JOptionPane.showMessageDialog(this, "El número de celular no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
-        txtCelular.setText(""); // Limpiar el campo del celular
+    // Validar Nombre Usuario
+    if (!isValidNombreUsuario(txtNombreUsuario.getText())) {
+        JOptionPane.showMessageDialog(this, "El apellido paterno solo puede contener letras y espacios.", "Error", JOptionPane.WARNING_MESSAGE);
+        txtNombreUsuario.setText(""); // Limpiar el campo del apellido paterno
         return; // Salir del método si no es válido
     }
 
@@ -261,17 +228,30 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
         return; // Salir del método si no es válido
     }
 
-    // Comprobar que las contraseñas coincidan
-    if (!txtContra.getText().equals(txtConfirmaContra.getText())) {
+    // Comprobar que las contraseñas NO ESTEN VACIAS 
+    if (txtConfirmaContra.getText().isEmpty() || txtContra.getText().isEmpty() ) {
+        JOptionPane.showMessageDialog(this, "Las contraseñas no pueden estar Vacias.", "Error", JOptionPane.WARNING_MESSAGE);
+        txtContra.setText(""); // Limpiar la confirmación de contraseña
+        return; // Salir del método si las contraseñas no coinciden
+    }
+     // Comprobar que las contraseñas coincidan
+    if (!txtContra.getText().equals(txtConfirmaContra.getText() )) {
         JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.WARNING_MESSAGE);
-        txtConfirmaContra.setText(""); // Limpiar la confirmación de contraseña
+        txtContra.setText(""); // Limpiar la confirmación de contraseña
         return; // Salir del método si las contraseñas no coinciden
     }
 
+        
     // Crear usuario y proceder
-    Conexion back = new Conexion();
-    Usuario usuario = new Usuario(txtNombre.getText(), txtApellidoPaterno.getText(),  txtMaterno.getText(),  txtCelular.getText(), txtDireccion.getText(),  txtCorreo.getText(),  txtContra.getText());
-    back.crearUsuario(usuario);
+    Control_Usuario back = new Control_Usuario();
+Usuario usuario = new Usuario(
+    txtNombreCompleto.getText(),
+    txtNombreUsuario.getText(),
+    txtDireccion.getText(),
+    txtCorreo.getText(),
+    txtContra.getText(),
+    Rol.CLIENTE  // Rol fijo
+);    back.crearUsuario(usuario);
     // Redirigir a la pantalla de login
     Main.main(null);
     this.dispose();
@@ -281,11 +261,11 @@ public class FrmRegistarUsuario extends javax.swing.JFrame {
         Main.main(null);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
-    private boolean isValidPhoneNumber(String phone) {
-    // Expresión regular para validar números de teléfono (solo números, longitud de 10 a 15 dígitos)
-    String phoneRegex = "^[0-9]{10,15}$";
-    return phone != null && phone.matches(phoneRegex);
-}
+
+    private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreUsuarioActionPerformed
+
 private boolean isValidEmail(String email) {
     // Expresión regular para validar correos electrónicos
     String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
@@ -301,6 +281,12 @@ private boolean isValidName(String name) {
 // Validar contraseña
 private boolean isValidPassword(String password) {
     String passwordRegex = "^[a-zA-Z0-9]{6,}$";
+    return password != null && password.matches(passwordRegex);
+}
+
+// Validar contraseña
+private boolean isValidNombreUsuario(String password) {
+    String passwordRegex = "^[a-zA-Z0-9]+$";
     return password != null && password.matches(passwordRegex);
 }
     public static void main(String args[]) {
@@ -341,22 +327,18 @@ private boolean isValidPassword(String password) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgregarUsuario;
-    private javax.swing.JLabel lblCelular;
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblCorreeo;
     private javax.swing.JLabel lblCorreeo1;
     private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblMaterno;
-    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreCompleto;
     private javax.swing.JLabel lblPaterno;
     private javax.swing.JLabel lblVolver;
-    private javax.swing.JTextField txtApellidoPaterno;
-    private javax.swing.JTextField txtCelular;
-    private javax.swing.JTextField txtConfirmaContra;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JPasswordField txtConfirmaContra;
+    private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtMaterno;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreCompleto;
+    private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

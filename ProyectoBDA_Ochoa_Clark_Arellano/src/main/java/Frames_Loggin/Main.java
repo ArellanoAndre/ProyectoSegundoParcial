@@ -4,8 +4,11 @@
 
 package Frames_Loggin;
 
-import Control.Conexion;
+import Control.Control_Usuario;
+import Entidades.Rol;
 import Entidades.Usuario;
+import Frames_Admin.FrmMenuAdmin;
+import Frames_Usuario.FrmMenuUsuario;
 import Frames_Usuario.FrmRegistarUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -96,20 +99,39 @@ public class Main {
                     JOptionPane.showMessageDialog(frame, "No se permiten caracteres especiales.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+// ACCION LOGGIN
+    // Creamos instancia del controlador
+Control_Usuario control = new Control_Usuario();
 
-                // Acción de Iniciar Sesión
-                Conexion n = new Conexion();
-                Usuario u = new Usuario(username,password);
-                // Acción de Iniciar Sesión
-            int id = n.Loggin(u);
-            if(id > 0)
-            {True t = new True();
-                t.setVisible(true);
-                frame.dispose();
-            }
-            else
-               JOptionPane.showMessageDialog(frame, "Incorrecto!! Por favor, Intente de nuevo", "Alerta", JOptionPane.WARNING_MESSAGE);
-                
+// Creamos un objeto usuario con nombre y contraseña
+Usuario u = new Usuario(username, password);
+
+// Llamamos al método de login (retorna el ID si es correcto, -1 o 0 si falla)
+int id = control.Loggin(u);
+
+if (id > 0) {
+    // ✅ Obtenemos el rol del usuario usando su ID
+    Rol rol = control.obtenerRolPorId(id);
+
+    if (rol == Rol.ADMIN) {
+        FrmMenuAdmin adminFrame = new FrmMenuAdmin();
+        adminFrame.setVisible(true);
+        System.out.println("Es admin");
+    } else if (rol == Rol.CLIENTE) {
+        FrmMenuUsuario clienteFrame = new FrmMenuUsuario();
+        clienteFrame.setVisible(true);
+        System.out.println("Es cliente");
+    }
+
+    frame.dispose(); // Cierra la pantalla de login
+
+} else {
+    JOptionPane.showMessageDialog(frame, "Incorrecto!! Por favor, Intente de nuevo", "Alerta", JOptionPane.WARNING_MESSAGE);
+}
+
+  
+            
+            
             }
         });
 

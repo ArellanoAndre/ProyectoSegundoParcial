@@ -44,52 +44,47 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="btnSiguiente" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblCorreeo" min="-2" pref="73" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtCorreo" min="-2" pref="125" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="btnSiguiente" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblPaterno" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <Component id="lblNombre" alignment="1" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="lblNombreCompleto" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Component id="lblDireccion" min="-2" pref="87" max="-2" attributes="0"/>
+                                          <Component id="lblPaterno" min="-2" pref="120" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="lblMaterno" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCelular" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblDireccion" alignment="1" min="-2" pref="87" max="-2" attributes="0"/>
-                                      <Component id="lblContrasena" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCorreeo" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblCorreeo1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="txtNombre" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                                          <Component id="txtApellidoPaterno" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                                          <Component id="txtNombreCompleto" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                                          <Component id="txtNombreUsuario" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtMaterno" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="txtCelular" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="txtDireccion" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="txtContra" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="txtDireccion" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="txtCorreo" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblCorreeo1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtConfirmaContra" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <Component id="txtConfirmaContra" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblContrasena" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtContra" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="141" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,47 +92,37 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtNombre" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblNombreCompleto" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombreCompleto" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtApellidoPaterno" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="txtNombreUsuario" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="lblPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtMaterno" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="lblMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCelular" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="lblCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDireccion" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCorreeo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCorreo" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="lblCorreeo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCorreeo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtConfirmaContra" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="txtConfirmaContra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtContra" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
                   <Component id="btnSiguiente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -204,13 +189,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblNombre">
+        <Component class="javax.swing.JLabel" name="lblNombreCompleto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Nombre"/>
+            <Property name="text" type="java.lang.String" value="Nombre Completo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPaterno">
@@ -218,25 +203,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Apellido Paterno"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblMaterno">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Apellido Materno"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblCelular">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Celular"/>
+            <Property name="text" type="java.lang.String" value="Nombre Usuario"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDireccion">
@@ -266,19 +233,16 @@
             <Property name="text" type="java.lang.String" value="Confirmar contra"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombre">
+        <Component class="javax.swing.JTextField" name="txtNombreCompleto">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtApellidoPaterno">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtMaterno">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtCelular">
+        <Component class="javax.swing.JTextField" name="txtNombreUsuario">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreUsuarioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccion">
         </Component>
         <Component class="javax.swing.JTextField" name="txtCorreo">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtContra">
         </Component>
         <Component class="javax.swing.JButton" name="btnSiguiente">
           <Properties>
@@ -294,8 +258,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSiguienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtConfirmaContra">
-        </Component>
         <Component class="javax.swing.JLabel" name="lblCorreeo1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -304,6 +266,10 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txtConfirmaContra">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txtContra">
         </Component>
       </SubComponents>
     </Container>
