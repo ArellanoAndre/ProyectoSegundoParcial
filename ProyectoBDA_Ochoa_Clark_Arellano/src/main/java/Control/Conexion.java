@@ -27,7 +27,7 @@ public class Conexion {
 
     public Conexion() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/paneles", "root", "56234512");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/paneles", "root", "root");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
         }
