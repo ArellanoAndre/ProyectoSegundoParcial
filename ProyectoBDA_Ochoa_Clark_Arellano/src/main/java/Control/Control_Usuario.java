@@ -131,7 +131,7 @@ public class Control_Usuario {
     Rol rol = null;
 
     try {
-        CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerRolPorId(?)}");
+        CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerUsuarioPorId(?)}");
         stmt.setInt(1, id);
 
         ResultSet rs = stmt.executeQuery();

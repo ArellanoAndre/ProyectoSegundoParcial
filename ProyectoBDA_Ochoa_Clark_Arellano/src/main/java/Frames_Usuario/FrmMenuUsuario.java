@@ -64,7 +64,7 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         );
 
         btnRegistrarConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnRegistrarConsumo.setText("Registrar Consumo");
+        btnRegistrarConsumo.setText("Catalogo Producto");
         btnRegistrarConsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarConsumoActionPerformed(evt);
@@ -72,7 +72,7 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         });
 
         btnReporteConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnReporteConsumo.setText("Reporte de Consumo");
+        btnReporteConsumo.setText("Carrito");
         btnReporteConsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteConsumoActionPerformed(evt);
@@ -89,10 +89,10 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporteConsumo)
-                    .addComponent(btnRegistrarConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSeleccioneUnaOpcion))
+                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegistrarConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(lblSeleccioneUnaOpcion)
+                    .addComponent(btnReporteConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         jpFondoLayout.setVerticalGroup(

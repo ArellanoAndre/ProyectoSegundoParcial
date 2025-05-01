@@ -46,13 +46,12 @@
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnReportes" min="-2" pref="207" max="-2" attributes="0"/>
-                      <Component id="btnAdministrarInstalaciones" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnGestionMantenimiento" min="-2" pref="207" max="-2" attributes="0"/>
-                      <Component id="btnAdministrarClientes" min="-2" pref="207" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnReportes" max="32767" attributes="0"/>
+                      <Component id="btnGestionMantenimiento" max="32767" attributes="0"/>
+                      <Component id="btnAdministrarInstalaciones" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -60,15 +59,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnAdministrarClientes" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnGestionMantenimiento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnAdministrarInstalaciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnReportes" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,23 +129,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnAdministrarClientes">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Administrar Clientes"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdministrarClientesActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnGestionMantenimiento">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Mantenimiento"/>
+            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Inventario"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionMantenimientoActionPerformed"/>
@@ -159,7 +145,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Administrar Instalaciones"/>
+            <Property name="text" type="java.lang.String" value="Administrar Usuarios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdministrarInstalacionesActionPerformed"/>

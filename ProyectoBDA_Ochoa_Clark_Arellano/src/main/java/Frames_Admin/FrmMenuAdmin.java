@@ -22,7 +22,6 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
-        btnAdministrarClientes = new javax.swing.JButton();
         btnGestionMantenimiento = new javax.swing.JButton();
         btnAdministrarInstalaciones = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
@@ -66,16 +65,8 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        btnAdministrarClientes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAdministrarClientes.setText("Administrar Clientes");
-        btnAdministrarClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministrarClientesActionPerformed(evt);
-            }
-        });
-
         btnGestionMantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnGestionMantenimiento.setText("Gestión Mantenimiento");
+        btnGestionMantenimiento.setText("Gestión Inventario");
         btnGestionMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGestionMantenimientoActionPerformed(evt);
@@ -83,7 +74,7 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         });
 
         btnAdministrarInstalaciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAdministrarInstalaciones.setText("Administrar Instalaciones");
+        btnAdministrarInstalaciones.setText("Administrar Usuarios");
         btnAdministrarInstalaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdministrarInstalacionesActionPerformed(evt);
@@ -105,26 +96,23 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdministrarInstalaciones)
-                    .addComponent(btnGestionMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdministrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(108, 108, 108))
+                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGestionMantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdministrarInstalaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
         );
         jpFondoLayout.setVerticalGroup(
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdministrarClientes)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addComponent(btnGestionMantenimiento)
                 .addGap(18, 18, 18)
                 .addComponent(btnAdministrarInstalaciones)
                 .addGap(18, 18, 18)
                 .addComponent(btnReportes)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,10 +129,6 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdministrarClientesActionPerformed
 
     private void btnGestionMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimientoActionPerformed
         // TODO add your handling code here:
@@ -198,7 +182,6 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdministrarClientes;
     private javax.swing.JButton btnAdministrarInstalaciones;
     private javax.swing.JButton btnGestionMantenimiento;
     private javax.swing.JButton btnReportes;
