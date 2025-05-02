@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Control;
 
 import Entidades.Usuario;
@@ -27,7 +24,7 @@ public class Conexion {
 
     public Conexion() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/paneles", "root", "root");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/paneles", "root", "123");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
         }

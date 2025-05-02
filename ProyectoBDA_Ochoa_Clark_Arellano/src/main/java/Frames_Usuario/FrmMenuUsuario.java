@@ -22,8 +22,8 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblVolver = new javax.swing.JLabel();
-        btnRegistrarConsumo = new javax.swing.JButton();
-        btnReporteConsumo = new javax.swing.JButton();
+        btnCatalogoProducto = new javax.swing.JButton();
+        btnCarrito = new javax.swing.JButton();
         lblSeleccioneUnaOpcion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -36,8 +36,7 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Paneles Solares");
 
-        lblVolver.setText("Volver");
-        lblVolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png"))); // NOI18N
         lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVolverMouseClicked(evt);
@@ -49,9 +48,10 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblVolver)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addGap(56, 56, 56))
         );
         jPanel2Layout.setVerticalGroup(
@@ -60,22 +60,22 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVolver)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnRegistrarConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnRegistrarConsumo.setText("Catalogo Producto");
-        btnRegistrarConsumo.addActionListener(new java.awt.event.ActionListener() {
+        btnCatalogoProducto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCatalogoProducto.setText("Catalogo Producto");
+        btnCatalogoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarConsumoActionPerformed(evt);
+                btnCatalogoProductoActionPerformed(evt);
             }
         });
 
-        btnReporteConsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnReporteConsumo.setText("Carrito");
-        btnReporteConsumo.addActionListener(new java.awt.event.ActionListener() {
+        btnCarrito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCarrito.setText("Carrito");
+        btnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteConsumoActionPerformed(evt);
+                btnCarritoActionPerformed(evt);
             }
         });
 
@@ -90,21 +90,23 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegistrarConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(lblSeleccioneUnaOpcion)
-                    .addComponent(btnReporteConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCatalogoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpFondoLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblSeleccioneUnaOpcion)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         jpFondoLayout.setVerticalGroup(
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(lblSeleccioneUnaOpcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegistrarConsumo)
+                .addComponent(btnCatalogoProducto)
                 .addGap(18, 18, 18)
-                .addComponent(btnReporteConsumo)
+                .addComponent(btnCarrito)
                 .addGap(87, 87, 87))
         );
 
@@ -123,13 +125,17 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarConsumoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarConsumoActionPerformed
+    private void btnCatalogoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoProductoActionPerformed
+        FrmCatalogoProductos catalogo = new FrmCatalogoProductos();
+        catalogo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCatalogoProductoActionPerformed
 
-    private void btnReporteConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteConsumoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReporteConsumoActionPerformed
+    private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        FrmCarrito Carrito = new FrmCarrito();
+        Carrito.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
         Main.main(null);
@@ -170,8 +176,8 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarConsumo;
-    private javax.swing.JButton btnReporteConsumo;
+    private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnCatalogoProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jpFondo;
