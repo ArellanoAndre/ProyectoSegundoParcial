@@ -47,6 +47,11 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
         lblAgregarUsuario.setText("Agregar Usuario");
 
         lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png"))); // NOI18N
+        lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblVolverMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,11 +196,18 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
+         FrmMenuAdmin fma = new FrmMenuAdmin();
+        fma.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblVolverMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

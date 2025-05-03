@@ -69,7 +69,7 @@ public class Control_Usuario {
       // Método para obtener usuario por ID
     public void obtenerUsuario(int id) {
         try {
-            CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerUsuario(?)}");
+            CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerUsuarioPorId(?)}");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             
@@ -131,7 +131,7 @@ public class Control_Usuario {
     Rol rol = null;
 
     try {
-        CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerUsuarioPorId(?)}");
+        CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerRolPorId(?)}");
         stmt.setInt(1, id);
 
         ResultSet rs = stmt.executeQuery();

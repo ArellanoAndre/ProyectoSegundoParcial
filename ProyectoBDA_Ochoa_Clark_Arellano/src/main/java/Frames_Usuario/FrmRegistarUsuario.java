@@ -4,7 +4,6 @@ package Frames_Usuario;
 import Control.Control_Usuario;
 import Entidades.Rol;
 import Entidades.Usuario;
-import Frames_Loggin.Loggin;
 import Frames_Loggin.Main;
 import javax.swing.JOptionPane;
 
@@ -265,8 +264,7 @@ Usuario usuario = new Usuario(
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        Loggin loggin = new Loggin(); 
-        loggin.setVisible(true); 
+        Main m = new Main(); 
         this.dispose(); 
     }//GEN-LAST:event_lblVolverMouseClicked
 

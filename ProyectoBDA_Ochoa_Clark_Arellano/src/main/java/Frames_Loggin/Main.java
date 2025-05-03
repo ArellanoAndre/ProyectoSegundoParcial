@@ -33,7 +33,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World! comenzamos");
-        Loggin loggin = new Loggin();
+      //  Loggin loggin = new Loggin();
       //  loggin.setVisible(true);
       
         JFrame frame = new JFrame("Inicio de Sesión");

@@ -2,6 +2,11 @@
 package Frames_Admin;
 
 import Frames_Loggin.Main;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,15 +30,20 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         btnGestionMantenimiento = new javax.swing.JButton();
         btnAdministrarInstalaciones = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
+        btnAdministrarInstalaciones1 = new javax.swing.JButton();
+        btnGestionMantenimiento1 = new javax.swing.JButton();
+        PanelHistograma1 = new javax.swing.JPanel();
+        FondoAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jpFondo.setBackground(new java.awt.Color(115, 147, 156));
+        jpFondo.setBackground(new java.awt.Color(0, 0, 0));
+        jpFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
         lblIniciarSesion.setBackground(new java.awt.Color(102, 102, 102));
-        lblIniciarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblIniciarSesion.setFont(new java.awt.Font("Arial Black", 2, 18)); // NOI18N
         lblIniciarSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIniciarSesion.setText("Paneles Solares");
 
@@ -51,9 +61,9 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblSalir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(108, 108, 108)
                 .addComponent(lblIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,21 +74,25 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, -1));
+
         btnGestionMantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnGestionMantenimiento.setText("Gestión Inventario");
+        btnGestionMantenimiento.setText("Gestión Catalogo");
         btnGestionMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGestionMantenimientoActionPerformed(evt);
             }
         });
+        jpFondo.add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 220, 40));
 
         btnAdministrarInstalaciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAdministrarInstalaciones.setText("Administrar Usuarios");
+        btnAdministrarInstalaciones.setText("Gestionar Administradores");
         btnAdministrarInstalaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdministrarInstalacionesActionPerformed(evt);
             }
         });
+        jpFondo.add(btnAdministrarInstalaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 220, 40));
 
         btnReportes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnReportes.setText("Reportes");
@@ -87,32 +101,44 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
                 btnReportesActionPerformed(evt);
             }
         });
+        jpFondo.add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 220, 40));
 
-        javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
-        jpFondo.setLayout(jpFondoLayout);
-        jpFondoLayout.setHorizontalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGestionMantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdministrarInstalaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(109, 109, 109))
+        btnAdministrarInstalaciones1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAdministrarInstalaciones1.setText("Gestionar Clientes");
+        btnAdministrarInstalaciones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrarInstalaciones1ActionPerformed(evt);
+            }
+        });
+        jpFondo.add(btnAdministrarInstalaciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 220, 40));
+
+        btnGestionMantenimiento1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnGestionMantenimiento1.setText("Gestión Inventario");
+        btnGestionMantenimiento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionMantenimiento1ActionPerformed(evt);
+            }
+        });
+        jpFondo.add(btnGestionMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 220, 40));
+
+        PanelHistograma1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout PanelHistograma1Layout = new javax.swing.GroupLayout(PanelHistograma1);
+        PanelHistograma1.setLayout(PanelHistograma1Layout);
+        PanelHistograma1Layout.setHorizontalGroup(
+            PanelHistograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jpFondoLayout.setVerticalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpFondoLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(btnGestionMantenimiento)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdministrarInstalaciones)
-                .addGap(18, 18, 18)
-                .addComponent(btnReportes)
-                .addContainerGap(92, Short.MAX_VALUE))
+        PanelHistograma1Layout.setVerticalGroup(
+            PanelHistograma1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jpFondo.add(PanelHistograma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 250, 200));
+
+        FondoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/FondoAdmin.jpg"))); // NOI18N
+        FondoAdmin.setInheritsPopupMenu(false);
+        jpFondo.add(FondoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 660, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,11 +156,15 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimientoActionPerformed
-        // TODO add your handling code here:
+       FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
+       frmcp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
 
     private void btnAdministrarInstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarInstalacionesActionPerformed
-        // TODO add your handling code here:
+        FrmAdministrarAdmin frmaa = new FrmAdministrarAdmin();
+        frmaa.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnAdministrarInstalacionesActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
@@ -144,7 +174,20 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         Main.main(null);
         this.dispose();
+        
     }//GEN-LAST:event_lblSalirMouseClicked
+
+    private void btnAdministrarInstalaciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarInstalaciones1ActionPerformed
+       FrmAdministrarUsuarios frmgu = new FrmAdministrarUsuarios();
+       frmgu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAdministrarInstalaciones1ActionPerformed
+
+    private void btnGestionMantenimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimiento1ActionPerformed
+        FrmAdministarInventarioProductos frmgi = new FrmAdministarInventarioProductos();
+        frmgi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGestionMantenimiento1ActionPerformed
 
 
     public static void main(String args[]) {
@@ -181,8 +224,12 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FondoAdmin;
+    private javax.swing.JPanel PanelHistograma1;
     private javax.swing.JButton btnAdministrarInstalaciones;
+    private javax.swing.JButton btnAdministrarInstalaciones1;
     private javax.swing.JButton btnGestionMantenimiento;
+    private javax.swing.JButton btnGestionMantenimiento1;
     private javax.swing.JButton btnReportes;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jpFondo;
