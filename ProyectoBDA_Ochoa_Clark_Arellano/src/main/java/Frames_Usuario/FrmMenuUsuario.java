@@ -1,6 +1,7 @@
 
 package Frames_Usuario;
 
+import Frames_Loggin.Loggin;
 import Frames_Loggin.Main;
 
 /**
