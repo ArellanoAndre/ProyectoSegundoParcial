@@ -6,24 +6,36 @@ package Entidades;
  * @author aleja
  */
 public class Producto {
-
     private int id;
+    private String producto;
     private String marca;
     private String modelo;
     private String descripcion;
-    private int cantidad;
-    private double precio;
+    private double precioCompra;
+    private double precioVenta;
 
-    public Producto(int id, String marca, String modelo, String descripcion, int cantidad, double precio) {
-        this.id = id;
+    // Constructor vacío
+    public Producto() {}
+
+    public Producto(String producto, String marca, String modelo, String descripcion, double precioCompra, double precioVenta) {
+        this.producto = producto;
         this.marca = marca;
         this.modelo = modelo;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
-        this.precio = precio;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
     }
 
-    public Producto() {
+    // Constructor con parámetros
+    public Producto(int id, String producto, String marca, String modelo, String descripcion, 
+                    double precioCompra, double precioVenta) {
+        this.id = id;
+        this.producto = producto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
     }
 
     public int getId() {
@@ -32,6 +44,14 @@ public class Producto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getProducto() {
+        return producto;
+    }
+
+    public void setProducto(String producto) {
+        this.producto = producto;
     }
 
     public String getMarca() {
@@ -58,20 +78,21 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioCompra() {
+        return precioCompra;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioCompra(double precioCompra) {
+        this.precioCompra = precioCompra;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public double getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 
+   
 }

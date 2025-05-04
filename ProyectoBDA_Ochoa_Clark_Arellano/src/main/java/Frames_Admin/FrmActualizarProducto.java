@@ -10,10 +10,17 @@ import javax.swing.JOptionPane;
  *
  * @author aleja
  */
-public class FrmRegistrarProducto extends javax.swing.JFrame {
-
-    public FrmRegistrarProducto() {
+public class FrmActualizarProducto extends javax.swing.JFrame {
+private Producto pr; // Para almacenar el producto a editar
+    public FrmActualizarProducto(Producto p) {
         initComponents();
+        pr = p;
+        llenarCampos();
+    }
+
+    public FrmActualizarProducto() {
+                initComponents();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -61,7 +68,7 @@ public class FrmRegistrarProducto extends javax.swing.JFrame {
 
         lblAgregarUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblAgregarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAgregarUsuario.setText("Agregar Producto");
+        lblAgregarUsuario.setText("Actualizar Producto");
         jPanel1.add(lblAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 205, 48));
 
         lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png"))); // NOI18N
@@ -237,6 +244,19 @@ private void limpiarCampos() {
     txtPrecioVenta.setText("");
     txtPrecioCompra.setText("");
 }
+
+private void llenarCampos() {
+        if (pr != null) {
+            txtProducto.setText(pr.getProducto());
+            txtMarca.setText(pr.getMarca());
+            txtModelo.setText(pr.getModelo());
+            txtDescripcion.setText(pr.getDescripcion());
+            txtPrecioCompra.setText(String.valueOf(pr.getPrecioCompra()));
+            txtPrecioVenta.setText(String.valueOf(pr.getPrecioVenta()));
+        }
+    }
+
+
     /**
      * @param args the command line arguments
      */
@@ -254,14 +274,30 @@ private void limpiarCampos() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -282,7 +318,7 @@ private void limpiarCampos() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRegistrarProducto().setVisible(true);
+                new FrmActualizarProducto().setVisible(true);
             }
         });
     }
