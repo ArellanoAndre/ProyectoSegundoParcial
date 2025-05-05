@@ -80,7 +80,6 @@ END //
 DELIMITER ;
 #---------
 DELIMITER $$
-
 CREATE PROCEDURE sp_ObtenerUsuarioPorId(
     IN p_id INT
 )
@@ -88,4 +87,11 @@ BEGIN
     SELECT * FROM USUARIO WHERE ID = p_id;
 END $$
 
+DELIMITER ;
+#----------
+DELIMITER $$
+CREATE PROCEDURE sp_ObtenerRolPorId(IN p_id INT)
+BEGIN
+    SELECT ROL FROM USUARIO WHERE ID = p_id;
+END  $$
 DELIMITER ;
