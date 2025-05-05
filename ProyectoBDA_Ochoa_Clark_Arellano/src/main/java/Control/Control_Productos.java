@@ -5,12 +5,11 @@
 package Control;
 
 import Entidades.Producto;
-import java.awt.List;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -82,4 +81,42 @@ public class Control_Productos {
             stmt.executeUpdate();
         }
     }
+    
+    public java.util.List<Producto> listarProductosStock() throws SQLException {
+    java.util.List<Producto> productos = new java.util.ArrayList<>();
+    String sql = "{CALL sp_listarProductosStock()}";
+    
+    try (CallableStatement stmt = conexion.prepareCall(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            Producto p = new Producto(
+                rs.getInt("id"),  // Nuevo campo ID
+                rs.getString("producto"),
+                rs.getString("modelo"),
+                rs.getInt("stock")
+            );
+            productos.add(p);
+        }
+    }
+    return productos;
+}
+    
+    public void aumentarStock(int id, int cantidad) throws SQLException {
+    String sql = "UPDATE productos SET Cantidad_Stock = Cantidad_Stock + ? WHERE id = ?";
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, cantidad);
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
+    }
+}
+
+public void actualizarStock(int id, int nuevaCantidad) throws SQLException {
+    String sql = "UPDATE productos SET Cantidad_Stock = ? WHERE id = ?";
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, nuevaCantidad);
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
+    }
+}
+
 }

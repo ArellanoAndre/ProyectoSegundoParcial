@@ -4,17 +4,26 @@
  */
 package Frames_Admin;
 
+import Control.Control_Productos;
+import Entidades.Producto;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aleja
  */
 public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
+private DefaultTableModel tableModel;
 
     /**
      * Creates new form FrmAdministrarUsuarios
      */
     public FrmAdministarInventarioProductos() {
         initComponents();
+        configurarTablaStock();
+        cargarDatosStock();
     }
 
     /**
@@ -40,6 +49,8 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
+        txtCantidad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         FondoAdmin1 = new javax.swing.JLabel();
 
         FondoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/FondoAdmin.jpg"))); // NOI18N
@@ -68,7 +79,7 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 40));
 
         btnAgregar.setBackground(new java.awt.Color(51, 255, 0));
-        btnAgregar.setText("Agregar");
+        btnAgregar.setText("Comprar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -77,11 +88,21 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, 31));
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 0));
-        btnEditar.setText("Editar");
+        btnEditar.setText("Modificar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, -1, 31));
 
         btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, -1, 31));
 
         jLabel1.setText("Editar");
@@ -111,6 +132,12 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblProductos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 510, 270));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 90, -1));
+
+        jLabel5.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Cantidad :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, 60, -1));
 
         FondoAdmin1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/FondoAdmin.jpg"))); // NOI18N
         FondoAdmin1.setInheritsPopupMenu(false);
@@ -120,11 +147,11 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,11 +164,159 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        FrmRegistrarProducto frmrp = new FrmRegistrarProducto();
-        frmrp.setVisible(true);
-        this.dispose();
+    int row = tblProductos.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (!validarCantidad()) {
+        return;
+    }
+    
+    int confirm = JOptionPane.showConfirmDialog(this, 
+        "¿Estás seguro de aumentar el stock en " + txtCantidad.getText() + " unidades?", 
+        "Confirmar compra", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return;
+    }
+    
+    int id = (int) tableModel.getValueAt(row, 0);
+    int cantidad = Integer.parseInt(txtCantidad.getText());
+    
+    try {
+        Control_Productos cp = new Control_Productos();
+        cp.aumentarStock(id, cantidad);
+        cargarDatosStock();
+        JOptionPane.showMessageDialog(this, "Stock actualizado exitosamente");
+        txtCantidad.setText("");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar stock: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    int row = tblProductos.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    int confirm = JOptionPane.showConfirmDialog(this, 
+        "¿Estás seguro de poner el stock a 0?", 
+        "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return;
+    }
+    
+    int id = (int) tableModel.getValueAt(row, 0);
+    
+    try {
+        Control_Productos cp = new Control_Productos();
+        cp.actualizarStock(id, 0);
+        cargarDatosStock();
+        JOptionPane.showMessageDialog(this, "Stock eliminado (puesto a 0) exitosamente");
+        txtCantidad.setText("");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar stock: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    int row = tblProductos.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (!validarCantidad()) {
+        return;
+    }
+    
+    int confirm = JOptionPane.showConfirmDialog(this, 
+        "¿Estás seguro de modificar el stock a " + txtCantidad.getText() + " unidades?", 
+        "Confirmar modificación", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return;
+    }
+    
+    int id = (int) tableModel.getValueAt(row, 0);
+    int nuevaCantidad = Integer.parseInt(txtCantidad.getText());
+    
+    try {
+        Control_Productos cp = new Control_Productos();
+        cp.actualizarStock(id, nuevaCantidad);
+        cargarDatosStock();
+        JOptionPane.showMessageDialog(this, "Stock modificado exitosamente");
+        txtCantidad.setText("");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al modificar stock: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+private void configurarTablaStock() {
+    tableModel = new DefaultTableModel();
+    tableModel.addColumn("ID");      // Nueva columna
+    tableModel.addColumn("Producto");
+    tableModel.addColumn("Modelo");
+    tableModel.addColumn("Stock");
+    tblProductos.setModel(tableModel); 
+}
+    
+private void cargarDatosStock() {
+    try {
+        Control_Productos cp = new Control_Productos();
+        java.util.List<Producto> productos =  cp.listarProductosStock();
+        tableModel.setRowCount(0); // Limpiar tabla
+        
+        for (Producto p : productos) {
+            Object[] row = {
+                p.getId(),       // ID al principio
+                p.getProducto(),
+                p.getModelo(),
+                p.getCantidadStock()
+            };
+            tableModel.addRow(row);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+    }
+}
+
+private boolean validarCantidad() {
+    String cantidadStr = txtCantidad.getText().trim();
+    
+    if (cantidadStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "La cantidad no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    
+    if (!cantidadStr.matches("\\d+")) {
+        JOptionPane.showMessageDialog(this, "La cantidad solo puede contener números positivos", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    
+    try {
+        int cantidad = Integer.parseInt(cantidadStr);
+        
+        if (cantidad > 1000000) {
+            JOptionPane.showMessageDialog(this, "La cantidad no puede ser mayor a 1,000,000", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+        
+    } catch (NumberFormatException e) {
+        // Esto solo ocurriría si el número es demasiado grande para un int
+        JOptionPane.showMessageDialog(this, "La cantidad excede el límite permitido", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -202,11 +377,13 @@ public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblVolver;
     private javax.swing.JTable tblProductos;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

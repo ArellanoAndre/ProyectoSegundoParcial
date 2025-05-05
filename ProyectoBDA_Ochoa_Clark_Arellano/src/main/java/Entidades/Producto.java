@@ -13,6 +13,7 @@ public class Producto {
     private String descripcion;
     private double precioCompra;
     private double precioVenta;
+    private int CantidadStock;
 
     // Constructor vacío
     public Producto() {}
@@ -36,6 +37,32 @@ public class Producto {
         this.descripcion = descripcion;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+    }
+
+    public Producto(int id, String producto, String modelo, int CantidadStock) {
+        this.id = id;
+        this.producto = producto;
+        this.modelo = modelo;
+        this.CantidadStock = CantidadStock;
+    }
+
+    public Producto(int id, String producto, String marca, String modelo, String descripcion, double precioCompra, double precioVenta, int CantidadStock) {
+        this.id = id;
+        this.producto = producto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.CantidadStock = CantidadStock;
+    }
+
+    public int getCantidadStock() {
+        return CantidadStock;
+    }
+
+    public void setCantidadStock(int CantidadStock) {
+        this.CantidadStock = CantidadStock;
     }
 
 
