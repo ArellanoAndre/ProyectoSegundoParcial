@@ -10,7 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class FrmAgregarUsuario extends javax.swing.JFrame {
 
-    public FrmAgregarUsuario() {
+    private int U;
+    
+    public FrmAgregarUsuario(int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         limpiarCampos();
@@ -74,7 +77,7 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
                 .addComponent(lblVolver)
                 .addGap(21, 21, 21)
                 .addComponent(lblAgregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,9 +147,9 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtConfirmarContraseña)
                     .addComponent(txtNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(txtNombreCompleto)
+                    .addComponent(txtDireccion)
+                    .addComponent(txtCorreo)
                     .addComponent(txtContraseña))
                 .addGap(20, 20, 20))
         );
@@ -187,9 +190,7 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +251,7 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
         Control_Usuario cu = new Control_Usuario();
         cu.crearUsuario(usuario);
         limpiarCampos();
-        FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmAdministrarUsuarios fma = new FrmAdministrarUsuarios(U);
         fma.setVisible(true);
         this.dispose();
 
@@ -258,7 +259,7 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
 
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked

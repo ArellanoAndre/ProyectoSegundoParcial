@@ -1,4 +1,3 @@
-
 package Frames_Usuario;
 
 import Frames_Loggin.Main;
@@ -9,7 +8,10 @@ import Frames_Loggin.Main;
  */
 public class FrmMenuUsuario extends javax.swing.JFrame {
 
-    public FrmMenuUsuario() {
+    private int U;
+
+    public FrmMenuUsuario(int U) {
+        this.U = U;
         initComponents();
         this.setTitle("Menu Principal de Usuarios");
     }
@@ -126,13 +128,13 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCatalogoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoProductoActionPerformed
-        FrmCatalogoProductos catalogo = new FrmCatalogoProductos();
+        FrmCatalogoProductos catalogo = new FrmCatalogoProductos(U);
         catalogo.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCatalogoProductoActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        FrmCarrito Carrito = new FrmCarrito();
+        FrmCarrito Carrito = new FrmCarrito(U);
         Carrito.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCarritoActionPerformed
@@ -141,39 +143,6 @@ public class FrmMenuUsuario extends javax.swing.JFrame {
         Main.main(null);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenuUsuario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;

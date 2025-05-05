@@ -10,7 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class FrmRegistrarAdmin extends javax.swing.JFrame {
 
-    public FrmRegistrarAdmin() {
+    private int U;
+    
+    public FrmRegistrarAdmin(int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         limpiarCampos();
@@ -216,7 +219,7 @@ public class FrmRegistrarAdmin extends javax.swing.JFrame {
         Control_Usuario cu = new Control_Usuario();
         cu.crearAdmin(usuario);
         limpiarCampos();
-        FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
         this.dispose();    }//GEN-LAST:event_btnSiguienteActionPerformed
 
@@ -225,7 +228,7 @@ public class FrmRegistrarAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked

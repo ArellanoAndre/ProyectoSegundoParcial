@@ -13,11 +13,12 @@ import javax.swing.JOptionPane;
  * @author aleja
  */
 public class FrmEditarAdmin extends javax.swing.JFrame {
-
+    private int U;
     private Usuario usuario;
 
     // Constructor modificado para recibir un Usuario
-    public FrmEditarAdmin(Usuario usuario) {
+    public FrmEditarAdmin(Usuario usuario, int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         this.usuario = usuario;
@@ -184,7 +185,7 @@ public class FrmEditarAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmAdministrarAdmin fma = new FrmAdministrarAdmin();
+        FrmAdministrarAdmin fma = new FrmAdministrarAdmin(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
@@ -230,7 +231,7 @@ public class FrmEditarAdmin extends javax.swing.JFrame {
         cu.actualizarUsuario(usuario);
 
         // Abre el menú de administración
-        FrmAdministrarAdmin fma = new FrmAdministrarAdmin();
+        FrmAdministrarAdmin fma = new FrmAdministrarAdmin(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed

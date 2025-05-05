@@ -10,25 +10,23 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 /**
  *
  * @author aleja
  */
 public class FrmAdministarCatalogoProducto extends javax.swing.JFrame {
-private DefaultTableModel tableModel;
-private int U;
+
+    private DefaultTableModel tableModel;
+    private int U;
+
     /**
      * Creates new form FrmAdministrarUsuarios
      */
-    public FrmAdministarCatalogoProducto() {
-        initComponents();
-        configurarTabla();
-        cargarDatos();
-    }
 
     public FrmAdministarCatalogoProducto(int U) {
         this.U = U;
-         initComponents();
+        initComponents();
         configurarTabla();
         cargarDatos();
     }
@@ -161,144 +159,101 @@ private int U;
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin(U);
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        FrmRegistrarProducto frmrp = new FrmRegistrarProducto();
+        FrmRegistrarProducto frmrp = new FrmRegistrarProducto(U);
         frmrp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int row = tblProductos.getSelectedRow();
-    if (row < 0) {
-        JOptionPane.showMessageDialog(this, "Selecciona un producto para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Confirmar eliminación
-    int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar este producto?", "Confirmar", JOptionPane.YES_NO_OPTION);
-    if (confirm != JOptionPane.YES_OPTION) {
-        return;
-    }
+        // Confirmar eliminación
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar este producto?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
 
-    // Obtener el ID del producto (ajusta según cómo tengas el ID en la tabla)
-    int id = (int) tableModel.getValueAt(row, 0); // Asumiendo que el ID está en la primera columna (puede estar oculto)
+        // Obtener el ID del producto (ajusta según cómo tengas el ID en la tabla)
+        int id = (int) tableModel.getValueAt(row, 0); // Asumiendo que el ID está en la primera columna (puede estar oculto)
 
-    // Eliminar de la base de datos
-    try {
-        Control_Productos cp = new Control_Productos();
-        cp.eliminarProducto(id);
-        cargarDatos(); // Refrescar la tabla
-        JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al eliminar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        // Eliminar de la base de datos
+        try {
+            Control_Productos cp = new Control_Productos();
+            cp.eliminarProducto(id);
+            cargarDatos(); // Refrescar la tabla
+            JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       actualizarProductoSeleccionado();
+        actualizarProductoSeleccionado();
     }//GEN-LAST:event_btnEditarActionPerformed
-private void cargarDatos() {
-    try {
-        java.util.List<Producto> productos = new java.util.ArrayList<>();
-        Control_Productos cp = new Control_Productos();
-        productos = cp.listarProductos();
-        tableModel.setRowCount(0); // Limpiar tabla
-        for (Producto p : productos) {
-            Object[] row = {
-                p.getId(), // Agregar el ID al principio
-                p.getProducto(),
-                p.getMarca(),
-                p.getModelo(),
-                p.getDescripcion(),
-                p.getPrecioCompra(),
-                p.getPrecioVenta()
-            };
-            tableModel.addRow(row);
-        }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
-    }
-}
-private void configurarTabla() {
-    tableModel = new DefaultTableModel();
-    tableModel.addColumn("ID"); // Nueva columna para el ID
-    tableModel.addColumn("Producto");
-    tableModel.addColumn("Marca");
-    tableModel.addColumn("Modelo");
-    tableModel.addColumn("Descripción");
-    tableModel.addColumn("Precio Compra");
-    tableModel.addColumn("Precio Venta");
-    tblProductos.setModel(tableModel); 
-}
-
-private void actualizarProductoSeleccionado() {
-    int filaSeleccionada = tblProductos.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Seleccione un producto para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    // Aunque esté oculta, aún podemos leerla
-    int id = (int) tblProductos.getValueAt(filaSeleccionada, 0); 
-    String producto = (String) tblProductos.getValueAt(filaSeleccionada, 1);
-    String marca = (String) tblProductos.getValueAt(filaSeleccionada, 2);
-    String modelo = (String) tblProductos.getValueAt(filaSeleccionada, 3);
-    String descripcion = (String) tblProductos.getValueAt(filaSeleccionada, 4);
-    double precioCompra = (double) tblProductos.getValueAt(filaSeleccionada, 5);
-    double precioVenta = (double) tblProductos.getValueAt(filaSeleccionada, 6);
-
-    Producto p = new Producto(id, producto, marca, modelo, descripcion, precioCompra, precioVenta);
-
-    FrmActualizarProducto frm = new FrmActualizarProducto(p);
-    frm.setVisible(true);
-}
-
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void cargarDatos() {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            java.util.List<Producto> productos = new java.util.ArrayList<>();
+            Control_Productos cp = new Control_Productos();
+            productos = cp.listarProductos();
+            tableModel.setRowCount(0); // Limpiar tabla
+            for (Producto p : productos) {
+                Object[] row = {
+                    p.getId(), // Agregar el ID al principio
+                    p.getProducto(),
+                    p.getMarca(),
+                    p.getModelo(),
+                    p.getDescripcion(),
+                    p.getPrecioCompra(),
+                    p.getPrecioVenta()
+                };
+                tableModel.addRow(row);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministarCatalogoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministarCatalogoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministarCatalogoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministarCatalogoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAdministarCatalogoProducto().setVisible(true);
-            }
-        });
+    private void configurarTabla() {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("ID"); // Nueva columna para el ID
+        tableModel.addColumn("Producto");
+        tableModel.addColumn("Marca");
+        tableModel.addColumn("Modelo");
+        tableModel.addColumn("Descripción");
+        tableModel.addColumn("Precio Compra");
+        tableModel.addColumn("Precio Venta");
+        tblProductos.setModel(tableModel);
+    }
+
+    private void actualizarProductoSeleccionado() {
+        int filaSeleccionada = tblProductos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Aunque esté oculta, aún podemos leerla
+        int id = (int) tblProductos.getValueAt(filaSeleccionada, 0);
+        String producto = (String) tblProductos.getValueAt(filaSeleccionada, 1);
+        String marca = (String) tblProductos.getValueAt(filaSeleccionada, 2);
+        String modelo = (String) tblProductos.getValueAt(filaSeleccionada, 3);
+        String descripcion = (String) tblProductos.getValueAt(filaSeleccionada, 4);
+        double precioCompra = (double) tblProductos.getValueAt(filaSeleccionada, 5);
+        double precioVenta = (double) tblProductos.getValueAt(filaSeleccionada, 6);
+
+        Producto p = new Producto(id, producto, marca, modelo, descripcion, precioCompra, precioVenta);
+
+        FrmActualizarProducto frm = new FrmActualizarProducto(p, U);
+        frm.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

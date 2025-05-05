@@ -23,10 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -74,9 +71,9 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtConfirmarContraseña" max="32767" attributes="0"/>
                       <Component id="txtNombreUsuario" alignment="1" pref="125" max="32767" attributes="0"/>
-                      <Component id="txtNombreCompleto" alignment="1" pref="125" max="32767" attributes="0"/>
-                      <Component id="txtDireccion" alignment="1" pref="125" max="32767" attributes="0"/>
-                      <Component id="txtCorreo" alignment="1" pref="125" max="32767" attributes="0"/>
+                      <Component id="txtNombreCompleto" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtDireccion" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtCorreo" alignment="1" max="32767" attributes="0"/>
                       <Component id="txtContraseña" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -145,7 +142,7 @@
                       <Component id="lblVolver" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="lblAgregarUsuario" min="-2" pref="205" max="-2" attributes="0"/>
-                      <EmptySpace pref="50" max="32767" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

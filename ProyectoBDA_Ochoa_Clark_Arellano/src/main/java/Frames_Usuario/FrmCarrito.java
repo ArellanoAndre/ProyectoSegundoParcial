@@ -1,7 +1,12 @@
-
 package Frames_Usuario;
 
+import Control.ControlCarrito;
+import Control.Control_Productos;
+import Entidades.ProductoCarrito;
+import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -9,8 +14,52 @@ import javax.swing.JOptionPane;
  */
 public class FrmCarrito extends javax.swing.JFrame {
 
-    public FrmCarrito() {
+    private DefaultTableModel tableModel;
+    private int U;
+
+    public FrmCarrito(int U) {
+        this.U = U;
         initComponents();
+        setLocationRelativeTo(null);
+        tableModel = (DefaultTableModel) tblCarrito.getModel();
+        configurarTabla();
+        cargarDatos();
+        
+    }
+
+    private void cargarDatos() {
+        // Obtener la lista de productos en el carrito del usuario
+        ControlCarrito cp = new ControlCarrito();
+        List<ProductoCarrito> productosCarrito = cp.verCarrito(U); // Asumo que U es el usuario actual
+
+        // Limpiar la tabla antes de cargar los nuevos datos
+        tableModel.setRowCount(0);
+
+        // Iterar sobre los productos del carrito y agregar filas a la tabla
+        for (ProductoCarrito pc : productosCarrito) {
+            Object[] row = {
+                pc.getId(), // Detalle ID
+                pc.getProductoId(), // Producto ID
+                pc.getMarca(), // Marca
+                pc.getModelo(), // Modelo
+                pc.getCantidad(), // Cantidad
+                pc.getPrecioUnitario(), // Precio Unitario
+                pc.getTotalProducto() // Total por Producto
+            };
+            tableModel.addRow(row);
+        }
+    }
+
+    private void configurarTabla() {
+        tableModel = new DefaultTableModel();
+    tableModel.addColumn("Detalle ID");
+    tableModel.addColumn("Producto ID");
+    tableModel.addColumn("Marca");
+    tableModel.addColumn("Modelo");
+    tableModel.addColumn("Cantidad");
+    tableModel.addColumn("Precio Unitario");
+    tableModel.addColumn("Total Producto");
+    tblCarrito.setModel(tableModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,6 +74,7 @@ public class FrmCarrito extends javax.swing.JFrame {
         tblCarrito = new javax.swing.JTable();
         btnPagar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtCantidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,18 +111,18 @@ public class FrmCarrito extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "cantidad", "precio_unitario"
+                "Id Carrito", "Id Cliente", "Id Producto", "Cantidad", "Precio Unitario", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(tblCarrito);
@@ -104,8 +154,9 @@ public class FrmCarrito extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(btnPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCantidad))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +170,9 @@ public class FrmCarrito extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(btnPagar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)))
+                        .addComponent(btnEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 36, Short.MAX_VALUE))
         );
 
@@ -138,63 +191,49 @@ public class FrmCarrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       FrmMenuUsuario menuUsuario = new FrmMenuUsuario(); 
-       menuUsuario.setVisible(true); 
-       this.dispose();
+        FrmMenuUsuario menuUsuario = new FrmMenuUsuario(U);
+        menuUsuario.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int filaSeleccionada = tblCarrito.getSelectedRow();
-        
-        if (filaSeleccionada != -1) {
-        // Lógica, se llama al SP q no
 
-        JOptionPane.showMessageDialog(this, "Producto Eliminado");
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto antes de Eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-    }
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona un producto para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirmar = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas eliminar este producto del carrito?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+        String cantidadText = txtCantidad.getText().trim();
+        System.out.println("DEBUG: Cantidad texto: '" + cantidadText + "'"); // Debug
+
+        if (cantidadText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa una cantidad", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (confirmar == JOptionPane.YES_OPTION) {
+            int cantidad = Integer.parseInt(cantidadText);
+            int carritoId = (int) tblCarrito.getValueAt(filaSeleccionada, 1); // Columna 0 = carritoId
+
+            ControlCarrito cp = new ControlCarrito();
+            boolean eliminado = cp.quitarProductoCarrito(U, carritoId, cantidad);
+            if (eliminado) {
+                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.");
+                cargarDatos(); // Recargar los datos de la tabla
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        FrmConfirmarCompra ConfCompra = new FrmConfirmarCompra();
+        FrmConfirmarCompra ConfCompra = new FrmConfirmarCompra(U);
         ConfCompra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCarrito().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
@@ -205,5 +244,6 @@ public class FrmCarrito extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCarrito;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

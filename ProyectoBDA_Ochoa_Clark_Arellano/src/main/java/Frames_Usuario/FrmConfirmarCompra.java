@@ -1,7 +1,12 @@
-
 package Frames_Usuario;
 
+import Control.ControlCarrito;
+import Entidades.Compra;
+import Entidades.ProductoCarrito;
+import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -9,8 +14,71 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfirmarCompra extends javax.swing.JFrame {
 
-    public FrmConfirmarCompra() {
+    private DefaultTableModel tableModel;
+    private int U;
+
+    public FrmConfirmarCompra(int U) {
+        this.U = U;
         initComponents();
+        setLocationRelativeTo(null);
+        configurarTabla();
+        cargarDatos();
+    }
+
+    private void cargarDatos() {
+        try {
+            // Obtener la lista de compras del usuario
+            ControlCarrito cp = new ControlCarrito();
+            List<ProductoCarrito> comprasUsuario = cp.verCarrito(U); // U es el ID del usuario
+
+            // Limpiar la tabla antes de cargar los nuevos datos
+            tableModel.setRowCount(0);
+
+            if (comprasUsuario.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay compras registradas.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            // Iterar sobre las compras y agregar filas a la tabla
+            for (ProductoCarrito compra : comprasUsuario) {
+                Object[] row = {
+                    compra.getId(), // ID de la compra
+                    compra.getProductoId(), // ID del producto
+                    compra.getMarca(), // Cantidad
+                    compra.getModelo(), // Precio unitario
+                    compra.getPrecioUnitario(), // Total (calculado)
+                    compra.getTotalProducto()// Fecha de la compra
+                };
+                tableModel.addRow(row);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar las compras: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
+    private void configurarTabla() {
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Hacer que todas las celdas no sean editables
+                return false;
+            }
+        };
+
+        // Configurar las coluomnas según la entidad Compra
+        tableModel.addColumn("Id");
+        tableModel.addColumn("Producto");
+        tableModel.addColumn("Marca");
+        tableModel.addColumn("Modelo");
+        tableModel.addColumn("Precio Unitario");
+        tableModel.addColumn("Precio Total");
+
+        tblConfirmarCompra.setModel(tableModel);
+
+        // Opcional: Ajustar el ancho de las columnas
+        tblConfirmarCompra.getColumnModel().getColumn(5).setPreferredWidth(120); // Fecha más ancha
     }
 
     @SuppressWarnings("unchecked")
@@ -33,13 +101,13 @@ public class FrmConfirmarCompra extends javax.swing.JFrame {
 
         tblConfirmarCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Producto", "Marca", "Modelo", "Descripción", "Precio"
+                "Id", "Producto", "Marca", "Modelo", "Precio Unitario", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(tblConfirmarCompra);
@@ -156,8 +224,9 @@ public class FrmConfirmarCompra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void lblVolveerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolveerMouseClicked
-        FrmMenuUsuario menuUsuario = new FrmMenuUsuario();
+        FrmMenuUsuario menuUsuario = new FrmMenuUsuario(U);
         menuUsuario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolveerMouseClicked
@@ -167,64 +236,70 @@ public class FrmConfirmarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+// 1. Verificar que hay productos en el carrito
+        if (tableModel.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "No hay productos en el carrito para comprar",
+                    "Carrito vacío",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // 2. Confirmar con el usuario
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea realizar la compra?",
+                "Confirmar compra",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        ControlCarrito control = new ControlCarrito();
+        // 3. Obtener todos los productos del carrito
+        List<ProductoCarrito> productos = control.verCarrito(U);
+        // 4. Registrar cada producto como compra
+        for (ProductoCarrito producto : productos) {
+            Compra nuevaCompra = new Compra(
+                    producto.getProductoId(),
+                    U, // ID del admin (ajustar según tu sistema)
+                    producto.getCantidad(),
+                    producto.getPrecioUnitario()
+            );
+            
+            // Registrar en base de datos
+            control.comprarCarrito(U);
+        }
         
-        FrmDetalleCompra DetCompra = new FrmDetalleCompra();
-        DetCompra.setVisible(true);
+        JOptionPane.showMessageDialog(this,
+                "Compra realizada con éxito",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+        // 7. Redirigir a detalle de compra
+        FrmDetalleCompra detalleCompra = new FrmDetalleCompra(U);
+        detalleCompra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnIrAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrAlCarritoActionPerformed
-        FrmCarrito Carrito = new FrmCarrito();
+        FrmCarrito Carrito = new FrmCarrito(U);
         Carrito.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIrAlCarritoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int filaSeleccionada = tblConfirmarCompra.getSelectedRow();
-        
-        if (filaSeleccionada != -1) {
-        // Lógica
 
-        JOptionPane.showMessageDialog(this, "Producto Eliminado");
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        if (filaSeleccionada != -1) {
+            // Lógica
+
+            JOptionPane.showMessageDialog(this, "Producto Eliminado");
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmConfirmarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmConfirmarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmConfirmarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmConfirmarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmConfirmarCompra().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;

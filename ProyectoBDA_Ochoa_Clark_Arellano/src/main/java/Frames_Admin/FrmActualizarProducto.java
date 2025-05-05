@@ -1,4 +1,3 @@
-
 package Frames_Admin;
 
 import Control.Control_Productos;
@@ -11,15 +10,18 @@ import javax.swing.JOptionPane;
  * @author aleja
  */
 public class FrmActualizarProducto extends javax.swing.JFrame {
-private Producto pr; // Para almacenar el producto a editar
-    public FrmActualizarProducto(Producto p) {
+    private int U;
+    private Producto pr; // Para almacenar el producto a editar
+
+    public FrmActualizarProducto(Producto p, int U) {
         initComponents();
+        this.U=U;
         pr = p;
         llenarCampos();
     }
 
     public FrmActualizarProducto() {
-                initComponents();
+        initComponents();
 
     }
 
@@ -164,53 +166,56 @@ private Producto pr; // Para almacenar el producto a editar
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-       // Obtener valores de los campos de texto
-    String producto = txtProducto.getText().trim();
-    String marca = txtMarca.getText().trim();
-    String modelo = txtModelo.getText().trim();
-    String descripcion = txtDescripcion.getText().trim();
-    String precioVentaStr = txtPrecioVenta.getText().trim();
-    String precioCompraStr = txtPrecioCompra.getText().trim();
+        // Obtener valores de los campos de texto
+        String producto = txtProducto.getText().trim();
+        String marca = txtMarca.getText().trim();
+        String modelo = txtModelo.getText().trim();
+        String descripcion = txtDescripcion.getText().trim();
+        String precioVentaStr = txtPrecioVenta.getText().trim();
+        String precioCompraStr = txtPrecioCompra.getText().trim();
 
-    // Validaciones
-    if (producto.isEmpty() || marca.isEmpty() || modelo.isEmpty() || descripcion.isEmpty() ||
-        precioVentaStr.isEmpty() || precioCompraStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Validar que los precios sean números no negativos
-    double precioVenta, precioCompra;
-    try {
-        precioVenta = Double.parseDouble(precioVentaStr);
-        precioCompra = Double.parseDouble(precioCompraStr);
-        if (precioVenta < 0 || precioCompra < 0) {
-            JOptionPane.showMessageDialog(this, "Los precios no pueden ser negativos.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Validaciones
+        if (producto.isEmpty() || marca.isEmpty() || modelo.isEmpty() || descripcion.isEmpty()
+                || precioVentaStr.isEmpty() || precioCompraStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Los precios deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
 
-    // Si las validaciones pasan, crear objeto Producto y proceder
-    pr.setProducto(producto); pr.setDescripcion(descripcion); pr.setMarca(marca); pr.setModelo(modelo);pr.setPrecioCompra(precioCompra); pr.setPrecioVenta(precioVenta);
-    
+        // Validar que los precios sean números no negativos
+        double precioVenta, precioCompra;
+        try {
+            precioVenta = Double.parseDouble(precioVentaStr);
+            precioCompra = Double.parseDouble(precioCompraStr);
+            if (precioVenta < 0 || precioCompra < 0) {
+                JOptionPane.showMessageDialog(this, "Los precios no pueden ser negativos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Los precios deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Aquí puedes agregar la lógica para guardar el producto (usando ProductoDAO)
-    try {
-        Control_Productos productoDAO = new Control_Productos(); // Ajusta según tu clase de conexión
-        productoDAO.actualizarProducto(pr);
-        JOptionPane.showMessageDialog(this, "Producto Actualizado exitosamente.");
-        limpiarCampos();
-        // Opcional: Abrir la siguiente pantalla si la tienes
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al registrar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        // Si las validaciones pasan, crear objeto Producto y proceder
+        pr.setProducto(producto);
+        pr.setDescripcion(descripcion);
+        pr.setMarca(marca);
+        pr.setModelo(modelo);
+        pr.setPrecioCompra(precioCompra);
+        pr.setPrecioVenta(precioVenta);
 
+        // Aquí puedes agregar la lógica para guardar el producto (usando ProductoDAO)
+        try {
+            Control_Productos productoDAO = new Control_Productos(); // Ajusta según tu clase de conexión
+            productoDAO.actualizarProducto(pr);
+            JOptionPane.showMessageDialog(this, "Producto Actualizado exitosamente.");
+            limpiarCampos();
+            // Opcional: Abrir la siguiente pantalla si la tienes
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
-       frmcp.setVisible(true);
+        FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto(U);
+        frmcp.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnSiguienteActionPerformed
@@ -220,8 +225,8 @@ FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
     }//GEN-LAST:event_txtPrecioCompraActionPerformed
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
-       frmcp.setVisible(true);
+        FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto(U);
+        frmcp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
@@ -229,16 +234,17 @@ FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMarcaActionPerformed
 // Método para limpiar los campos después de un registro exitoso
-private void limpiarCampos() {
-    txtProducto.setText("");
-    txtMarca.setText("");
-    txtModelo.setText("");
-    txtDescripcion.setText("");
-    txtPrecioVenta.setText("");
-    txtPrecioCompra.setText("");
-}
 
-private void llenarCampos() {
+    private void limpiarCampos() {
+        txtProducto.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtDescripcion.setText("");
+        txtPrecioVenta.setText("");
+        txtPrecioCompra.setText("");
+    }
+
+    private void llenarCampos() {
         if (pr != null) {
             txtProducto.setText(pr.getProducto());
             txtMarca.setText(pr.getMarca());
@@ -247,73 +253,6 @@ private void llenarCampos() {
             txtPrecioCompra.setText(String.valueOf(pr.getPrecioCompra()));
             txtPrecioVenta.setText(String.valueOf(pr.getPrecioVenta()));
         }
-    }
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmActualizarProducto().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

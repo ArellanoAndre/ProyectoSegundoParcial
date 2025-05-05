@@ -1,7 +1,10 @@
 package Frames_Usuario;
 
+import Control.ControlCarrito;
 import Control.Control_Productos;
+import Control.Control_Usuario;
 import Entidades.Producto;
+import Entidades.Usuario;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,12 +16,28 @@ import javax.swing.table.DefaultTableModel;
 public class FrmCatalogoProductos extends javax.swing.JFrame {
 
     private DefaultTableModel tableModel;
+    private int U;
 
-    public FrmCatalogoProductos() {
+    public FrmCatalogoProductos(int U) {
+        this.U = U;
         initComponents();
         setLocationRelativeTo(null);
         configurarTabla();
         cargarDatos();
+
+        System.out.println(U);
+    }
+
+    public int obtenerClienteSeleccionado() {
+        int filaSeleccionada = tblProductos.getSelectedRow(); // tu JTable con clientes
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar un cliente.");
+            return -1; // o puedes lanzar una excepción si lo prefieres
+        }
+
+        // Supongamos que la columna 0 contiene el ID del cliente
+        return (int) tblProductos.getValueAt(filaSeleccionada, 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +52,8 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         lblVolveer = new javax.swing.JLabel();
         btnIrAlCarrito = new javax.swing.JButton();
         btnAnadirCarrito1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,13 +61,13 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Producto", "Marca", "Modelo", "Descripción", "Precio", "Cantidad"
+                "ID", "Producto", "Marca", "Modelo", "Descripción", "Precio", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(tblProductos);
@@ -106,6 +127,10 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Cantidad :");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -117,7 +142,11 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnadirCarrito1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIrAlCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIrAlCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtCantidad))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -132,7 +161,11 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(btnAnadirCarrito1)
                         .addGap(18, 18, 18)
-                        .addComponent(btnIrAlCarrito)))
+                        .addComponent(btnIrAlCarrito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 31, Short.MAX_VALUE))
         );
 
@@ -158,30 +191,102 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void lblVolveerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolveerMouseClicked
-        FrmMenuUsuario menuUsuario = new FrmMenuUsuario();
+        FrmMenuUsuario menuUsuario = new FrmMenuUsuario(U);
         menuUsuario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolveerMouseClicked
 
     private void btnIrAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrAlCarritoActionPerformed
-        FrmCarrito Carrito = new FrmCarrito();
+        FrmCarrito Carrito = new FrmCarrito(U);
         Carrito.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIrAlCarritoActionPerformed
 
     private void btnAnadirCarrito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirCarrito1ActionPerformed
-        int filaSeleccionada = tblProductos.getSelectedRow();
+        System.out.println("DEBUG: Inicio del método"); // Debug
 
-        if (filaSeleccionada != -1) {
-            // Lógica
-
-            JOptionPane.showMessageDialog(this, "Producto Agregado exitosamente");
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para añadir al carrito", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        int row = tblProductos.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
+        String cantidadText = txtCantidad.getText().trim();
+        System.out.println("DEBUG: Cantidad texto: '" + cantidadText + "'"); // Debug
 
+        if (cantidadText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa una cantidad", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int cantidad = Integer.parseInt(cantidadText);
+            System.out.println("DEBUG: Cantidad parseada: " + cantidad); // Debug
+
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Object idObj = tblProductos.getValueAt(row, 0);
+            System.out.println("DEBUG: ID producto (raw): " + idObj); // Debug
+
+            int idProducto = Integer.parseInt(idObj.toString());
+            System.out.println("DEBUG: ID producto parseado: " + idProducto); // Debug
+
+            ControlCarrito cc = new ControlCarrito();
+            boolean agregado = cc.agregarProductoCarrito(U, idProducto, cantidad);
+
+            if (agregado) {
+                JOptionPane.showMessageDialog(this, "Producto agregado al carrito.");
+                txtCantidad.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el producto al carrito.");
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("DEBUG: Error al parsear número: " + ex.getMessage()); // Debug
+            JOptionPane.showMessageDialog(this, "Cantidad inválida. Asegúrate de ingresar un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("DEBUG: Error general: " + e.getMessage()); // Debug
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al agregar al carrito: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAnadirCarrito1ActionPerformed
+
+    private boolean validarCantidad() {
+        String cantidadStr = txtCantidad.getText().trim();
+
+        if (cantidadStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La cantidad no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Validación adicional para asegurar que el valor es un número entero
+        if (!cantidadStr.matches("\\d+")) { // Solo números positivos
+            JOptionPane.showMessageDialog(this, "La cantidad solo puede contener números positivos", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        try {
+            int cantidad = Integer.parseInt(cantidadStr);
+
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            if (cantidad > 1000000) {
+                JOptionPane.showMessageDialog(this, "La cantidad no puede ser mayor a 1,000,000", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            return true;
+
+        } catch (NumberFormatException e) {
+            // Esto solo ocurriría si el número es demasiado grande para un int
+            JOptionPane.showMessageDialog(this, "La cantidad excede el límite permitido", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 
     private void cargarDatos() {
         try {
@@ -191,6 +296,7 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
             tableModel.setRowCount(0); // Limpiar tabla
             for (Producto p : productos) {
                 Object[] row = {
+                    p.getId(),
                     p.getProducto(),
                     p.getMarca(),
                     p.getModelo(),
@@ -207,6 +313,7 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
 
     private void configurarTabla() {
         tableModel = new DefaultTableModel();
+        tableModel.addColumn("ID");
         tableModel.addColumn("Producto");
         tableModel.addColumn("Marca");
         tableModel.addColumn("Modelo");
@@ -216,46 +323,16 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         tblProductos.setModel(tableModel);
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCatalogoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCatalogoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCatalogoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCatalogoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCatalogoProductos().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirCarrito1;
     private javax.swing.JButton btnIrAlCarrito;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblVolveer;
     private javax.swing.JTable tblProductos;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

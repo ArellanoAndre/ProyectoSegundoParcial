@@ -15,14 +15,15 @@ import javax.swing.table.DefaultTableModel;
  * @author aleja
  */
 public class FrmAdministrarUsuarios extends javax.swing.JFrame {
-
+    private int U;
     private Usuario usuario;
     private DefaultTableModel tableModel;
 
     /**
      * Creates new form FrmAdministrarUsuarios
      */
-    public FrmAdministrarUsuarios() {
+    public FrmAdministrarUsuarios(int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         configurarTabla();
@@ -134,13 +135,15 @@ public class FrmAdministrarUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        FrmAgregarUsuario fma = new FrmAgregarUsuario();
+        FrmAgregarUsuario fma = new FrmAgregarUsuario(U);
         fma.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
@@ -169,7 +172,7 @@ public class FrmAdministrarUsuarios extends javax.swing.JFrame {
             
             if (usuario != null) {
                 // Crear la instancia del formulario de edición y cargar los datos
-                FrmEditarUsuario fre = new FrmEditarUsuario(usuario);
+                FrmEditarUsuario fre = new FrmEditarUsuario(usuario, U);
                 fre.setVisible(true);
                 this.dispose();
             } else {

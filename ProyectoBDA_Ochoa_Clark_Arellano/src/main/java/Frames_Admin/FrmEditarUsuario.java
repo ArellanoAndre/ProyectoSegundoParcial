@@ -11,9 +11,11 @@ import javax.swing.JOptionPane;
 public class FrmEditarUsuario extends javax.swing.JFrame {
 
     private Usuario usuario;
-
+    private int U;
+    
     // Constructor modificado para recibir un Usuario
-    public FrmEditarUsuario(Usuario usuario) {
+    public FrmEditarUsuario(Usuario usuario, int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         this.usuario = usuario;
@@ -217,13 +219,13 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         cu.actualizarUsuario(usuario);
 
         // Abre el menú de administración
-        FrmAdministrarUsuarios fma = new FrmAdministrarUsuarios();
+        FrmAdministrarUsuarios fma = new FrmAdministrarUsuarios(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-        FrmAdministrarUsuarios fma = new FrmAdministrarUsuarios();
+        FrmAdministrarUsuarios fma = new FrmAdministrarUsuarios(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked

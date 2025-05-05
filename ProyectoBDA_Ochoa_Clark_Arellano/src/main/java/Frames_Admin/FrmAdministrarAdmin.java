@@ -15,13 +15,14 @@ import javax.swing.table.DefaultTableModel;
  * @author aleja
  */
 public class FrmAdministrarAdmin extends javax.swing.JFrame {
-
+    private int U;
     private DefaultTableModel tableModel;
 
     /**
      * Creates new form FrmAdministrarUsuarios
      */
-    public FrmAdministrarAdmin() {
+    public FrmAdministrarAdmin(int U) {
+        this.U=U;
         initComponents();
         setLocationRelativeTo(null);
         configurarTabla();
@@ -187,7 +188,7 @@ private void cargarDatos() {
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        FrmRegistrarAdmin frmra = new FrmRegistrarAdmin();
+        FrmRegistrarAdmin frmra = new FrmRegistrarAdmin(U);
         frmra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -218,7 +219,7 @@ private void cargarDatos() {
             
             if (usuario != null) {
                 // Crear la instancia del formulario de edición y cargar los datos
-                FrmEditarAdmin fre = new FrmEditarAdmin(usuario);
+                FrmEditarAdmin fre = new FrmEditarAdmin(usuario, U);
                 fre.setVisible(true);
                 this.dispose();
             } else {

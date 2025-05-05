@@ -11,20 +11,24 @@ package Entidades;
 public class ProductoCarrito {
 
     private int id;
-    private int carritoId;
     private int productoId;
+    private String marca;
+    private String modelo;
     private int cantidad;
     private double precioUnitario;
+    private double totalProducto;
 
     public ProductoCarrito() {
     }
 
-    public ProductoCarrito(int id, int carritoId, int productoId, int cantidad, double precioUnitario) {
+    public ProductoCarrito(int id, int productoId, String marca, String modelo, int cantidad, double precioUnitario, double totalProducto) {
         this.id = id;
-        this.carritoId = carritoId;
         this.productoId = productoId;
+        this.marca = marca;
+        this.modelo = modelo;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
+        this.totalProducto = totalProducto;
     }
 
     public int getId() {
@@ -35,20 +39,28 @@ public class ProductoCarrito {
         this.id = id;
     }
 
-    public int getCarritoId() {
-        return carritoId;
-    }
-
-    public void setCarritoId(int carritoId) {
-        this.carritoId = carritoId;
-    }
-
     public int getProductoId() {
         return productoId;
     }
 
     public void setProductoId(int productoId) {
         this.productoId = productoId;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public int getCantidad() {
@@ -67,4 +79,15 @@ public class ProductoCarrito {
         this.precioUnitario = precioUnitario;
     }
 
+    public double getTotalProducto() {
+        return totalProducto;
+    }
+
+    public void setTotalProducto(double totalProducto) {
+        this.totalProducto = totalProducto;
+    }
+
+    
+
+    
 }
