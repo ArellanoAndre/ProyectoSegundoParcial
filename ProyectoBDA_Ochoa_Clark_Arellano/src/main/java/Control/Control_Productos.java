@@ -16,14 +16,14 @@ import java.sql.SQLException;
  * @author Arell
  */
 public class Control_Productos {
+
     private Connection conexion;
 
     public Control_Productos() {
         Conexion con = new Conexion(); // Usa tu clase Conexion
         this.conexion = con.getConexion(); // Obtiene la conexión
     }
-    
-    
+
     // Insertar un producto
     public void insertarProducto(Producto producto) throws SQLException {
         String sql = "{CALL sp_insertarProducto(?, ?, ?, ?, ?, ?)}";
@@ -37,27 +37,48 @@ public class Control_Productos {
             stmt.executeUpdate();
         }
     }
+
     public java.util.List<Producto> listarProductos() throws SQLException {
-    java.util.List<Producto> productos = new java.util.ArrayList<>();
+        java.util.List<Producto> productos = new java.util.ArrayList<>();
         String sql = "{CALL sp_listarProductos()}";
-        try (CallableStatement stmt = conexion.prepareCall(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (CallableStatement stmt = conexion.prepareCall(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Producto p = new Producto(
-                    rs.getInt("id"),
-                    rs.getString("producto"),
-                    rs.getString("marca"),
-                    rs.getString("modelo"),
-                    rs.getString("descripcion"),
-                    rs.getDouble("precioCompra"),
-                    rs.getDouble("precioVenta")
+                        rs.getInt("id"),
+                        rs.getString("producto"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precioCompra"),
+                        rs.getDouble("precioVenta")
                 );
                 productos.add(p);
             }
         }
         return productos;
     }
-    
+
+    public java.util.List<Producto> listarProductosCliente() throws SQLException {
+        java.util.List<Producto> productos = new java.util.ArrayList<>();
+        String sql = "{CALL sp_listarProductosCliente()}";
+        try (CallableStatement stmt = conexion.prepareCall(sql); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                // Asegúrate de que el nombre de las columnas coincide con los de tu base de datos
+                Producto p = new Producto(
+                        rs.getInt("id"),
+                        rs.getString("producto"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precioVenta"),
+                        rs.getInt("Cantidad_Stock") // Verifica que el nombre de la columna sea correcto
+                );
+                productos.add(p);
+            }
+        }
+        return productos;
+    }
+
     // Actualizar un producto
     public void actualizarProducto(Producto producto) throws SQLException {
         String sql = "{CALL sp_actualizarProducto(?, ?, ?, ?, ?, ?, ?)}";
@@ -72,7 +93,7 @@ public class Control_Productos {
             stmt.executeUpdate();
         }
     }
-    
+
     // Eliminar un producto
     public void eliminarProducto(int id) throws SQLException {
         String sql = "{CALL sp_eliminarProducto(?)}";
@@ -81,42 +102,41 @@ public class Control_Productos {
             stmt.executeUpdate();
         }
     }
-    
+
     public java.util.List<Producto> listarProductosStock() throws SQLException {
-    java.util.List<Producto> productos = new java.util.ArrayList<>();
-    String sql = "{CALL sp_listarProductosStock()}";
-    
-    try (CallableStatement stmt = conexion.prepareCall(sql);
-         ResultSet rs = stmt.executeQuery()) {
-        while (rs.next()) {
-            Producto p = new Producto(
-                rs.getInt("id"),  // Nuevo campo ID
-                rs.getString("producto"),
-                rs.getString("modelo"),
-                rs.getInt("stock")
-            );
-            productos.add(p);
+        java.util.List<Producto> productos = new java.util.ArrayList<>();
+        String sql = "{CALL sp_listarProductosStock()}";
+
+        try (CallableStatement stmt = conexion.prepareCall(sql); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Producto p = new Producto(
+                        rs.getInt("id"), // Nuevo campo ID
+                        rs.getString("producto"),
+                        rs.getString("modelo"),
+                        rs.getInt("stock")
+                );
+                productos.add(p);
+            }
+        }
+        return productos;
+    }
+
+    public void aumentarStock(int id, int cantidad) throws SQLException {
+        String sql = "UPDATE productos SET Cantidad_Stock = Cantidad_Stock + ? WHERE id = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, cantidad);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
         }
     }
-    return productos;
-}
-    
-    public void aumentarStock(int id, int cantidad) throws SQLException {
-    String sql = "UPDATE productos SET Cantidad_Stock = Cantidad_Stock + ? WHERE id = ?";
-    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-        stmt.setInt(1, cantidad);
-        stmt.setInt(2, id);
-        stmt.executeUpdate();
-    }
-}
 
-public void actualizarStock(int id, int nuevaCantidad) throws SQLException {
-    String sql = "UPDATE productos SET Cantidad_Stock = ? WHERE id = ?";
-    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-        stmt.setInt(1, nuevaCantidad);
-        stmt.setInt(2, id);
-        stmt.executeUpdate();
+    public void actualizarStock(int id, int nuevaCantidad) throws SQLException {
+        String sql = "UPDATE productos SET Cantidad_Stock = ? WHERE id = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, nuevaCantidad);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
     }
-}
 
 }
