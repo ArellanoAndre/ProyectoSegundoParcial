@@ -204,7 +204,7 @@ private int U;
         Control_Compra cc = new Control_Compra();
         Control_Productos cp = new Control_Productos();
         // 1. Primero aumentamos el stock (como ya lo tienes)
-        cp.aumentarStock(id, cantidad);
+        cp.aumentarStockSP(id, cantidad);
         //Registramos compra
         Compra c = new Compra(id, U, cantidad, id);
         cc.registrarCompra(c);

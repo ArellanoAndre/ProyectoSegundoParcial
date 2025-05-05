@@ -5,12 +5,14 @@
 package Frames_Usuario;
 
 import Frames_Loggin.Main;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author aleja
  */
 public class FrmDetalleCompra extends javax.swing.JFrame {
+private DefaultTableModel tableModel;
 
     /**
      * Creates new form FrmDetalleCompra
@@ -96,7 +98,6 @@ public class FrmDetalleCompra extends javax.swing.JFrame {
 
         btnSiguiente.setBackground(new java.awt.Color(153, 255, 153));
         btnSiguiente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnSiguiente.setForeground(new java.awt.Color(0, 0, 0));
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +145,7 @@ public class FrmDetalleCompra extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolveerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolveerMouseClicked

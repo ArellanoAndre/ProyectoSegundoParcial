@@ -1,7 +1,6 @@
 package Frames_Usuario;
 
 import Control.ControlCarrito;
-import Control.Control_Productos;
 import Entidades.ProductoCarrito;
 import java.sql.SQLException;
 import java.util.List;
@@ -143,6 +142,12 @@ public class FrmCarrito extends javax.swing.JFrame {
             }
         });
 
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -197,35 +202,39 @@ public class FrmCarrito extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int filaSeleccionada = tblCarrito.getSelectedRow();
+    int filaSeleccionada = tblCarrito.getSelectedRow();
+    if (filaSeleccionada < 0) {
+        JOptionPane.showMessageDialog(this, "Selecciona un producto del carrito", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Obtener el ID del producto_carrito (columna 0 según tu tabla)
+    int idProductoCarrito = (int) tblCarrito.getValueAt(filaSeleccionada, 0);
+    
+    // Confirmar eliminación
+    int confirmacion = JOptionPane.showConfirmDialog(
+        this, 
+        "¿Estás seguro de eliminar este producto del carrito?",
+        "Confirmar eliminación",
+        JOptionPane.YES_NO_OPTION);
+    
+    if (confirmacion != JOptionPane.YES_OPTION) {
+        return;
+    }
+    try {
+        ControlCarrito control = new ControlCarrito();
+        control.eliminarProductoCarrito(idProductoCarrito);
+        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito");
+             configurarTabla();
+             cargarDatos(); // Método para refrescar la tabla
+//            cc.eliminarProductoCarrito(idProductoCarrito); // Método para refrescar la tabla
+        
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, 
+            "Error al eliminar producto: " + ex.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona un producto para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        int confirmar = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas eliminar este producto del carrito?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-
-        String cantidadText = txtCantidad.getText().trim();
-        System.out.println("DEBUG: Cantidad texto: '" + cantidadText + "'"); // Debug
-
-        if (cantidadText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor ingresa una cantidad", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (confirmar == JOptionPane.YES_OPTION) {
-            int cantidad = Integer.parseInt(cantidadText);
-            int carritoId = (int) tblCarrito.getValueAt(filaSeleccionada, 1); // Columna 0 = carritoId
-
-            ControlCarrito cp = new ControlCarrito();
-            boolean eliminado = cp.quitarProductoCarrito(U, carritoId, cantidad);
-            if (eliminado) {
-                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.");
-                cargarDatos(); // Recargar los datos de la tabla
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -233,6 +242,10 @@ public class FrmCarrito extends javax.swing.JFrame {
         ConfCompra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

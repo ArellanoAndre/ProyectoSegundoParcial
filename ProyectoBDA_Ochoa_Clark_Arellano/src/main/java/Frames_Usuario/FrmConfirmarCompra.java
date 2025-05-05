@@ -36,6 +36,8 @@ public class FrmConfirmarCompra extends javax.swing.JFrame {
 
             if (comprasUsuario.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No hay compras registradas.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                FrmCatalogoProductos f = new FrmCatalogoProductos(U);
+                this.dispose();
                 return;
             }
 

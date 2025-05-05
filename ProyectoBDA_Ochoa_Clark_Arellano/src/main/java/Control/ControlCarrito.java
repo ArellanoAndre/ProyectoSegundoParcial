@@ -64,32 +64,26 @@ public class ControlCarrito {
         return false;
     }
 
-    /**
-     * Elimina un producto del carrito
-     */
-    public boolean quitarProductoCarrito(int usuarioId, int productoId, int cantidad) {
-        String sql = "{CALL sp_QuitarProductoCarrito(?, ?, ?)}";
-        try (CallableStatement stmt = conexion.prepareCall(sql)) {
-            stmt.setInt(1, usuarioId);
-            stmt.setInt(2, productoId);
-            stmt.setInt(3, cantidad);
-            stmt.execute();
-            return true;
-        } catch (SQLException e) {
-            System.err.println("Error al quitar producto del carrito: " + e.getMessage());
-            return false;
+      public boolean eliminarProductoCarrito(int idProductoCarrito) throws SQLException {
+        String sql = "{CALL sp_eliminar_producto_carrito(?)}";
+        
+        try (
+             CallableStatement stmt = conexion.prepareCall(sql)) {
+            
+            stmt.setInt(1, idProductoCarrito);
+            int filasAfectadas = stmt.executeUpdate();
+            
+            return filasAfectadas > 0;
         }
     }
 
-    public boolean comprarCarrito(int usuarioId) {
+    public void comprarCarrito(int usuarioId) {
         String sql = "{CALL sp_ComprarCarrito(?)}";
         try (CallableStatement stmt = conexion.prepareCall(sql)) {
             stmt.setInt(1, usuarioId);
             stmt.execute();
-            return true;
         } catch (SQLException e) {
             System.err.println("Error al realizar la compra: " + e.getMessage());
-            return false;
         }
     }
 

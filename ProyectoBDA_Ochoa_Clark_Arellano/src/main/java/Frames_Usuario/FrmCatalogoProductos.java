@@ -2,9 +2,7 @@ package Frames_Usuario;
 
 import Control.ControlCarrito;
 import Control.Control_Productos;
-import Control.Control_Usuario;
 import Entidades.Producto;
-import Entidades.Usuario;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -131,6 +129,12 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cantidad :");
 
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -203,55 +207,55 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIrAlCarritoActionPerformed
 
     private void btnAnadirCarrito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirCarrito1ActionPerformed
-        System.out.println("DEBUG: Inicio del método"); // Debug
-
-        int row = tblProductos.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+     // 1. Validar selección de producto
+    int row = tblProductos.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Selecciona un producto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // 2. Validar cantidad
+    if (!validarCantidad()) {
+        return;
+    }
+    // Después de validar la cantidad pero antes de agregar al carrito:
+int cantidad = Integer.parseInt(txtCantidad.getText().trim());
+if (!validarStockCarrito(cantidad)) {
+    return;
+}
+    
+    // 3. Obtener datos
+    int idProducto = (int) tableModel.getValueAt(row, 0);
+    
+    // 4. Confirmar con el usuario
+    int confirm = JOptionPane.showConfirmDialog(this, 
+        "¿Agregar " + cantidad + " unidades al carrito?", 
+        "Confirmar", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return;
+    }
+    
+    try {
+        // 5. Agregar al carrito
+        ControlCarrito cc = new ControlCarrito();
+        boolean agregado = cc.agregarProductoCarrito(U, idProducto, cantidad);
+        
+        if (agregado) {
+            JOptionPane.showMessageDialog(this, "Producto agregado al carrito");
+            txtCantidad.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo agregar al carrito", 
+                "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        String cantidadText = txtCantidad.getText().trim();
-        System.out.println("DEBUG: Cantidad texto: '" + cantidadText + "'"); // Debug
-
-        if (cantidadText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor ingresa una cantidad", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            int cantidad = Integer.parseInt(cantidadText);
-            System.out.println("DEBUG: Cantidad parseada: " + cantidad); // Debug
-
-            if (cantidad <= 0) {
-                JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            Object idObj = tblProductos.getValueAt(row, 0);
-            System.out.println("DEBUG: ID producto (raw): " + idObj); // Debug
-
-            int idProducto = Integer.parseInt(idObj.toString());
-            System.out.println("DEBUG: ID producto parseado: " + idProducto); // Debug
-
-            ControlCarrito cc = new ControlCarrito();
-            boolean agregado = cc.agregarProductoCarrito(U, idProducto, cantidad);
-
-            if (agregado) {
-                JOptionPane.showMessageDialog(this, "Producto agregado al carrito.");
-                txtCantidad.setText("");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo agregar el producto al carrito.");
-            }
-        } catch (NumberFormatException ex) {
-            System.out.println("DEBUG: Error al parsear número: " + ex.getMessage()); // Debug
-            JOptionPane.showMessageDialog(this, "Cantidad inválida. Asegúrate de ingresar un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            System.out.println("DEBUG: Error general: " + e.getMessage()); // Debug
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al agregar al carrito: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al agregar al carrito: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAnadirCarrito1ActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private boolean validarCantidad() {
         String cantidadStr = txtCantidad.getText().trim();
@@ -322,6 +326,22 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         tableModel.addColumn("Cantidad");
         tblProductos.setModel(tableModel);
     }
+    private boolean validarStockCarrito(int cantidadDeseada) {
+    int filaSeleccionada = tblProductos.getSelectedRow();
+    if (filaSeleccionada < 0) return false;
+    
+    // Obtener stock disponible (columna 5 según tu tabla)
+    int stockDisponible = (int) tblProductos.getValueAt(filaSeleccionada, 6);
+    
+    if (cantidadDeseada > stockDisponible) {
+        String nombreProducto = (String) tblProductos.getValueAt(filaSeleccionada, 1);
+        JOptionPane.showMessageDialog(this, 
+            "Stock insuficiente de " + nombreProducto + "\nDisponible: " + stockDisponible, 
+            "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirCarrito1;

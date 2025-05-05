@@ -121,14 +121,18 @@ public class Control_Productos {
         return productos;
     }
 
-    public void aumentarStock(int id, int cantidad) throws SQLException {
-        String sql = "UPDATE productos SET Cantidad_Stock = Cantidad_Stock + ? WHERE id = ?";
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            stmt.setInt(1, cantidad);
-            stmt.setInt(2, id);
-            stmt.executeUpdate();
-        }
+    public void aumentarStockSP(int id, int cantidad) {
+    String callSP = "{CALL aumentar_stock_producto(?, ?)}";
+    try (CallableStatement stmt = conexion.prepareCall(callSP)) {
+        stmt.setInt(1, id);
+        stmt.setInt(2, cantidad);
+        stmt.execute();
+        System.out.println("Stock actualizado correctamente.");
+    } catch (SQLException e) {
+        System.err.println("Error al aumentar el stock: " + e.getMessage());
     }
+}
+
 
     public void actualizarStock(int id, int nuevaCantidad) throws SQLException {
         String sql = "UPDATE productos SET Cantidad_Stock = ? WHERE id = ?";
