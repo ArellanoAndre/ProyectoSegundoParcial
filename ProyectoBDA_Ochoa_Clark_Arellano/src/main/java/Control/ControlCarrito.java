@@ -4,10 +4,20 @@
  */
 package Control;
 
+import java.sql.Connection;
+
 /**
  *
  * @author aleja
  */
 public class ControlCarrito {
-    
+
+    private Connection conexion;
+
+    public ControlCarrito() {
+        Conexion con = new Conexion(); // Usa tu clase Conexion
+        this.conexion = con.getConexion(); // Obtiene la conexión
+
+    }
+
 }
