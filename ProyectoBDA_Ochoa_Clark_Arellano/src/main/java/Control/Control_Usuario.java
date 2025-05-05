@@ -44,6 +44,23 @@ public class Control_Usuario {
             JOptionPane.showMessageDialog(null, "Error al crear usuario: " + e.getMessage());
         }
     }
+    
+    public void crearAdmin(Usuario usuario) {
+        try {
+            CallableStatement stmt = conexion.prepareCall("{CALL sp_CrearUsuario(?, ?, ?, ?, ?, ?)}");
+
+            stmt.setString(1, usuario.getNombreCompleto());
+            stmt.setString(2, usuario.getNombreUsuario());
+            stmt.setString(3, usuario.getDireccion());
+            stmt.setString(4, usuario.getCorreo());
+            stmt.setString(5, hashPassword(usuario.getContraseña())); // Encriptación
+            stmt.setString(6, "admin");
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Usuario creado exitosamente.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al crear usuario: " + e.getMessage());
+        }
+    }
 
     // ACTUALIZAR USUARIO SP
     public void actualizarUsuario(Usuario usuario) {
@@ -87,6 +104,29 @@ public class Control_Usuario {
         return usuarios;
     }
 
+    public java.util.List<Usuario> listarAdmin() throws SQLException {
+        java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
+        String sql = "{CALL sp_ObtenerListaAdmin()}"; // Este SP ya filtra solo 'cliente'
+
+        try (CallableStatement stmt = conexion.prepareCall(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Usuario u = new Usuario(
+                        rs.getLong("ID"),
+                        rs.getString("NOMBRE_COMPLETO"),
+                        rs.getString("NOMBRE_USUARIO"),
+                        rs.getString("DIRECCION"),
+                        rs.getString("CORREO")
+                );
+                usuarios.add(u);
+
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al listar usuarios: " + e.getMessage());
+        }
+
+        return usuarios;
+    }
     // OBTENER USUARIO
     // Método para obtener usuario por ID
     public Usuario obtenerUsuario(int id) {

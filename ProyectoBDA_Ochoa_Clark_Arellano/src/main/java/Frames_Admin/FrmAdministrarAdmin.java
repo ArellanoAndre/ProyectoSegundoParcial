@@ -4,19 +4,61 @@
  */
 package Frames_Admin;
 
+import Control.Control_Usuario;
+import Entidades.Usuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aleja
  */
 public class FrmAdministrarAdmin extends javax.swing.JFrame {
 
+    private DefaultTableModel tableModel;
+
     /**
      * Creates new form FrmAdministrarUsuarios
      */
     public FrmAdministrarAdmin() {
         initComponents();
+        setLocationRelativeTo(null);
+        configurarTabla();
+        cargarDatos();
     }
 
+private void cargarDatos() {
+        try {
+            java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
+            Control_Usuario cu = new Control_Usuario();
+            usuarios = cu.listarAdmin();
+            tableModel.setRowCount(0); // Limpiar tabla
+
+            for (Usuario u : usuarios) {
+                Object[] row = {
+                    u.getId(),
+                    u.getNombreCompleto(),
+                    u.getNombreUsuario(),
+                    u.getDireccion(),
+                    u.getCorreo()
+                };
+                tableModel.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+        }
+    }
+
+    private void configurarTabla() {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Nombre");
+        tableModel.addColumn("Usuario");
+        tableModel.addColumn("Correo");
+        tableModel.addColumn("Dirección");
+        tblAdmin.setModel(tableModel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +75,7 @@ public class FrmAdministrarAdmin extends javax.swing.JFrame {
         lblVolver = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRegistrodeConsumo = new javax.swing.JTable();
+        tblAdmin = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -76,24 +118,34 @@ public class FrmAdministrarAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, 31));
 
-        tblRegistrodeConsumo.setModel(new javax.swing.table.DefaultTableModel(
+        tblAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Paterno", "Materno", "Celular", "Correo"
+                "Nombre Completo", "Usuario", "Direccion", "Correo"
             }
         ));
-        jScrollPane1.setViewportView(tblRegistrodeConsumo);
+        jScrollPane1.setViewportView(tblAdmin);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 530, 320));
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 0));
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, -1, 31));
 
         btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, -1, 31));
 
         jLabel1.setText("Editar");
@@ -129,7 +181,7 @@ public class FrmAdministrarAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin();
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
@@ -140,43 +192,68 @@ public class FrmAdministrarAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministrarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministrarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministrarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAdministrarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         Control_Usuario cu = new Control_Usuario();
+    int row = tblAdmin.getSelectedRow();  // Obtén la fila seleccionada
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAdministrarAdmin().setVisible(true);
+    if (row >= 0) {
+        // Obtener el valor del ID, que puede ser Long o Integer
+        Object idObject = tblAdmin.getValueAt(row, 0);  // Obtener el valor del ID en la primera columna
+
+        // Verificar si idObject no es null y es del tipo esperado
+        if (idObject != null) {
+            int id;
+            if (idObject instanceof Long) {
+                id = ((Long) idObject).intValue();
+            } else if (idObject instanceof Integer) {
+                id = (int) idObject;
+            } else {
+                // Si el valor no es ni Long ni Integer, manejar el error
+                JOptionPane.showMessageDialog(null, "El valor del ID no es válido.");
+                return;
             }
-        });
+
+            // Obtener los datos del usuario con el ID
+            Usuario usuario = cu.obtenerUsuario(id);
+            
+            if (usuario != null) {
+                // Crear la instancia del formulario de edición y cargar los datos
+                FrmEditarAdmin fre = new FrmEditarAdmin(usuario);
+                fre.setVisible(true);
+                this.dispose();
+            } else {
+                // Si no se encuentra el usuario
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
+            }
+        } else {
+            // Si el valor del ID es null
+            JOptionPane.showMessageDialog(null, "El ID del usuario no está disponible.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione un usuario para editar.");
     }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        Control_Usuario cu = new Control_Usuario();
+        int row = tblAdmin.getSelectedRow();  // Obtén la fila seleccionada
+
+        if (row >= 0) {
+            // Obtener el valor del ID, que puede ser Long o Integer
+            Object idObject = tblAdmin.getValueAt(row, 0);  // Obtener el valor del ID en la primera columna
+
+            int id = (idObject instanceof Long) ? ((Long) idObject).intValue() : (int) idObject; // Convertir a int si es necesario
+
+            // Llamar al método de eliminación
+            cu.eliminarUsuario(id);
+            cargarDatos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un usuario para eliminar.");
+        }
+    
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FondoAdmin;
@@ -193,6 +270,6 @@ public class FrmAdministrarAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblVolver;
-    private javax.swing.JTable tblRegistrodeConsumo;
+    private javax.swing.JTable tblAdmin;
     // End of variables declaration//GEN-END:variables
 }
