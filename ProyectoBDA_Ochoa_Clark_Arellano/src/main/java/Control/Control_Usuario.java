@@ -18,74 +18,107 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author Arell
  */
 public class Control_Usuario {
+
     private Connection conexion;
 
     public Control_Usuario() {
         Conexion con = new Conexion(); // Usa tu clase Conexion
         this.conexion = con.getConexion(); // Obtiene la conexión
     }
-    
-    
-    
-    
-     //METODOS CRUD CON SP
-     // Método para crear usuario
-    public void crearUsuario(Usuario usuario) {
-    try {
-        CallableStatement stmt = conexion.prepareCall("{CALL sp_CrearUsuario(?, ?, ?, ?, ?, ?)}");
 
-        stmt.setString(1, usuario.getNombreCompleto());
-        stmt.setString(2, usuario.getNombreUsuario());
-        stmt.setString(3, usuario.getDireccion());
-        stmt.setString(4, usuario.getCorreo());
-        stmt.setString(5, hashPassword(usuario.getContraseña())); // Encriptación
-        stmt.setString(6, "CLIENTE");
-        stmt.execute();
-        JOptionPane.showMessageDialog(null, "Usuario creado exitosamente.");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al crear usuario: " + e.getMessage());
+    //METODOS CRUD CON SP
+    // Método para crear usuario
+    public void crearUsuario(Usuario usuario) {
+        try {
+            CallableStatement stmt = conexion.prepareCall("{CALL sp_CrearUsuario(?, ?, ?, ?, ?, ?)}");
+
+            stmt.setString(1, usuario.getNombreCompleto());
+            stmt.setString(2, usuario.getNombreUsuario());
+            stmt.setString(3, usuario.getDireccion());
+            stmt.setString(4, usuario.getCorreo());
+            stmt.setString(5, hashPassword(usuario.getContraseña())); // Encriptación
+            stmt.setString(6, "CLIENTE");
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Usuario creado exitosamente.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al crear usuario: " + e.getMessage());
+        }
     }
-}
+
     // ACTUALIZAR USUARIO SP
     public void actualizarUsuario(Usuario usuario) {
-    try {
-        CallableStatement stmt = conexion.prepareCall("{CALL sp_ActualizarUsuario(?, ?, ?, ?, ?, ?)}");
+        try {
+            CallableStatement stmt = conexion.prepareCall("{CALL sp_ActualizarUsuario(?, ?, ?, ?, ?)}");
 
-        stmt.setLong(1, usuario.getId());
-        stmt.setString(2, usuario.getNombreCompleto());
-        stmt.setString(3, usuario.getNombreUsuario());
-        stmt.setString(4, usuario.getDireccion());
-        stmt.setString(5, usuario.getCorreo());
-        stmt.setString(6, usuario.getRol().name());
+            stmt.setLong(1, usuario.getId());
+            stmt.setString(2, usuario.getNombreCompleto());
+            stmt.setString(3, usuario.getNombreUsuario());
+            stmt.setString(4, usuario.getDireccion());
+            stmt.setString(5, usuario.getCorreo());
 
-        stmt.execute();
-        JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente.");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al actualizar usuario: " + e.getMessage());
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar usuario: " + e.getMessage());
+        }
     }
-}
+
+    public java.util.List<Usuario> listarUsuarios() throws SQLException {
+        java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
+        String sql = "{CALL sp_ObtenerListaUsuarios()}"; // Este SP ya filtra solo 'cliente'
+
+        try (CallableStatement stmt = conexion.prepareCall(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Usuario u = new Usuario(
+                        rs.getLong("ID"),
+                        rs.getString("NOMBRE_COMPLETO"),
+                        rs.getString("NOMBRE_USUARIO"),
+                        rs.getString("DIRECCION"),
+                        rs.getString("CORREO")
+                );
+                usuarios.add(u);
+
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al listar usuarios: " + e.getMessage());
+        }
+
+        return usuarios;
+    }
 
     // OBTENER USUARIO
-      // Método para obtener usuario por ID
-    public void obtenerUsuario(int id) {
+    // Método para obtener usuario por ID
+    public Usuario obtenerUsuario(int id) {
+        Usuario usuario = null;  // Declaramos el objeto Usuario
+
         try {
+            // Preparar la llamada al procedimiento almacenado
             CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerUsuarioPorId(?)}");
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            
+            stmt.setInt(1, id);  // Asignamos el ID al procedimiento
+            ResultSet rs = stmt.executeQuery();  // Ejecutamos la consulta
+
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "ID: " + rs.getInt("ID") + 
-                        "\nNombre: " + rs.getString("NOMBRE") + 
-                        "\nContraseña: " + rs.getString("CONTRASEÑA"));
+                // Creamos un nuevo objeto Usuario y asignamos los valores obtenidos de la base de datos
+                usuario = new Usuario();
+                usuario.setId(rs.getLong("ID"));
+                usuario.setNombreCompleto(rs.getString("NOMBRE_COMPLETO"));
+                usuario.setNombreUsuario(rs.getString("NOMBRE_USUARIO"));
+                usuario.setDireccion(rs.getString("DIRECCION"));
+                usuario.setCorreo(rs.getString("CORREO"));
+                // Si tienes otros atributos, agrégales aquí
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al obtener usuario: " + e.getMessage());
         }
+
+        return usuario;  // Devolvemos el objeto Usuario
     }
-   // ELIMINAR USUARIO
-     // Método para eliminar usuario
+    // ELIMINAR USUARIO
+    // Método para eliminar usuario
+
     public void eliminarUsuario(int id) {
         try {
             CallableStatement stmt = conexion.prepareCall("{CALL sp_EliminarUsuario(?)}");
@@ -96,10 +129,10 @@ public class Control_Usuario {
             JOptionPane.showMessageDialog(null, "Error al eliminar usuario: " + e.getMessage());
         }
     }
-    
+
     //LOGIN
-        // Método para verificar usuario y contraseña usando el procedimiento almacenado
-     // Método para verificar el login
+    // Método para verificar usuario y contraseña usando el procedimiento almacenado
+    // Método para verificar el login
     public int Loggin(Usuario usuario) {
         int userId = -1;
 
@@ -126,38 +159,37 @@ public class Control_Usuario {
 
         return userId; // Retorna -1 si no se encontró el usuario o la contraseña no es válida
     }
-    
+
     public Rol obtenerRolPorId(int id) {
-    Rol rol = null;
+        Rol rol = null;
 
-    try {
-        CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerRolPorId(?)}");
-        stmt.setInt(1, id);
+        try {
+            CallableStatement stmt = conexion.prepareCall("{CALL sp_ObtenerRolPorId(?)}");
+            stmt.setInt(1, id);
 
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            rol = Rol.valueOf(rs.getString("ROL").toUpperCase());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                rol = Rol.valueOf(rs.getString("ROL").toUpperCase());
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el rol del usuario: " + e.getMessage());
         }
 
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al obtener el rol del usuario: " + e.getMessage());
+        return rol;
     }
 
-    return rol;
-}
-
-
     // METODOS DE ENCRIPTACION
-         // Método para encriptar la contraseña usando BCrypt
+    // Método para encriptar la contraseña usando BCrypt
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
-    
+
     // Método para verificar la contraseña (al hacer login)
     public boolean verifyPassword(String password, String storedHashedPassword) {
         return BCrypt.checkpw(password, storedHashedPassword);
     }
-    
+
     // Método para verificar si el hash es de BCrypt
     private boolean isBCryptHash(String hash) {
         return hash != null && hash.startsWith("$2a$") || hash.startsWith("$2b$") || hash.startsWith("$2y$");

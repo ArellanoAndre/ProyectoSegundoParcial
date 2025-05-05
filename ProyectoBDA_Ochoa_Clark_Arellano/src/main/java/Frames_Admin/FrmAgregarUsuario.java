@@ -1,5 +1,8 @@
-
 package Frames_Admin;
+
+import Control.Control_Usuario;
+import Entidades.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,6 +12,17 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
 
     public FrmAgregarUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
+        txtNombreCompleto.setText("");
+        txtNombreUsuario.setText("");
+        txtDireccion.setText("");
+        txtCorreo.setText("");
+        txtContraseña.setText("");
+        txtConfirmarContraseña.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -19,20 +33,18 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblAgregarUsuario = new javax.swing.JLabel();
         lblVolver = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        lblPaterno = new javax.swing.JLabel();
-        lblMaterno = new javax.swing.JLabel();
-        lblCelular = new javax.swing.JLabel();
+        lblNombreCompleto = new javax.swing.JLabel();
+        lblNombreUsuario = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
-        lblCorreeo = new javax.swing.JLabel();
-        lblContrasena = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtApellidoPaterno = new javax.swing.JTextField();
-        txtMaterno = new javax.swing.JTextField();
-        txtCelular = new javax.swing.JTextField();
+        lblCorreo = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
+        lblConfirmarContraseña = new javax.swing.JLabel();
+        txtNombreCompleto = new javax.swing.JTextField();
+        txtNombreUsuario = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
+        txtContraseña = new javax.swing.JTextField();
+        txtConfirmarContraseña = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,32 +85,28 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblNombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombre.setText("Nombre");
+        lblNombreCompleto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblNombreCompleto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNombreCompleto.setText("Nombre Completo");
 
-        lblPaterno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblPaterno.setText("Apellido Paterno");
-
-        lblMaterno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMaterno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMaterno.setText("Apellido Materno");
-
-        lblCelular.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCelular.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCelular.setText("Celular");
+        lblNombreUsuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblNombreUsuario.setText("Nombre Usuario");
 
         lblDireccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección");
 
-        lblCorreeo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCorreeo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCorreeo.setText("Correo");
+        lblCorreo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCorreo.setText("Correo");
 
-        lblContrasena.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblContrasena.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblContrasena.setText("Contraseña");
+        lblContraseña.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblContraseña.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblContraseña.setText("Contraseña");
+
+        lblConfirmarContraseña.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblConfirmarContraseña.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblConfirmarContraseña.setText("Confirmar Contraseña");
 
         btnSiguiente.setBackground(new java.awt.Color(153, 255, 153));
         btnSiguiente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -117,33 +125,30 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblMaterno, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addComponent(lblCelular, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(lblCorreeo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNombreCompleto)
+                            .addComponent(lblDireccion)
+                            .addComponent(lblCorreo)
+                            .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombreUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(btnSiguiente)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(lblConfirmarContraseña)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(btnSiguiente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,35 +156,31 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombre))
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreCompleto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPaterno))
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaterno))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDireccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCelular))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDireccion)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreeo)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCorreo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContrasena)
-                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblContraseña))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblConfirmarContraseña))
                 .addGap(18, 18, 18)
                 .addComponent(btnSiguiente)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,67 +201,87 @@ public class FrmAgregarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSiguienteActionPerformed
+        String nombreCompleto = txtNombreCompleto.getText().trim();
+        String nombreUsuario = txtNombreUsuario.getText().trim(); // Asegúrate de tener un campo para esto
+        String direccion = txtDireccion.getText().trim();
+        String correo = txtCorreo.getText().trim();
+        String contraseña = txtContraseña.getText().trim();
+        String confirmarContraseña = txtConfirmarContraseña.getText().trim();
+
+        // Validación de campos vacíos
+        if (nombreCompleto.isEmpty() || nombreUsuario.isEmpty() || direccion.isEmpty()
+                || correo.isEmpty() || contraseña.isEmpty() || confirmarContraseña.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validación de nombre completo (solo letras y espacios)
+        if (!nombreCompleto.matches("^[a-zA-ZÁÉÍÓÚáéíóúÑñ\\s]+$")) {
+            JOptionPane.showMessageDialog(this, "El nombre completo solo debe contener letras y espacios.", "Nombre inválido", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validación de formato de correo
+        if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un correo electrónico válido.", "Correo inválido", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validación de contraseña segura
+        if (!contraseña.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$")) {
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una minúscula y un número.", "Contraseña insegura", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validación de coincidencia de contraseñas
+        if (!contraseña.equals(confirmarContraseña)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error de contraseña", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Crear usuario y enviarlo al controlador
+        Usuario usuario = new Usuario();
+        usuario.setNombreCompleto(nombreCompleto);
+        usuario.setNombreUsuario(nombreUsuario);
+        usuario.setDireccion(direccion);
+        usuario.setCorreo(correo);
+        usuario.setContraseña(contraseña); // Se encripta dentro de crearUsuario()
+
+        Control_Usuario cu = new Control_Usuario();
+        cu.crearUsuario(usuario);
+        limpiarCampos();
+        FrmMenuAdmin fma = new FrmMenuAdmin();
+        fma.setVisible(true);
+        this.dispose();
+
+     }//GEN-LAST:event_btnSiguienteActionPerformed
+
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin();
+        FrmMenuAdmin fma = new FrmMenuAdmin();
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAgregarUsuario().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgregarUsuario;
-    private javax.swing.JLabel lblCelular;
-    private javax.swing.JLabel lblContrasena;
-    private javax.swing.JLabel lblCorreeo;
+    private javax.swing.JLabel lblConfirmarContraseña;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblMaterno;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPaterno;
+    private javax.swing.JLabel lblNombreCompleto;
+    private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblVolver;
-    private javax.swing.JTextField txtApellidoPaterno;
-    private javax.swing.JTextField txtCelular;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JTextField txtConfirmarContraseña;
+    private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtMaterno;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreCompleto;
+    private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,7 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
 
     public FrmMenuAdmin() {
         initComponents();
+        setLocationRelativeTo(null);
          this.setTitle("Menu Principal de Administradores");
     }
 

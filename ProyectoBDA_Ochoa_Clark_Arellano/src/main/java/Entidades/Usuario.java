@@ -23,6 +23,15 @@ public class Usuario {
         this.rol = rol;
     }
 
+    public Usuario(Long id, String NombreCompleto, String NombreUsuario, String direccion, String correo) {
+        this.id = id;
+        this.NombreCompleto = NombreCompleto;
+        this.NombreUsuario = NombreUsuario;
+        this.direccion = direccion;
+        this.correo = correo;
+    }
+    
+
     public Usuario(String NombreCompleto, String NombreUsuario, String direccion, String correo, String contraseña, Rol rol) {
         this.NombreCompleto = NombreCompleto;
         this.NombreUsuario = NombreUsuario;
@@ -37,6 +46,10 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
+    public Usuario() {
+    }
+
+    
     public Long getId() {
         return id;
     }

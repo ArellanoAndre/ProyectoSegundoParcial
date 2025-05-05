@@ -9,6 +9,7 @@ public class FrmRegistrarAdmin extends javax.swing.JFrame {
 
     public FrmRegistrarAdmin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
