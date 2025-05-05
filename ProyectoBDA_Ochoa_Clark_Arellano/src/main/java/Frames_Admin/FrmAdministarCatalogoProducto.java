@@ -220,7 +220,7 @@ private void configurarTabla() {
         tableModel.addColumn("Descripción");
         tableModel.addColumn("Precio Compra");
         tableModel.addColumn("Precio Venta");
-        tblProductos.setModel(tableModel); // Asegúrate de que jTable1 sea el nombre de tu JTable
+        tblProductos.setModel(tableModel); 
     }
 
 private void actualizarProductoSeleccionado() {

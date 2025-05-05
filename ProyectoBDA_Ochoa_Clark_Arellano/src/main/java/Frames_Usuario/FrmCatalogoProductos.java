@@ -1,4 +1,3 @@
-
 package Frames_Usuario;
 
 import javax.swing.JOptionPane;
@@ -162,21 +161,21 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void lblVolveerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolveerMouseClicked
-        FrmMenuUsuario menuUsuario = new FrmMenuUsuario(); 
-        menuUsuario.setVisible(true); 
-        this.dispose(); 
+        FrmMenuUsuario menuUsuario = new FrmMenuUsuario();
+        menuUsuario.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblVolveerMouseClicked
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         int filaSeleccionada = tblProductos.getSelectedRow();
-        
-        if (filaSeleccionada != -1) {
-        // Aqui la lógica para ver si el producto existe en STOCK o q rollo
 
-        JOptionPane.showMessageDialog(this, "Producto comprado exitosamente");
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto antes de comprar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-    }
+        if (filaSeleccionada != -1) {
+            // Aqui la lógica para ver si el producto existe en STOCK o q rollo
+
+            JOptionPane.showMessageDialog(this, "Producto comprado exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto antes de comprar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
         FrmConfirmarCompra ConfCompra = new FrmConfirmarCompra();
         ConfCompra.setVisible(true);
         this.dispose();
@@ -198,7 +197,31 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para añadir al carrito", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+
+
     }//GEN-LAST:event_btnAnadirCarrito1ActionPerformed
+
+//    private void cargarDatos() {
+//        try {
+//            java.util.List<Producto> productos = new java.util.ArrayList<>();
+//            Control_Productos cp = new Control_Productos();
+//            productos = cp.listarProductos();
+//            tableModel.setRowCount(0); // Limpiar tabla
+//            for (Producto p : productos) {
+//                Object[] row = {
+//                    p.getProducto(),
+//                    p.getMarca(),
+//                    p.getModelo(),
+//                    p.getDescripcion(),
+//                    p.getPrecioCompra(),
+//                    p.getPrecioVenta()
+//                };
+//                tableModel.addRow(row);
+//            }
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+//        }
+//    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
