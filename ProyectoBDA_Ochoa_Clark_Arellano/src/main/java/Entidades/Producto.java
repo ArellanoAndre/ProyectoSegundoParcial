@@ -1,4 +1,3 @@
-
 package Entidades;
 
 /**
@@ -6,6 +5,7 @@ package Entidades;
  * @author aleja
  */
 public class Producto {
+
     private int id;
     private String producto;
     private String marca;
@@ -16,7 +16,8 @@ public class Producto {
     private int CantidadStock;
 
     // Constructor vacío
-    public Producto() {}
+    public Producto() {
+    }
 
     public Producto(String producto, String marca, String modelo, String descripcion, double precioCompra, double precioVenta) {
         this.producto = producto;
@@ -27,8 +28,28 @@ public class Producto {
         this.precioVenta = precioVenta;
     }
 
-    // Constructor con parámetros
+    public Producto(String producto, String marca, String modelo, String descripcion, double precioVenta, int CantidadStock) {
+        this.producto = producto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.descripcion = descripcion;
+        this.precioVenta = precioVenta;
+        this.CantidadStock = CantidadStock;
+    }
 
+    public Producto(int id, String producto, String marca, String modelo, String descripcion, double precioVenta, int CantidadStock) {
+        this.id = id;
+        this.producto = producto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.descripcion = descripcion;
+        this.precioVenta = precioVenta;
+        this.CantidadStock = CantidadStock;
+    }
+    
+    
+
+    // Constructor con parámetros
     public Producto(int id, String producto, String marca, String modelo, String descripcion, double precioCompra, double precioVenta) {
         this.id = id;
         this.producto = producto;
@@ -56,15 +77,6 @@ public class Producto {
         this.precioVenta = precioVenta;
         this.CantidadStock = CantidadStock;
     }
-
-    public int getCantidadStock() {
-        return CantidadStock;
-    }
-
-    public void setCantidadStock(int CantidadStock) {
-        this.CantidadStock = CantidadStock;
-    }
-
 
     public int getId() {
         return id;
@@ -122,5 +134,12 @@ public class Producto {
         this.precioVenta = precioVenta;
     }
 
-   
+    public int getCantidadStock() {
+        return CantidadStock;
+    }
+
+    public void setCantidadStock(int CantidadStock) {
+        this.CantidadStock = CantidadStock;
+    }
+
 }

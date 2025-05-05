@@ -1,6 +1,10 @@
 package Frames_Usuario;
 
+import Control.Control_Productos;
+import Entidades.Producto;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -8,8 +12,13 @@ import javax.swing.JOptionPane;
  */
 public class FrmCatalogoProductos extends javax.swing.JFrame {
 
+    private DefaultTableModel tableModel;
+
     public FrmCatalogoProductos() {
         initComponents();
+        setLocationRelativeTo(null);
+        configurarTabla();
+        cargarDatos();
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +31,6 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblVolveer = new javax.swing.JLabel();
-        btnComprar = new javax.swing.JButton();
         btnIrAlCarrito = new javax.swing.JButton();
         btnAnadirCarrito1 = new javax.swing.JButton();
 
@@ -32,13 +40,13 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Producto", "Marca", "Modelo", "Descripción", "Precio"
+                "Producto", "Marca", "Modelo", "Descripción", "Precio", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(tblProductos);
@@ -82,14 +90,6 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnComprar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnComprar.setText("Comprar");
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
-            }
-        });
-
         btnIrAlCarrito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnIrAlCarrito.setText("Ir al Carrito");
         btnIrAlCarrito.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +112,11 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnadirCarrito1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnIrAlCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -130,9 +129,7 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnComprar)
-                        .addGap(18, 18, 18)
+                        .addGap(63, 63, 63)
                         .addComponent(btnAnadirCarrito1)
                         .addGap(18, 18, 18)
                         .addComponent(btnIrAlCarrito)))
@@ -166,21 +163,6 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblVolveerMouseClicked
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        int filaSeleccionada = tblProductos.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            // Aqui la lógica para ver si el producto existe en STOCK o q rollo
-
-            JOptionPane.showMessageDialog(this, "Producto comprado exitosamente");
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto antes de comprar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-        FrmConfirmarCompra ConfCompra = new FrmConfirmarCompra();
-        ConfCompra.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnComprarActionPerformed
-
     private void btnIrAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrAlCarritoActionPerformed
         FrmCarrito Carrito = new FrmCarrito();
         Carrito.setVisible(true);
@@ -201,27 +183,38 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAnadirCarrito1ActionPerformed
 
-//    private void cargarDatos() {
-//        try {
-//            java.util.List<Producto> productos = new java.util.ArrayList<>();
-//            Control_Productos cp = new Control_Productos();
-//            productos = cp.listarProductos();
-//            tableModel.setRowCount(0); // Limpiar tabla
-//            for (Producto p : productos) {
-//                Object[] row = {
-//                    p.getProducto(),
-//                    p.getMarca(),
-//                    p.getModelo(),
-//                    p.getDescripcion(),
-//                    p.getPrecioCompra(),
-//                    p.getPrecioVenta()
-//                };
-//                tableModel.addRow(row);
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
-//        }
-//    }
+    private void cargarDatos() {
+        try {
+            java.util.List<Producto> productos = new java.util.ArrayList<>();
+            Control_Productos cp = new Control_Productos();
+            productos = cp.listarProductosCliente();
+            tableModel.setRowCount(0); // Limpiar tabla
+            for (Producto p : productos) {
+                Object[] row = {
+                    p.getProducto(),
+                    p.getMarca(),
+                    p.getModelo(),
+                    p.getDescripcion(),
+                    p.getPrecioVenta(),
+                    p.getCantidadStock()
+                };
+                tableModel.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+        }
+    }
+
+    private void configurarTabla() {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Producto");
+        tableModel.addColumn("Marca");
+        tableModel.addColumn("Modelo");
+        tableModel.addColumn("Descripcion");
+        tableModel.addColumn("Precio");
+        tableModel.addColumn("Cantidad");
+        tblProductos.setModel(tableModel);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -257,7 +250,6 @@ public class FrmCatalogoProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirCarrito1;
-    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnIrAlCarrito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
