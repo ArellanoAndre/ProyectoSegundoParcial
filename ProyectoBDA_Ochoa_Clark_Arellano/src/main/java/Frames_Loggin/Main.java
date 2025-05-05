@@ -113,8 +113,8 @@ if (id > 0) {
     // ✅ Obtenemos el rol del usuario usando su ID
     Rol rol = control.obtenerRolPorId(id);
 
-    if (rol == Rol.ADMIN) {
-        FrmMenuAdmin adminFrame = new FrmMenuAdmin();
+    if (rol == Rol.ADMIN && id > 0) {
+        FrmMenuAdmin adminFrame = new FrmMenuAdmin(id);
         adminFrame.setVisible(true);
         System.out.println("Es admin");
     } else if (rol == Rol.CLIENTE) {

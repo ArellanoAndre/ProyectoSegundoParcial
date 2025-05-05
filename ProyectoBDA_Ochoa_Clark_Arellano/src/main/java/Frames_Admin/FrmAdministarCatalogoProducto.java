@@ -16,11 +16,19 @@ import javax.swing.table.TableModel;
  */
 public class FrmAdministarCatalogoProducto extends javax.swing.JFrame {
 private DefaultTableModel tableModel;
+private int U;
     /**
      * Creates new form FrmAdministrarUsuarios
      */
     public FrmAdministarCatalogoProducto() {
         initComponents();
+        configurarTabla();
+        cargarDatos();
+    }
+
+    public FrmAdministarCatalogoProducto(int U) {
+        this.U = U;
+         initComponents();
         configurarTabla();
         cargarDatos();
     }
@@ -153,7 +161,7 @@ private DefaultTableModel tableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin();
+         FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
     }//GEN-LAST:event_lblVolverMouseClicked
 

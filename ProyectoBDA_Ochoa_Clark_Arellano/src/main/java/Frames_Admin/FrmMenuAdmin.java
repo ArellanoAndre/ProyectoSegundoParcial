@@ -13,6 +13,14 @@ import javax.swing.JPanel;
  * @author aleja
  */
 public class FrmMenuAdmin extends javax.swing.JFrame {
+    private int U;
+
+    public FrmMenuAdmin(int U) {
+         initComponents();
+        setLocationRelativeTo(null);
+         this.setTitle("Menu Principal de Administradores");
+        this.U = U;
+    }
 
     public FrmMenuAdmin() {
         initComponents();
@@ -157,7 +165,7 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimientoActionPerformed
-       FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto();
+       FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto(U);
        frmcp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
@@ -185,8 +193,11 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministrarInstalaciones1ActionPerformed
 
     private void btnGestionMantenimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimiento1ActionPerformed
-        FrmAdministarInventarioProductos frmgi = new FrmAdministarInventarioProductos();
-        frmgi.setVisible(true);
+        if(U>0){
+        FrmAdministarInventarioProductos frmgi = new FrmAdministarInventarioProductos(U);
+        frmgi.setVisible(true);}
+        else
+            System.out.println("No se guardo el id");
         this.dispose();
     }//GEN-LAST:event_btnGestionMantenimiento1ActionPerformed
 

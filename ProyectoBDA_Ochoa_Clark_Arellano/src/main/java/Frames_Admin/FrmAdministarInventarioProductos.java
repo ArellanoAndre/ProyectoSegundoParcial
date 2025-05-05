@@ -4,7 +4,9 @@
  */
 package Frames_Admin;
 
+import Control.Control_Compra;
 import Control.Control_Productos;
+import Entidades.Compra;
 import Entidades.Producto;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,12 +18,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmAdministarInventarioProductos extends javax.swing.JFrame {
 private DefaultTableModel tableModel;
+private int U;
 
     /**
      * Creates new form FrmAdministrarUsuarios
      */
     public FrmAdministarInventarioProductos() {
         initComponents();
+        configurarTablaStock();
+        cargarDatosStock();
+    }
+
+    public FrmAdministarInventarioProductos(int U) {
+        initComponents();
+        this.U = U;
         configurarTablaStock();
         cargarDatosStock();
     }
@@ -159,7 +169,7 @@ private DefaultTableModel tableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin();
+         FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
     }//GEN-LAST:event_lblVolverMouseClicked
 
@@ -185,8 +195,13 @@ private DefaultTableModel tableModel;
     int cantidad = Integer.parseInt(txtCantidad.getText());
     
     try {
+        Control_Compra cc = new Control_Compra();
         Control_Productos cp = new Control_Productos();
+        // 1. Primero aumentamos el stock (como ya lo tienes)
         cp.aumentarStock(id, cantidad);
+        //Registramos compra
+        Compra c = new Compra(id, U, cantidad, id);
+        cc.registrarCompra(c);
         cargarDatosStock();
         JOptionPane.showMessageDialog(this, "Stock actualizado exitosamente");
         txtCantidad.setText("");
