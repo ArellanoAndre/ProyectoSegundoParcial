@@ -127,6 +127,9 @@ private DefaultTableModel tableModel;
             }
         ));
         jScrollPane1.setViewportView(tblProductos);
+        if (tblProductos.getColumnModel().getColumnCount() > 0) {
+            tblProductos.getColumnModel().getColumn(5).setHeaderValue("PrecioVenta");
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 510, 270));
 
@@ -191,37 +194,38 @@ private DefaultTableModel tableModel;
        actualizarProductoSeleccionado();
     }//GEN-LAST:event_btnEditarActionPerformed
 private void cargarDatos() {
-        try {
-            java.util.List<Producto> productos = new java.util.ArrayList<>();
-            Control_Productos cp = new Control_Productos();
-            productos = cp.listarProductos();
-            tableModel.setRowCount(0); // Limpiar tabla
-            for (Producto p : productos) {
-                Object[] row = {
-                    p.getProducto(),
-                    p.getMarca(),
-                    p.getModelo(),
-                    p.getDescripcion(),
-                    p.getPrecioCompra(),
-                    p.getPrecioVenta()
-                };
-                tableModel.addRow(row);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+    try {
+        java.util.List<Producto> productos = new java.util.ArrayList<>();
+        Control_Productos cp = new Control_Productos();
+        productos = cp.listarProductos();
+        tableModel.setRowCount(0); // Limpiar tabla
+        for (Producto p : productos) {
+            Object[] row = {
+                p.getId(), // Agregar el ID al principio
+                p.getProducto(),
+                p.getMarca(),
+                p.getModelo(),
+                p.getDescripcion(),
+                p.getPrecioCompra(),
+                p.getPrecioVenta()
+            };
+            tableModel.addRow(row);
         }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
     }
-
+}
 private void configurarTabla() {
-        tableModel = new DefaultTableModel();
-        tableModel.addColumn("Producto");
-        tableModel.addColumn("Marca");
-        tableModel.addColumn("Modelo");
-        tableModel.addColumn("Descripción");
-        tableModel.addColumn("Precio Compra");
-        tableModel.addColumn("Precio Venta");
-        tblProductos.setModel(tableModel); 
-    }
+    tableModel = new DefaultTableModel();
+    tableModel.addColumn("ID"); // Nueva columna para el ID
+    tableModel.addColumn("Producto");
+    tableModel.addColumn("Marca");
+    tableModel.addColumn("Modelo");
+    tableModel.addColumn("Descripción");
+    tableModel.addColumn("Precio Compra");
+    tableModel.addColumn("Precio Venta");
+    tblProductos.setModel(tableModel); 
+}
 
 private void actualizarProductoSeleccionado() {
     int filaSeleccionada = tblProductos.getSelectedRow();
@@ -231,18 +235,20 @@ private void actualizarProductoSeleccionado() {
     }
 
     // Aunque esté oculta, aún podemos leerla
-    String producto = (String) tblProductos.getValueAt(filaSeleccionada, 0);
-    String marca = (String) tblProductos.getValueAt(filaSeleccionada, 1);
-    String modelo = (String) tblProductos.getValueAt(filaSeleccionada, 2);
-    String descripcion = (String) tblProductos.getValueAt(filaSeleccionada, 3);
-    double precioCompra = (double) tblProductos.getValueAt(filaSeleccionada, 4);
-    double precioVenta = (double) tblProductos.getValueAt(filaSeleccionada, 5);
+    int id = (int) tblProductos.getValueAt(filaSeleccionada, 0); 
+    String producto = (String) tblProductos.getValueAt(filaSeleccionada, 1);
+    String marca = (String) tblProductos.getValueAt(filaSeleccionada, 2);
+    String modelo = (String) tblProductos.getValueAt(filaSeleccionada, 3);
+    String descripcion = (String) tblProductos.getValueAt(filaSeleccionada, 4);
+    double precioCompra = (double) tblProductos.getValueAt(filaSeleccionada, 5);
+    double precioVenta = (double) tblProductos.getValueAt(filaSeleccionada, 6);
 
-    Producto p = new Producto(producto, marca, modelo, descripcion, precioCompra, precioVenta);
+    Producto p = new Producto(id, producto, marca, modelo, descripcion, precioCompra, precioVenta);
 
     FrmActualizarProducto frm = new FrmActualizarProducto(p);
     frm.setVisible(true);
 }
+
 
 
     /**

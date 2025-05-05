@@ -27,8 +27,8 @@ public class Producto {
     }
 
     // Constructor con parámetros
-    public Producto(int id, String producto, String marca, String modelo, String descripcion, 
-                    double precioCompra, double precioVenta) {
+
+    public Producto(int id, String producto, String marca, String modelo, String descripcion, double precioCompra, double precioVenta) {
         this.id = id;
         this.producto = producto;
         this.marca = marca;
@@ -37,6 +37,7 @@ public class Producto {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
     }
+
 
     public int getId() {
         return id;

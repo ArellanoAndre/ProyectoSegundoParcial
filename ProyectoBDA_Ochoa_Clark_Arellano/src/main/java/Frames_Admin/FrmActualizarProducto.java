@@ -194,21 +194,14 @@ private Producto pr; // Para almacenar el producto a editar
     }
 
     // Si las validaciones pasan, crear objeto Producto y proceder
-    Producto productoObj = new Producto(
-        0, // ID se genera automáticamente
-        producto,
-        marca,
-        modelo,
-        descripcion,
-        precioCompra,
-        precioVenta
-    );
+    pr.setProducto(producto); pr.setDescripcion(descripcion); pr.setMarca(marca); pr.setModelo(modelo);pr.setPrecioCompra(precioCompra); pr.setPrecioVenta(precioVenta);
+    
 
     // Aquí puedes agregar la lógica para guardar el producto (usando ProductoDAO)
     try {
         Control_Productos productoDAO = new Control_Productos(); // Ajusta según tu clase de conexión
-        productoDAO.insertarProducto(productoObj);
-        JOptionPane.showMessageDialog(this, "Producto registrado exitosamente.");
+        productoDAO.actualizarProducto(pr);
+        JOptionPane.showMessageDialog(this, "Producto Actualizado exitosamente.");
         limpiarCampos();
         // Opcional: Abrir la siguiente pantalla si la tienes
     } catch (SQLException e) {
