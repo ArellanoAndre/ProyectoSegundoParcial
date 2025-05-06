@@ -161,6 +161,7 @@ public class FrmAdministarCatalogoProducto extends javax.swing.JFrame {
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
         FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
+        this.dispose();  
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -254,6 +255,7 @@ public class FrmAdministarCatalogoProducto extends javax.swing.JFrame {
 
         FrmActualizarProducto frm = new FrmActualizarProducto(p, U);
         frm.setVisible(true);
+        this.dispose();  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

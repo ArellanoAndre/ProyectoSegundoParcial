@@ -177,6 +177,7 @@ private int U;
     private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
          FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
+        this.dispose();  
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed

@@ -1,4 +1,3 @@
-
 package Frames_Admin;
 
 import Frames_Loggin.Main;
@@ -13,19 +12,20 @@ import javax.swing.JPanel;
  * @author aleja
  */
 public class FrmMenuAdmin extends javax.swing.JFrame {
+
     private int U;
 
     public FrmMenuAdmin(int U) {
-         initComponents();
+        initComponents();
         setLocationRelativeTo(null);
-         this.setTitle("Menu Principal de Administradores");
+        this.setTitle("Menu Principal de Administradores");
         this.U = U;
     }
 
     public FrmMenuAdmin() {
         initComponents();
         setLocationRelativeTo(null);
-         this.setTitle("Menu Principal de Administradores");
+        this.setTitle("Menu Principal de Administradores");
     }
 
     @SuppressWarnings("unchecked")
@@ -38,10 +38,11 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         lblSalir = new javax.swing.JLabel();
         btnGestionMantenimiento = new javax.swing.JButton();
         btnAdministrarInstalaciones = new javax.swing.JButton();
-        btnReportes = new javax.swing.JButton();
+        btnReporteExistencia = new javax.swing.JButton();
         btnAdministrarInstalaciones1 = new javax.swing.JButton();
         btnGestionMantenimiento1 = new javax.swing.JButton();
         PanelHistograma1 = new javax.swing.JPanel();
+        btnReporteVenta = new javax.swing.JButton();
         FondoAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,14 +104,14 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
         });
         jpFondo.add(btnAdministrarInstalaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 220, 40));
 
-        btnReportes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnReportes.setText("Reportes");
-        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+        btnReporteExistencia.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnReporteExistencia.setText("Reporte Existencia");
+        btnReporteExistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportesActionPerformed(evt);
+                btnReporteExistenciaActionPerformed(evt);
             }
         });
-        jpFondo.add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 220, 40));
+        jpFondo.add(btnReporteExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 220, 40));
 
         btnAdministrarInstalaciones1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnAdministrarInstalaciones1.setText("Gestionar Clientes");
@@ -145,6 +146,15 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
 
         jpFondo.add(PanelHistograma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 250, 200));
 
+        btnReporteVenta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnReporteVenta.setText("Reporte Venta");
+        btnReporteVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteVentaActionPerformed(evt);
+            }
+        });
+        jpFondo.add(btnReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 220, 40));
+
         FondoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/FondoAdmin.jpg"))); // NOI18N
         FondoAdmin.setInheritsPopupMenu(false);
         jpFondo.add(FondoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 660, 420));
@@ -165,41 +175,48 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimientoActionPerformed
-       FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto(U);
-       frmcp.setVisible(true);
+        FrmAdministarCatalogoProducto frmcp = new FrmAdministarCatalogoProducto(U);
+        frmcp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
 
     private void btnAdministrarInstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarInstalacionesActionPerformed
         FrmAdministrarAdmin frmaa = new FrmAdministrarAdmin(U);
         frmaa.setVisible(true);
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnAdministrarInstalacionesActionPerformed
 
-    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportesActionPerformed
+    private void btnReporteExistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteExistenciaActionPerformed
+        FrmReporteExistencias frm = new FrmReporteExistencias(U);
+        frm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReporteExistenciaActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         Main.main(null);
         this.dispose();
-        
+
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnAdministrarInstalaciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarInstalaciones1ActionPerformed
-       FrmAdministrarUsuarios frmgu = new FrmAdministrarUsuarios(U);
-       frmgu.setVisible(true);
+        FrmAdministrarUsuarios frmgu = new FrmAdministrarUsuarios(U);
+        frmgu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAdministrarInstalaciones1ActionPerformed
 
     private void btnGestionMantenimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMantenimiento1ActionPerformed
-        if(U>0){
-        FrmAdministarInventarioProductos frmgi = new FrmAdministarInventarioProductos(U);
-        frmgi.setVisible(true);}
-        else
+        if (U > 0) {
+            FrmAdministarInventarioProductos frmgi = new FrmAdministarInventarioProductos(U);
+            frmgi.setVisible(true);
+        } else {
             System.out.println("No se guardo el id");
+        }
         this.dispose();
     }//GEN-LAST:event_btnGestionMantenimiento1ActionPerformed
+
+    private void btnReporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReporteVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -209,7 +226,8 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAdministrarInstalaciones1;
     private javax.swing.JButton btnGestionMantenimiento;
     private javax.swing.JButton btnGestionMantenimiento1;
-    private javax.swing.JButton btnReportes;
+    private javax.swing.JButton btnReporteExistencia;
+    private javax.swing.JButton btnReporteVenta;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jpFondo;
     private javax.swing.JLabel lblIniciarSesion;
