@@ -316,7 +316,12 @@ if (!validarStockCarrito(cantidad)) {
     }
 
     private void configurarTabla() {
-        tableModel = new DefaultTableModel();
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
         tableModel.addColumn("ID");
         tableModel.addColumn("Producto");
         tableModel.addColumn("Marca");
