@@ -5,8 +5,10 @@
 package Control;
 
 import Entidades.Producto;
+import Entidades.VentaReporte;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -80,4 +82,35 @@ public class ControlReporte {
         return listaProductos;
     }
 
+    public List<VentaReporte> obtenerReporteVentasPeriodo(java.sql.Date fechaInicio, java.sql.Date fechaFin) {
+        List<VentaReporte> listaReporte = new ArrayList<>();
+        String sql = "{CALL sp_ReporteRentasPeriodo(?, ?)}";
+
+        try (CallableStatement stmt = conexion.prepareCall(sql)) {
+            stmt.setDate(1, fechaInicio);
+            stmt.setDate(2, fechaFin);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                VentaReporte venta = new VentaReporte();
+                venta.setIdVenta(rs.getInt("ID Venta"));
+                venta.setFecha(rs.getDate("fecha"));
+                venta.setCliente(rs.getString("Cliente"));
+                venta.setProducto(rs.getString("Producto"));
+                venta.setMarca(rs.getString("Marca"));
+                venta.setModelo(rs.getString("Modelo"));
+                venta.setCantidadVendida(rs.getInt("Cantidad Vendida"));
+                venta.setPrecioUnitario(rs.getDouble("Precio Unitario"));
+                venta.setTotalVenta(rs.getDouble("Total Venta"));
+
+                listaReporte.add(venta);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el reporte de rentas: " + e.getMessage());
+            throw new RuntimeException("Error al obtener reporte de ventas", e);
+        }
+
+        return listaReporte;
+    }
 }

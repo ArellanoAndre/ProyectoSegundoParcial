@@ -215,7 +215,9 @@ public class FrmMenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionMantenimiento1ActionPerformed
 
     private void btnReporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteVentaActionPerformed
-        // TODO add your handling code here:
+        FrmReporteVentas frm = new FrmReporteVentas(U);
+        frm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnReporteVentaActionPerformed
 
 
