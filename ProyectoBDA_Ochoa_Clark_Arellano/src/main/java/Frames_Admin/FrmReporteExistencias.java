@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frames_Admin;
 
 import javax.swing.*;
@@ -9,13 +5,14 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.table.DefaultTableCellRenderer;
 
-public class FrmReporteExistencias extends javax.swing.JFrame {
+public class FrmReporteExistencias extends JFrame {
 
     private JTable tblExistencias;
     private DefaultTableModel modeloTabla;
 
-     public FrmReporteExistencias() {
+    public FrmReporteExistencias() {
         // Configuración de la ventana principal
         setTitle("Reporte de Existencias");
         setSize(800, 600);
@@ -42,13 +39,17 @@ public class FrmReporteExistencias extends javax.swing.JFrame {
 
         // Cargar los datos de la base de datos
         cargarDatos();
+
+        // Personalizar la tabla
+        personalizarTabla();
+
         // Aparecer en el centro
         setLocationRelativeTo(null);
+
         // Hacer visible la ventana
         setVisible(true);
     }
-     
-     // CAMBIAR LOS DATOS PARA INGRESAR A LA BASE DE DATOS PERSONAL
+
     private void cargarDatos() {
         String url = "jdbc:mysql://localhost:3306/paneles";
         String user = "root";
@@ -76,6 +77,49 @@ public class FrmReporteExistencias extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void personalizarTabla() {
+        // Personalización del encabezado
+        tblExistencias.getTableHeader().setBackground(Color.BLUE);
+        tblExistencias.getTableHeader().setForeground(Color.WHITE);
+        tblExistencias.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+
+        // Personalización de las filas
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (row % 2 == 0) {
+                    c.setBackground(Color.LIGHT_GRAY);
+                } else {
+                    c.setBackground(Color.WHITE);
+                }
+
+                if (isSelected) {
+                    c.setBackground(Color.YELLOW);
+                    c.setForeground(Color.BLACK);
+                } else {
+                    c.setForeground(Color.BLACK);
+                }
+
+                return c;
+            }
+        };
+
+        for (int i = 0; i < tblExistencias.getColumnCount(); i++) {
+            tblExistencias.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+
+        // Personalización del fondo y texto de la tabla
+        tblExistencias.setBackground(Color.GRAY);
+        tblExistencias.setForeground(Color.WHITE);
+        tblExistencias.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        // Ajustar el ancho de las columnas
+        tblExistencias.getColumnModel().getColumn(0).setPreferredWidth(50);  // ID
+        tblExistencias.getColumnModel().getColumn(1).setPreferredWidth(150); // Producto
     }
 
     
@@ -134,30 +178,7 @@ public class FrmReporteExistencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteExistencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteExistencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteExistencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteExistencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 SwingUtilities.invokeLater(() -> new FrmReporteExistencias());
