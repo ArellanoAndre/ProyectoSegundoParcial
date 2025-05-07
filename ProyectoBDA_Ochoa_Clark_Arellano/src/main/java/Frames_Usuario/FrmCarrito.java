@@ -212,7 +212,7 @@ public class FrmCarrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        FrmMenuUsuario menuUsuario = new FrmMenuUsuario(U);
+        FrmCatalogoProductos menuUsuario = new FrmCatalogoProductos(U);
         menuUsuario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked

@@ -232,7 +232,7 @@ private void cargarDatos() {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        FrmMenuPrincipal menuP = new FrmMenuPrincipal(U);
+        FrmCatalogoProductos menuP = new FrmCatalogoProductos(U);
         menuP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed

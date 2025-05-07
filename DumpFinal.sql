@@ -28,7 +28,7 @@ CREATE TABLE `carrito` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` VALUES (1,3),(4,5);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +91,7 @@ CREATE TABLE `detalle_venta` (
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`id`),
   CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +100,7 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (1,1,1,3,260.00),(2,1,2,2,145.00),(3,2,3,1,480.00),(4,2,4,1,520.00),(5,3,5,1,200.00),(6,3,6,1,22.00),(7,4,7,1,350.00),(8,4,8,2,5.00),(9,5,9,1,55.00),(10,5,10,2,28.00),(11,6,11,2,22.00),(12,6,12,1,45.00),(13,7,13,1,150.00),(14,7,14,1,35.00),(15,8,15,1,45.00),(16,8,16,1,38.00),(17,9,17,1,7.00),(18,9,18,1,18.00),(19,10,19,1,180.00),(20,10,20,2,35.00),(21,11,21,1,22.00),(22,11,22,1,18.00),(23,12,1,2,260.00),(24,12,2,3,145.00),(25,13,3,2,480.00),(26,13,4,1,520.00),(27,14,5,2,200.00),(28,14,6,1,22.00),(29,15,7,1,350.00),(30,15,8,2,5.00),(31,1,1,3,260.00),(32,1,2,2,145.00),(33,2,3,1,480.00),(34,2,4,1,520.00),(35,3,5,1,200.00),(36,3,6,1,22.00),(37,4,7,1,350.00),(38,4,8,2,5.00),(39,5,9,1,55.00),(40,5,10,2,28.00),(41,6,11,2,22.00),(42,6,12,1,45.00),(43,7,13,1,150.00),(44,7,14,1,35.00),(45,8,15,1,45.00),(46,8,16,1,38.00),(47,9,17,1,7.00),(48,9,18,1,18.00),(49,10,19,1,180.00),(50,10,20,2,35.00),(51,11,21,1,22.00),(52,11,22,1,18.00),(53,12,1,2,260.00),(54,12,2,3,145.00),(55,13,3,2,480.00),(56,13,4,1,520.00),(57,14,5,2,200.00),(58,14,6,1,22.00),(59,15,7,1,350.00),(60,15,8,2,5.00);
+INSERT INTO `detalle_venta` VALUES (1,1,1,3,260.00),(2,1,2,2,145.00),(3,2,3,1,480.00),(4,2,4,1,520.00),(5,3,5,1,200.00),(6,3,6,1,22.00),(7,4,7,1,350.00),(8,4,8,2,5.00),(9,5,9,1,55.00),(10,5,10,2,28.00),(11,6,11,2,22.00),(12,6,12,1,45.00),(13,7,13,1,150.00),(14,7,14,1,35.00),(15,8,15,1,45.00),(16,8,16,1,38.00),(17,9,17,1,7.00),(18,9,18,1,18.00),(19,10,19,1,180.00),(20,10,20,2,35.00),(21,11,21,1,22.00),(22,11,22,1,18.00),(23,12,1,2,260.00),(24,12,2,3,145.00),(25,13,3,2,480.00),(26,13,4,1,520.00),(27,14,5,2,200.00),(28,14,6,1,22.00),(29,15,7,1,350.00),(30,15,8,2,5.00),(31,1,1,3,260.00),(32,1,2,2,145.00),(33,2,3,1,480.00),(34,2,4,1,520.00),(35,3,5,1,200.00),(36,3,6,1,22.00),(37,4,7,1,350.00),(38,4,8,2,5.00),(39,5,9,1,55.00),(40,5,10,2,28.00),(41,6,11,2,22.00),(42,6,12,1,45.00),(43,7,13,1,150.00),(44,7,14,1,35.00),(45,8,15,1,45.00),(46,8,16,1,38.00),(47,9,17,1,7.00),(48,9,18,1,18.00),(49,10,19,1,180.00),(50,10,20,2,35.00),(51,11,21,1,22.00),(52,11,22,1,18.00),(53,12,1,2,260.00),(54,12,2,3,145.00),(55,13,3,2,480.00),(56,13,4,1,520.00),(57,14,5,2,200.00),(58,14,6,1,22.00),(59,15,7,1,350.00),(60,15,8,2,5.00),(61,16,1,5,260.00),(62,17,1,5,260.00);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,12 +117,15 @@ CREATE TABLE `producto_carrito` (
   `producto_id` int NOT NULL,
   `cantidad` int NOT NULL,
   `precio_unitario` decimal(10,2) NOT NULL,
+  `reserva_expira` datetime DEFAULT NULL,
+  `estado_reserva` enum('ACTIVA','EXPIRADA','COMPRADA') DEFAULT 'ACTIVA',
+  `fecha_agregado` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `carrito_id` (`carrito_id`),
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `producto_carrito_ibfk_1` FOREIGN KEY (`carrito_id`) REFERENCES `carrito` (`id`),
   CONSTRAINT `producto_carrito_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +163,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Panel Solar Monocristalino 400W','Trina Solar','TS-400M','Alta eficiencia y rendimiento incluso en sombra',150.00,260.00,30),(2,'Panel Solar Flexible 100W','Renogy','RNG-FX100','Ideal para caravanas y superficies curvas',85.00,145.00,20),(3,'Inversor Solar 3000W Onda Pura','Growatt','GROW-3000','Convierte la energía solar en corriente alterna',280.00,480.00,10),(4,'Inversor Híbrido 5000W','Huawei','SUN2000-5KTL','Compatible con baterías y red eléctrica',450.00,750.00,8),(5,'Batería Litio 12V 100Ah','Battle Born','BB-12100','Larga vida útil y carga rápida',450.00,700.00,12),(6,'Batería AGM 12V 200Ah','Trojan','TRO-200AGM','Batería sellada libre de mantenimiento',300.00,520.00,15),(7,'Controlador de Carga MPPT 40A','Victron','VIC-40MPPT','Optimiza la carga de baterías desde el panel',110.00,180.00,18),(8,'Controlador PWM 30A','EPEVER','EP-PWM30','Regulador económico para sistemas pequeños',35.00,60.00,25),(9,'Kit Solar Básico 200W','EcoKit','EK-200','Incluye panel, regulador y cableado',220.00,350.00,10),(10,'Kit Solar Portátil 100W','Allpowers','AP-K100','Ideal para camping y emergencias',120.00,200.00,14),(11,'Cable Solar 4mm Rojo - 10m','SolarCable','SC-4R10','Cable resistente a rayos UV y altas temperaturas',10.00,18.00,40),(12,'Conectores MC4 (par)','SolarTech','MC4-ST','Conectores estándar para paneles solares',2.00,5.00,100),(13,'Cable Solar 6mm Negro - 10m','SolarCable','SC-6N10','Aislamiento doble y alta conductividad',12.00,22.00,30),(14,'Soporte Inclinación Panel Techo Plano','SunMount','SM-TPF','Aluminio resistente para instalación fija',30.00,55.00,16),(15,'Estructura para 4 Paneles','PanelRack','PR-4P','Estructura ajustable para techo metálico',80.00,140.00,8),(16,'Fusible Solar 20A','SolarSafe','SS-F20','Protección contra sobrecorrientes',3.00,7.00,50),(17,'Caja de conexiones IP65','SolarBox','SB-IP65','Protección para conexiones exteriores',15.00,28.00,20),(18,'Interruptor DC 1000V 32A','PVSwitch','PVS-32DC','Desconexión segura de corriente continua',20.00,35.00,15),(19,'Medidor de Energía Solar Digital','Victron','VIC-METER','Monitorea consumo y generación solar',45.00,80.00,10),(20,'Sensor de Temperatura para Batería','BatterySense','BS-TEMP','Optimiza la carga según la temperatura',10.00,18.00,25),(21,'Crimpadora para conectores solares','ToolTech','TT-CRIMP','Herramienta para MC4 y similares',25.00,45.00,12),(22,'Pelacables Solar Profesional','WirePro','WP-STRIP','Para cables solares de 2.5 a 6 mm²',12.00,22.00,20),(23,'Lámpara Solar LED 100W','GreenLight','GL-100LED','Lámpara exterior con panel integrado',35.00,65.00,22),(24,'Foco Solar con Sensor de Movimiento','LumiSolar','LS-SENSOR','Activación automática al detectar movimiento',20.00,38.00,30),(25,'Bomba de Agua Solar 12V','AgroSolar','AS-WP12','Ideal para riego con energía solar',90.00,150.00,7),(26,'Ventilador Solar 20W','BreezeSun','BS-FAN20','Refresca espacios usando energía solar',25.00,45.00,18);
+INSERT INTO `productos` VALUES (1,'Panel Solar Monocristalino 400W','Trina Solar','TS-400M','Alta eficiencia y rendimiento incluso en sombra',150.00,260.00,25),(2,'Panel Solar Flexible 100W','Renogy','RNG-FX100','Ideal para caravanas y superficies curvas',85.00,145.00,20),(3,'Inversor Solar 3000W Onda Pura','Growatt','GROW-3000','Convierte la energía solar en corriente alterna',280.00,480.00,10),(4,'Inversor Híbrido 5000W','Huawei','SUN2000-5KTL','Compatible con baterías y red eléctrica',450.00,750.00,8),(5,'Batería Litio 12V 100Ah','Battle Born','BB-12100','Larga vida útil y carga rápida',450.00,700.00,12),(6,'Batería AGM 12V 200Ah','Trojan','TRO-200AGM','Batería sellada libre de mantenimiento',300.00,520.00,15),(7,'Controlador de Carga MPPT 40A','Victron','VIC-40MPPT','Optimiza la carga de baterías desde el panel',110.00,180.00,18),(8,'Controlador PWM 30A','EPEVER','EP-PWM30','Regulador económico para sistemas pequeños',35.00,60.00,25),(9,'Kit Solar Básico 200W','EcoKit','EK-200','Incluye panel, regulador y cableado',220.00,350.00,10),(10,'Kit Solar Portátil 100W','Allpowers','AP-K100','Ideal para camping y emergencias',120.00,200.00,14),(11,'Cable Solar 4mm Rojo - 10m','SolarCable','SC-4R10','Cable resistente a rayos UV y altas temperaturas',10.00,18.00,40),(12,'Conectores MC4 (par)','SolarTech','MC4-ST','Conectores estándar para paneles solares',2.00,5.00,100),(13,'Cable Solar 6mm Negro - 10m','SolarCable','SC-6N10','Aislamiento doble y alta conductividad',12.00,22.00,30),(14,'Soporte Inclinación Panel Techo Plano','SunMount','SM-TPF','Aluminio resistente para instalación fija',30.00,55.00,16),(15,'Estructura para 4 Paneles','PanelRack','PR-4P','Estructura ajustable para techo metálico',80.00,140.00,8),(16,'Fusible Solar 20A','SolarSafe','SS-F20','Protección contra sobrecorrientes',3.00,7.00,50),(17,'Caja de conexiones IP65','SolarBox','SB-IP65','Protección para conexiones exteriores',15.00,28.00,20),(18,'Interruptor DC 1000V 32A','PVSwitch','PVS-32DC','Desconexión segura de corriente continua',20.00,35.00,15),(19,'Medidor de Energía Solar Digital','Victron','VIC-METER','Monitorea consumo y generación solar',45.00,80.00,10),(20,'Sensor de Temperatura para Batería','BatterySense','BS-TEMP','Optimiza la carga según la temperatura',10.00,18.00,25),(21,'Crimpadora para conectores solares','ToolTech','TT-CRIMP','Herramienta para MC4 y similares',25.00,45.00,12),(22,'Pelacables Solar Profesional','WirePro','WP-STRIP','Para cables solares de 2.5 a 6 mm²',12.00,22.00,20),(23,'Lámpara Solar LED 100W','GreenLight','GL-100LED','Lámpara exterior con panel integrado',35.00,65.00,22),(24,'Foco Solar con Sensor de Movimiento','LumiSolar','LS-SENSOR','Activación automática al detectar movimiento',20.00,38.00,30),(25,'Bomba de Agua Solar 12V','AgroSolar','AS-WP12','Ideal para riego con energía solar',90.00,150.00,7),(26,'Ventilador Solar 20W','BreezeSun','BS-FAN20','Refresca espacios usando energía solar',25.00,45.00,18);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +213,7 @@ CREATE TABLE `ventas` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,13 +222,168 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (1,'2025-05-01 10:00:00',3,1500.00),(2,'2025-05-02 11:30:00',4,1000.00),(3,'2025-05-03 15:00:00',5,800.00),(4,'2025-03-04 09:00:00',3,2000.00),(5,'2025-04-05 17:45:00',6,1200.00),(6,'2025-04-06 14:30:00',3,500.00),(7,'2025-04-07 10:00:00',4,1800.00),(8,'2025-04-08 13:15:00',5,750.00),(9,'2025-05-09 16:00:00',3,1200.00),(10,'2025-05-10 12:00:00',4,1500.00),(11,'2025-05-11 10:30:00',5,1000.00),(12,'2025-05-12 11:45:00',3,800.00),(13,'2025-03-13 10:15:00',6,1500.00),(14,'2025-03-14 09:30:00',4,1200.00),(15,'2025-03-15 15:00:00',5,600.00);
+INSERT INTO `ventas` VALUES (1,'2025-05-01 10:00:00',3,1500.00),(2,'2025-05-02 11:30:00',4,1000.00),(3,'2025-05-03 15:00:00',5,800.00),(4,'2025-03-04 09:00:00',3,2000.00),(5,'2025-04-05 17:45:00',6,1200.00),(6,'2025-04-06 14:30:00',3,500.00),(7,'2025-04-07 10:00:00',4,1800.00),(8,'2025-04-08 13:15:00',5,750.00),(9,'2025-05-09 16:00:00',3,1200.00),(10,'2025-05-10 12:00:00',4,1500.00),(11,'2025-05-11 10:30:00',5,1000.00),(12,'2025-05-12 11:45:00',3,800.00),(13,'2025-03-13 10:15:00',6,1500.00),(14,'2025-03-14 09:30:00',4,1200.00),(15,'2025-03-15 15:00:00',5,600.00),(16,'2025-05-07 14:34:21',5,1300.00),(17,'2025-05-07 14:42:42',5,1300.00);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'paneles'
+--
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `liberar_productos_expirados` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = '+00:00' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `liberar_productos_expirados` ON SCHEDULE EVERY 1 MINUTE STARTS '2025-05-07 21:05:24' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    -- Eliminar productos de carrito si han pasado más de 1 minuto desde que fueron agregados
+    DELETE FROM producto_carrito
+    WHERE TIMESTAMPDIFF(MINUTE, fecha_agregado, NOW()) > 1 AND estado_reserva = 'ACTIVA';
+
+    -- Actualizar el stock de los productos eliminados
+    UPDATE productos p
+    JOIN producto_carrito pc ON pc.producto_id = p.id
+    SET p.Cantidad_Stock = p.Cantidad_Stock + pc.cantidad
+    WHERE TIMESTAMPDIFF(MINUTE, pc.fecha_agregado, NOW()) > 1
+    AND pc.estado_reserva = 'ACTIVA';
+
+END */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+/*!50106 DROP EVENT IF EXISTS `liberar_reservas_expiradas` */;;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = '+00:00' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `liberar_reservas_expiradas` ON SCHEDULE EVERY 30 SECOND STARTS '2025-05-07 21:29:57' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    DECLARE v_done INT DEFAULT FALSE;
+    DECLARE v_producto_id INT;
+    DECLARE v_cantidad INT;
+    DECLARE v_cursor CURSOR FOR 
+        SELECT producto_id, cantidad 
+        FROM producto_carrito 
+        WHERE estado_reserva = 'ACTIVA' 
+        AND reserva_expira <= NOW();
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
+    
+    START TRANSACTION;
+    
+    -- 1. Abrir cursor para procesar reservas expiradas
+    OPEN v_cursor;
+    
+    read_loop: LOOP
+        FETCH v_cursor INTO v_producto_id, v_cantidad;
+        IF v_done THEN
+            LEAVE read_loop;
+        END IF;
+        
+        -- 2. Devolver cantidad al stock
+        UPDATE productos
+        SET Cantidad_Stock = Cantidad_Stock + v_cantidad
+        WHERE id = v_producto_id;
+    END LOOP;
+    
+    CLOSE v_cursor;
+    
+    -- 3. Marcar reservas como expiradas
+    UPDATE producto_carrito
+    SET estado_reserva = 'EXPIRADA'
+    WHERE estado_reserva = 'ACTIVA'
+    AND reserva_expira <= NOW();
+    
+    -- 4. Opcional: Eliminar registros expirados (comentar si quieres mantener historial)
+    DELETE FROM producto_carrito
+    WHERE estado_reserva = 'EXPIRADA';
+    
+    COMMIT;
+END */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
+
+--
 -- Dumping routines for database 'paneles'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ActualizarCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ActualizarCarrito`(
+ IN p_usuario_id INT
+)
+BEGIN
+    DECLARE v_carrito_id INT;
+    
+    -- Obtener carrito del usuario
+    SELECT id INTO v_carrito_id 
+    FROM carrito 
+    WHERE usuario_id = p_usuario_id
+    LIMIT 1;
+    
+    IF v_carrito_id IS NOT NULL THEN
+        -- Devolver al stock productos con reserva expirada
+        UPDATE productos p
+        JOIN producto_carrito pc ON p.id = pc.producto_id
+        SET p.Cantidad_Stock = p.Cantidad_Stock + pc.cantidad
+        WHERE pc.carrito_id = v_carrito_id
+        AND pc.estado_reserva = 'ACTIVA'
+        AND pc.reserva_expira <= NOW();
+        
+        -- Eliminar productos expirados del carrito
+        DELETE FROM producto_carrito
+        WHERE carrito_id = v_carrito_id
+        AND estado_reserva = 'ACTIVA'
+        AND reserva_expira <= NOW();
+        
+        -- Devolver lista actualizada del carrito
+        SELECT 
+            pc.producto_id,
+            p.producto AS nombre_producto,
+            pc.cantidad,
+            pc.precio_unitario,
+            (pc.cantidad * pc.precio_unitario) AS subtotal,
+            pc.reserva_expira,
+            CASE 
+                WHEN pc.reserva_expira <= NOW() THEN 'EXPIRADA'
+                ELSE 'ACTIVA'
+            END AS estado_actual
+        FROM producto_carrito pc
+        JOIN productos p ON pc.producto_id = p.id
+        WHERE pc.carrito_id = v_carrito_id;
+    END IF;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_actualizarProducto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -307,41 +466,87 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_AgregarProductoCarrito`(
 BEGIN
     DECLARE v_carrito_id INT;
     DECLARE v_existente INT;
-    DECLARE v_usuario_valido INT DEFAULT 0;
-    DECLARE v_producto_valido INT DEFAULT 0;
-
+    DECLARE v_stock_disponible INT;
+    DECLARE v_precio_producto DECIMAL(10,2);
+    DECLARE v_reserva_activa INT DEFAULT 0;
+    
     -- Verificar existencia de usuario y producto
-    SELECT COUNT(*) INTO v_usuario_valido FROM usuario WHERE ID = p_idUsuario;
-    SELECT COUNT(*) INTO v_producto_valido FROM productos WHERE id = p_idProducto;
-
-    IF v_usuario_valido = 0 THEN
+    IF NOT EXISTS (SELECT 1 FROM usuario WHERE ID = p_idUsuario) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El usuario no existe';
-    ELSEIF v_producto_valido = 0 THEN
+    ELSEIF NOT EXISTS (SELECT 1 FROM productos WHERE id = p_idProducto) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El producto no existe';
     ELSE
-        START TRANSACTION;
+        -- Calcular stock disponible considerando reservas activas
+        SELECT 
+            p.Cantidad_Stock - IFNULL(
+                (SELECT SUM(pc.cantidad) 
+                 FROM producto_carrito pc
+                 JOIN carrito c ON pc.carrito_id = c.id
+                 WHERE pc.producto_id = p_idProducto
+                 AND pc.estado_reserva = 'ACTIVA'
+                 AND pc.reserva_expira > NOW()), 0)
+        INTO v_stock_disponible
+        FROM productos p
+        WHERE p.id = p_idProducto;
         
-        -- Resto de tu lógica original
-        SELECT id INTO v_carrito_id FROM carrito WHERE usuario_id = p_idUsuario LIMIT 1;
-        
-        IF v_carrito_id IS NULL THEN
-            INSERT INTO carrito (usuario_id) VALUES (p_idUsuario);
-            SET v_carrito_id = LAST_INSERT_ID();
-        END IF;
-        
-        SELECT COUNT(*) INTO v_existente FROM producto_carrito 
-        WHERE carrito_id = v_carrito_id AND producto_id = p_idProducto;
-        
-        IF v_existente > 0 THEN
-            UPDATE producto_carrito SET cantidad = cantidad + p_cantidad
-            WHERE carrito_id = v_carrito_id AND producto_id = p_idProducto;
+        IF v_stock_disponible < p_cantidad THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock insuficiente para la cantidad solicitada';
         ELSE
-            INSERT INTO producto_carrito (carrito_id, producto_id, cantidad, precio_unitario)
-            SELECT v_carrito_id, p_idProducto, p_cantidad, precioVenta
-            FROM productos WHERE id = p_idProducto;
+            START TRANSACTION;
+            
+            -- Obtener o crear carrito
+            SELECT id INTO v_carrito_id FROM carrito WHERE usuario_id = p_idUsuario;
+            
+            IF v_carrito_id IS NULL THEN
+                INSERT INTO carrito (usuario_id) VALUES (p_idUsuario);
+                SET v_carrito_id = LAST_INSERT_ID();
+            END IF;
+            
+            -- Verificar si ya existe una reserva activa para este producto
+            SELECT COUNT(*) INTO v_reserva_activa
+            FROM producto_carrito
+            WHERE carrito_id = v_carrito_id
+            AND producto_id = p_idProducto
+            AND estado_reserva = 'ACTIVA'
+            AND reserva_expira > NOW();
+            
+            -- Obtener precio del producto
+            SELECT precioVenta INTO v_precio_producto FROM productos WHERE id = p_idProducto;
+            
+            IF v_reserva_activa > 0 THEN
+                -- Actualizar reserva existente (extender tiempo y sumar cantidad)
+                UPDATE producto_carrito
+                SET cantidad = cantidad + p_cantidad,
+                    reserva_expira = DATE_ADD(NOW(), INTERVAL 2 MINUTE)
+                WHERE carrito_id = v_carrito_id
+                AND producto_id = p_idProducto
+                AND estado_reserva = 'ACTIVA';
+            ELSE
+                -- Crear nueva reserva
+                INSERT INTO producto_carrito (
+                    carrito_id, 
+                    producto_id, 
+                    cantidad, 
+                    precio_unitario, 
+                    reserva_expira, 
+                    estado_reserva
+                ) VALUES (
+                    v_carrito_id,
+                    p_idProducto,
+                    p_cantidad,
+                    v_precio_producto,
+                    DATE_ADD(NOW(), INTERVAL 1 MINUTE),
+                    'ACTIVA'
+                );
+                
+                -- Descontar del stock solo si es nueva reserva
+                UPDATE productos
+                SET Cantidad_Stock = Cantidad_Stock - p_cantidad
+                WHERE id = p_idProducto;
+            END IF;
+            
+            COMMIT;
         END IF;
-        
-        COMMIT;
     END IF;
 END ;;
 DELIMITER ;
@@ -377,19 +582,21 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb3 */ ;
-/*!50003 SET character_set_results = utf8mb3 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ComprarCarrito`(
-IN p_usuario_id INT
+    IN p_usuario_id INT
 )
 BEGIN
-	DECLARE v_carrito_id INT;
+    DECLARE v_carrito_id INT;
     DECLARE v_total DECIMAL(10,2);
     DECLARE v_venta_id INT;
+    DECLARE v_reservas_activas INT;
+    DECLARE v_reservas_expiradas INT;
 
     -- Iniciar transacción
     START TRANSACTION;
@@ -406,17 +613,40 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay carrito para este usuario';
     END IF;
 
-    -- Calcular el total del carrito
+    -- Verificar si hay reservas expiradas en el carrito
+    SELECT COUNT(*) INTO v_reservas_expiradas
+    FROM producto_carrito
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira <= NOW();
+
+    -- Si hay reservas expiradas, cancelar la compra
+    IF v_reservas_expiradas > 0 THEN
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Algunos productos en tu carrito han expirado. Por favor, actualiza tu carrito antes de comprar';
+    END IF;
+
+    -- Verificar reservas activas válidas
+    SELECT COUNT(*) INTO v_reservas_activas
+    FROM producto_carrito
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira > NOW();
+
+    -- Si no hay productos válidos en el carrito
+    IF v_reservas_activas = 0 THEN
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay productos válidos en el carrito';
+    END IF;
+
+    -- Calcular el total del carrito (solo productos con reserva activa)
     SELECT SUM(cantidad * precio_unitario)
     INTO v_total
     FROM producto_carrito
-    WHERE carrito_id = v_carrito_id;
-
-    -- Si el total es NULL (carrito vacío), cancelar
-    IF v_total IS NULL THEN
-        ROLLBACK;
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El carrito está vacío';
-    END IF;
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira > NOW();
 
     -- Insertar la venta
     INSERT INTO ventas (fecha, usuario_id, total)
@@ -424,24 +654,44 @@ BEGIN
 
     SET v_venta_id = LAST_INSERT_ID();
 
-    -- Insertar los productos en detalle_venta
+    -- Insertar los productos en detalle_venta (solo reservas activas)
     INSERT INTO detalle_venta (venta_id, producto_id, cantidad, precio_unitario)
     SELECT v_venta_id, producto_id, cantidad, precio_unitario
     FROM producto_carrito
-    WHERE carrito_id = v_carrito_id;
--- Actualizar el stock de cada producto comprado
-UPDATE productos p
-JOIN producto_carrito pc ON p.id = pc.producto_id
-SET p.Cantidad_Stock = p.Cantidad_Stock - pc.cantidad
-WHERE pc.carrito_id = v_carrito_id;
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira > NOW();
 
-    -- Eliminar los productos del carrito
-    DELETE FROM producto_carrito WHERE carrito_id = v_carrito_id;
-
-    -- Eliminar el carrito del usuario
-    DELETE FROM carrito WHERE id = v_carrito_id;
+    -- No necesitamos actualizar el stock aquí porque ya se descontó al agregar al carrito
+    -- Solo marcamos como COMPRADA la reserva
     
-  -- Devolver información completa de la venta
+    -- Marcar productos como COMPRADOS
+    UPDATE producto_carrito
+    SET estado_reserva = 'COMPRADA'
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira > NOW();
+
+    -- Eliminar solo los productos comprados del carrito
+    DELETE FROM producto_carrito 
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'COMPRADA';
+
+    -- Eliminar productos expirados (si los hubiera)
+    DELETE FROM producto_carrito
+    WHERE carrito_id = v_carrito_id
+    AND estado_reserva = 'ACTIVA'
+    AND reserva_expira <= NOW();
+
+    -- Eliminar el carrito si está vacío
+    DELETE FROM carrito 
+    WHERE id = v_carrito_id
+    AND NOT EXISTS (
+        SELECT 1 FROM producto_carrito 
+        WHERE carrito_id = v_carrito_id
+    );
+
+    -- Devolver información completa de la venta
     SELECT 
         v.id AS venta_id,
         v.fecha,
@@ -1160,4 +1410,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-07 13:30:21
+-- Dump completed on 2025-05-07 14:52:39

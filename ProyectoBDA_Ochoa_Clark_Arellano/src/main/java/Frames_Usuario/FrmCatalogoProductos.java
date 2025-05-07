@@ -243,6 +243,7 @@ if (!validarStockCarrito(cantidad)) {
         if (agregado) {
             JOptionPane.showMessageDialog(this, "Producto agregado al carrito");
             txtCantidad.setText("");
+            cargarDatos();
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo agregar al carrito", 
                 "Error", JOptionPane.ERROR_MESSAGE);
