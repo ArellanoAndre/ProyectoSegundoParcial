@@ -158,4 +158,32 @@ public class ControlCarrito {
 
         return detalles;
     }
+ public List<ProductoCarrito> obtenerUltimaCompra(int usuarioId) {
+    List<ProductoCarrito> detalles = new ArrayList<>();
+    String sql = "{CALL sp_obtenerUltimaCompra(?)}";
+
+    try (CallableStatement stmt = conexion.prepareCall(sql)) {
+        stmt.setInt(1, usuarioId);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            ProductoCarrito producto = new ProductoCarrito();
+            producto.setId(rs.getInt("id"));
+            producto.setProductoId(rs.getInt("producto_id"));
+            producto.setMarca(rs.getString("marca"));
+            producto.setModelo(rs.getString("modelo"));
+            producto.setCantidad(rs.getInt("cantidad"));
+            producto.setPrecioUnitario(rs.getDouble("precio_unitario"));
+            producto.setTotalProducto(rs.getDouble("total_producto"));
+
+            detalles.add(producto);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener detalles de compra: " + e.getMessage());
+    }
+
+    return detalles;
+}
+
+
 }

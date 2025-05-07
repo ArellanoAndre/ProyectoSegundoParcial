@@ -95,7 +95,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="1" pref="956" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" pref="932" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblVolver1" min="-2" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnGenerarPDF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="383" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
@@ -225,6 +225,9 @@
                   <Image iconType="3" name="/META-INF/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblVolver1MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

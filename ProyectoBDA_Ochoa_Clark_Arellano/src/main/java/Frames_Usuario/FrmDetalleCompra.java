@@ -1,7 +1,11 @@
 
 package Frames_Usuario;
 
+import Control.ControlCarrito;
+import Entidades.ProductoCarrito;
 import Frames_Loggin.Main;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,8 +19,74 @@ private DefaultTableModel tableModel;
     public FrmDetalleCompra(int U) {
         this.U=U;
         initComponents();
+        setLocationRelativeTo(null);
+        configurarTabla();
+        cargarDatos();
     }
 
+    private void configurarTabla() {
+    tableModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    tableModel.addColumn("ID Detalle");
+    tableModel.addColumn("ID Producto");
+    tableModel.addColumn("Marca");
+    tableModel.addColumn("Modelo");
+    tableModel.addColumn("Cantidad");
+    tableModel.addColumn("Precio Unitario");
+    tableModel.addColumn("Total");
+
+    tblDetalleCompra.setModel(tableModel);
+
+    tblDetalleCompra.getColumnModel().getColumn(0).setPreferredWidth(80);
+    tblDetalleCompra.getColumnModel().getColumn(1).setPreferredWidth(80);
+    tblDetalleCompra.getColumnModel().getColumn(4).setPreferredWidth(60);
+    tblDetalleCompra.getColumnModel().getColumn(5).setPreferredWidth(100);
+    tblDetalleCompra.getColumnModel().getColumn(6).setPreferredWidth(100);
+}
+
+private void cargarDatos() {
+    try {
+        ControlCarrito cp = new ControlCarrito();
+        List<ProductoCarrito> comprasUsuario = cp.obtenerUltimaCompra(U);
+
+        tableModel.setRowCount(0);
+
+        if (comprasUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontraron detalles de compra.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            FrmCatalogoProductos f = new FrmCatalogoProductos(U);
+            this.dispose();
+            return;
+        }
+
+        for (ProductoCarrito compra : comprasUsuario) {
+            Object[] row = {
+                compra.getId(),
+                compra.getProductoId(),
+                compra.getMarca(),
+                compra.getModelo(),
+                compra.getCantidad(),
+                compra.getPrecioUnitario(),
+                compra.getTotalProducto()
+            };
+            tableModel.addRow(row);
+        }
+
+        double totalGeneral = comprasUsuario.stream()
+                .mapToDouble(ProductoCarrito::getTotalProducto)
+                .sum();
+        lblTotal.setText(String.format("Total: $%.2f", totalGeneral));
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar los detalles de compra: " + e.getMessage(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,6 +98,8 @@ private DefaultTableModel tableModel;
         jLabel1 = new javax.swing.JLabel();
         lblVolveer = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,20 +166,28 @@ private DefaultTableModel tableModel;
             }
         });
 
+        lblTotal.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("Total :");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(289, 289, 289)
-                        .addComponent(btnSiguiente)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(btnSiguiente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +195,13 @@ private DefaultTableModel tableModel;
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnSiguiente)
-                .addGap(38, 38, 38))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSiguiente)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,9 +240,11 @@ private DefaultTableModel tableModel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblVolveer;
     private javax.swing.JTable tblDetalleCompra;
     // End of variables declaration//GEN-END:variables

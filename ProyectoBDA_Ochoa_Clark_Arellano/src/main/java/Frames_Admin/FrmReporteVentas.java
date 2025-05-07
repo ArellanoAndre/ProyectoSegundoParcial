@@ -153,12 +153,17 @@ public class FrmReporteVentas extends JFrame {
         });
 
         lblVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png"))); // NOI18N
+        lblVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblVolver1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVolver1)
@@ -179,7 +184,7 @@ public class FrmReporteVentas extends JFrame {
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnGenerarPDF))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
@@ -315,20 +320,21 @@ public class FrmReporteVentas extends JFrame {
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
+    private void lblVolver1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolver1MouseClicked
+         FrmMenuAdmin fma = new FrmMenuAdmin(U);
+        fma.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblVolver1MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFiltrar1;
     private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpPrincipal;
-    private javax.swing.JPanel jpPrincipal1;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JLabel lblVolver;
     private javax.swing.JLabel lblVolver1;
     private javax.swing.JTable tblReporteVentas;
-    private javax.swing.JTable tblReporteVentas1;
     // End of variables declaration//GEN-END:variables
 }

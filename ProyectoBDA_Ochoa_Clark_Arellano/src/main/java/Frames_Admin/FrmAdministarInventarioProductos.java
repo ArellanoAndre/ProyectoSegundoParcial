@@ -204,10 +204,15 @@ private int U;
     try {
         Control_Compra cc = new Control_Compra();
         Control_Productos cp = new Control_Productos();
+double precioCompra = cc.obtenerPrecioProducto(id); // Añadir esta línea
+if (precioCompra <= 0) {
+    JOptionPane.showMessageDialog(this, "El precio de compra del producto no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
         // 1. Primero aumentamos el stock (como ya lo tienes)
         cp.aumentarStockSP(id, cantidad);
         //Registramos compra
-        Compra c = new Compra(id, U, cantidad, id);
+        Compra c = new Compra(id, U, cantidad, precioCompra);
         cc.registrarCompra(c);
         cargarDatosStock();
         JOptionPane.showMessageDialog(this, "Stock actualizado exitosamente");

@@ -7,6 +7,7 @@ package Control;
 import Entidades.Compra;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -64,5 +65,15 @@ public void registrarCompra(Compra compra) throws SQLException {
     
     return precio;
 }
-    
+    public double obtenerPrecioProducto(int id) throws SQLException {
+    String sql = "SELECT precioCompra FROM productos WHERE id = ?";
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getDouble("precioCompra");
+        }
+        return 0;
+    }
+}
 }
