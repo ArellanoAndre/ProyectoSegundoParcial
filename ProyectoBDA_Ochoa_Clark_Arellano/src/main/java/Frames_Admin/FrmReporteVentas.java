@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class FrmReporteVentas extends JFrame {
@@ -321,7 +320,7 @@ public class FrmReporteVentas extends JFrame {
     }//GEN-LAST:event_lblVolverMouseClicked
 
     private void lblVolver1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolver1MouseClicked
-         FrmMenuAdmin fma = new FrmMenuAdmin(U);
+        FrmMenuAdmin fma = new FrmMenuAdmin(U);
         fma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVolver1MouseClicked

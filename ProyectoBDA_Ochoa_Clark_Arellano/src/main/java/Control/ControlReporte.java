@@ -30,7 +30,7 @@ public class ControlReporte {
     // Método para obtener todos los productos con su existencia
     public List<Producto> verExistenciaProductoTodos() {
         List<Producto> listaProductos = new ArrayList<>();
-        String sql = "{CALL sp_ProductoExistencia()}";  // Llamada sin parámetros para obtener todos los productos
+        String sql = "{CALL sp_ProductoExistenciaTodos()}";  // Llamada sin parámetros para obtener todos los productos
 
         try (CallableStatement stmt = conexion.prepareCall(sql)) {
             ResultSet rs = stmt.executeQuery();  // Ejecutamos la consulta sin parámetros
@@ -42,7 +42,7 @@ public class ControlReporte {
                 producto.setMarca(rs.getString("marca"));       // Marca
                 producto.setModelo(rs.getString("modelo"));     // Modelo
                 producto.setDescripcion(rs.getString("descripcion"));  // Descripción
-                producto.setCantidadStock(rs.getInt("cantidad_stock"));  // Existencia del producto
+                producto.setCantidadStock(rs.getInt("Cantidad_Stock"));  // Existencia del producto
 
                 listaProductos.add(producto);  // Agregar el producto a la lista
             }
@@ -84,7 +84,7 @@ public class ControlReporte {
 
     public List<VentaReporte> obtenerReporteVentasPeriodo(java.sql.Date fechaInicio, java.sql.Date fechaFin) {
         List<VentaReporte> listaReporte = new ArrayList<>();
-        String sql = "{CALL sp_ReporteRentasPeriodo(?, ?)}";
+        String sql = "{CALL sp_ReporteVentasPeriodo(?, ?)}";
 
         try (CallableStatement stmt = conexion.prepareCall(sql)) {
             stmt.setDate(1, fechaInicio);

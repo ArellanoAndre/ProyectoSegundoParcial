@@ -254,9 +254,18 @@ public class FrmCarrito extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        // Verificar si el carrito está vacío antes de proceder
+    ControlCarrito cp = new ControlCarrito();
+    List<ProductoCarrito> productosCarrito = cp.verCarrito(U); // Obtener los productos del carrito del usuario
+
+    if (productosCarrito.isEmpty()) {  // Si la lista de productos está vacía
+        JOptionPane.showMessageDialog(this, "El carrito está vacío. Por favor, agrega productos antes de proceder.", "Carrito vacío", JOptionPane.WARNING_MESSAGE);
+    } else {
+        // Si el carrito no está vacío, proceder con la ventana de confirmación
         FrmConfirmarCompra ConfCompra = new FrmConfirmarCompra(U);
         ConfCompra.setVisible(true);
         this.dispose();
+    }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
