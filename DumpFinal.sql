@@ -28,7 +28,7 @@ CREATE TABLE `carrito` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
-INSERT INTO `carrito` VALUES (1,3),(4,5);
+INSERT INTO `carrito` VALUES (1,3),(5,5);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,9 +58,9 @@ CREATE TABLE `compras` (
   PRIMARY KEY (`id`),
   KEY `producto_id` (`producto_id`),
   KEY `admin_id` (`admin_id`),
-  CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`),
+  CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `usuario` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-INSERT INTO `compras` VALUES (1,1,1,'2025-05-07 10:00:00',30,150.00),(2,2,1,'2025-05-07 11:00:00',20,85.00),(3,3,1,'2025-05-07 12:00:00',10,280.00),(4,4,1,'2025-05-07 13:00:00',8,450.00),(5,5,1,'2025-05-07 14:00:00',12,450.00),(6,6,1,'2025-05-07 15:00:00',15,300.00),(7,7,1,'2025-05-07 16:00:00',18,110.00),(8,8,1,'2025-05-07 17:00:00',25,35.00),(9,9,1,'2025-05-07 18:00:00',10,220.00),(10,10,1,'2025-05-07 19:00:00',14,120.00),(11,11,1,'2025-05-07 20:00:00',40,10.00),(12,12,1,'2025-05-07 21:00:00',100,2.00),(13,13,1,'2025-05-07 22:00:00',30,12.00),(14,14,1,'2025-05-07 23:00:00',16,30.00),(15,15,1,'2025-05-07 23:30:00',8,80.00),(16,16,1,'2025-05-08 00:00:00',50,3.00),(17,17,1,'2025-05-08 01:00:00',20,15.00),(18,18,1,'2025-05-08 02:00:00',15,20.00),(19,19,1,'2025-05-08 03:00:00',10,45.00),(20,20,1,'2025-05-08 04:00:00',25,10.00),(21,21,1,'2025-05-08 05:00:00',12,25.00),(22,22,1,'2025-05-08 06:00:00',20,12.00),(23,23,1,'2025-05-08 07:00:00',22,35.00),(24,24,1,'2025-05-08 08:00:00',30,20.00),(25,25,1,'2025-05-08 09:00:00',7,90.00),(26,26,1,'2025-05-08 10:00:00',18,25.00);
+INSERT INTO `compras` VALUES (1,1,1,'2025-05-07 10:00:00',30,150.00),(2,2,1,'2025-05-07 11:00:00',20,85.00),(3,3,1,'2025-05-07 12:00:00',10,280.00),(4,4,1,'2025-05-07 13:00:00',8,450.00),(5,5,1,'2025-05-07 14:00:00',12,450.00),(6,6,1,'2025-05-07 15:00:00',15,300.00),(7,7,1,'2025-05-07 16:00:00',18,110.00),(8,8,1,'2025-05-07 17:00:00',25,35.00),(9,9,1,'2025-05-07 18:00:00',10,220.00),(10,10,1,'2025-05-07 19:00:00',14,120.00),(11,11,1,'2025-05-07 20:00:00',40,10.00),(12,12,1,'2025-05-07 21:00:00',100,2.00),(13,13,1,'2025-05-07 22:00:00',30,12.00),(14,14,1,'2025-05-07 23:00:00',16,30.00),(15,15,1,'2025-05-07 23:30:00',8,80.00),(16,16,1,'2025-05-08 00:00:00',50,3.00),(17,17,1,'2025-05-08 01:00:00',20,15.00),(18,18,1,'2025-05-08 02:00:00',15,20.00),(19,19,1,'2025-05-08 03:00:00',10,45.00),(20,20,1,'2025-05-08 04:00:00',25,10.00),(21,21,1,'2025-05-08 05:00:00',12,25.00),(22,22,1,'2025-05-08 06:00:00',20,12.00),(23,23,1,'2025-05-08 07:00:00',22,35.00),(24,24,1,'2025-05-08 08:00:00',30,20.00),(25,25,1,'2025-05-08 09:00:00',7,90.00),(27,27,1,'2025-05-07 16:45:39',15,7500.00),(28,2,1,'2025-05-07 17:00:59',20,1700.00);
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ CREATE TABLE `detalle_venta` (
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`id`),
   CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (1,1,1,3,260.00),(2,1,2,2,145.00),(3,2,3,1,480.00),(4,2,4,1,520.00),(5,3,5,1,200.00),(6,3,6,1,22.00),(7,4,7,1,350.00),(8,4,8,2,5.00),(9,5,9,1,55.00),(10,5,10,2,28.00),(11,6,11,2,22.00),(12,6,12,1,45.00),(13,7,13,1,150.00),(14,7,14,1,35.00),(15,8,15,1,45.00),(16,8,16,1,38.00),(17,9,17,1,7.00),(18,9,18,1,18.00),(19,10,19,1,180.00),(20,10,20,2,35.00),(21,11,21,1,22.00),(22,11,22,1,18.00),(23,12,1,2,260.00),(24,12,2,3,145.00),(25,13,3,2,480.00),(26,13,4,1,520.00),(27,14,5,2,200.00),(28,14,6,1,22.00),(29,15,7,1,350.00),(30,15,8,2,5.00),(31,1,1,3,260.00),(32,1,2,2,145.00),(33,2,3,1,480.00),(34,2,4,1,520.00),(35,3,5,1,200.00),(36,3,6,1,22.00),(37,4,7,1,350.00),(38,4,8,2,5.00),(39,5,9,1,55.00),(40,5,10,2,28.00),(41,6,11,2,22.00),(42,6,12,1,45.00),(43,7,13,1,150.00),(44,7,14,1,35.00),(45,8,15,1,45.00),(46,8,16,1,38.00),(47,9,17,1,7.00),(48,9,18,1,18.00),(49,10,19,1,180.00),(50,10,20,2,35.00),(51,11,21,1,22.00),(52,11,22,1,18.00),(53,12,1,2,260.00),(54,12,2,3,145.00),(55,13,3,2,480.00),(56,13,4,1,520.00),(57,14,5,2,200.00),(58,14,6,1,22.00),(59,15,7,1,350.00),(60,15,8,2,5.00),(61,16,1,5,260.00),(62,17,1,5,260.00);
+INSERT INTO `detalle_venta` VALUES (1,1,1,3,260.00),(2,1,2,2,145.00),(3,2,3,1,480.00),(4,2,4,1,520.00),(5,3,5,1,200.00),(6,3,6,1,22.00),(7,4,7,1,350.00),(8,4,8,2,5.00),(9,5,9,1,55.00),(10,5,10,2,28.00),(11,6,11,2,22.00),(12,6,12,1,45.00),(13,7,13,1,150.00),(14,7,14,1,35.00),(15,8,15,1,45.00),(16,8,16,1,38.00),(17,9,17,1,7.00),(18,9,18,1,18.00),(19,10,19,1,180.00),(20,10,20,2,35.00),(21,11,21,1,22.00),(22,11,22,1,18.00),(23,12,1,2,260.00),(24,12,2,3,145.00),(25,13,3,2,480.00),(26,13,4,1,520.00),(27,14,5,2,200.00),(28,14,6,1,22.00),(29,15,7,1,350.00),(30,15,8,2,5.00),(31,1,1,3,260.00),(32,1,2,2,145.00),(33,2,3,1,480.00),(34,2,4,1,520.00),(35,3,5,1,200.00),(36,3,6,1,22.00),(37,4,7,1,350.00),(38,4,8,2,5.00),(39,5,9,1,55.00),(40,5,10,2,28.00),(41,6,11,2,22.00),(42,6,12,1,45.00),(43,7,13,1,150.00),(44,7,14,1,35.00),(45,8,15,1,45.00),(46,8,16,1,38.00),(47,9,17,1,7.00),(48,9,18,1,18.00),(49,10,19,1,180.00),(50,10,20,2,35.00),(51,11,21,1,22.00),(52,11,22,1,18.00),(53,12,1,2,260.00),(54,12,2,3,145.00),(55,13,3,2,480.00),(56,13,4,1,520.00),(57,14,5,2,200.00),(58,14,6,1,22.00),(59,15,7,1,350.00),(60,15,8,2,5.00),(61,16,1,5,260.00),(62,17,1,5,260.00),(63,18,1,5,260.00);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `producto_carrito` (
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `producto_carrito_ibfk_1` FOREIGN KEY (`carrito_id`) REFERENCES `carrito` (`id`),
   CONSTRAINT `producto_carrito_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `productos` (
   `precioVenta` decimal(10,2) DEFAULT NULL,
   `Cantidad_Stock` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Panel Solar Monocristalino 400W','Trina Solar','TS-400M','Alta eficiencia y rendimiento incluso en sombra',150.00,260.00,25),(2,'Panel Solar Flexible 100W','Renogy','RNG-FX100','Ideal para caravanas y superficies curvas',85.00,145.00,20),(3,'Inversor Solar 3000W Onda Pura','Growatt','GROW-3000','Convierte la energía solar en corriente alterna',280.00,480.00,10),(4,'Inversor Híbrido 5000W','Huawei','SUN2000-5KTL','Compatible con baterías y red eléctrica',450.00,750.00,8),(5,'Batería Litio 12V 100Ah','Battle Born','BB-12100','Larga vida útil y carga rápida',450.00,700.00,12),(6,'Batería AGM 12V 200Ah','Trojan','TRO-200AGM','Batería sellada libre de mantenimiento',300.00,520.00,15),(7,'Controlador de Carga MPPT 40A','Victron','VIC-40MPPT','Optimiza la carga de baterías desde el panel',110.00,180.00,18),(8,'Controlador PWM 30A','EPEVER','EP-PWM30','Regulador económico para sistemas pequeños',35.00,60.00,25),(9,'Kit Solar Básico 200W','EcoKit','EK-200','Incluye panel, regulador y cableado',220.00,350.00,10),(10,'Kit Solar Portátil 100W','Allpowers','AP-K100','Ideal para camping y emergencias',120.00,200.00,14),(11,'Cable Solar 4mm Rojo - 10m','SolarCable','SC-4R10','Cable resistente a rayos UV y altas temperaturas',10.00,18.00,40),(12,'Conectores MC4 (par)','SolarTech','MC4-ST','Conectores estándar para paneles solares',2.00,5.00,100),(13,'Cable Solar 6mm Negro - 10m','SolarCable','SC-6N10','Aislamiento doble y alta conductividad',12.00,22.00,30),(14,'Soporte Inclinación Panel Techo Plano','SunMount','SM-TPF','Aluminio resistente para instalación fija',30.00,55.00,16),(15,'Estructura para 4 Paneles','PanelRack','PR-4P','Estructura ajustable para techo metálico',80.00,140.00,8),(16,'Fusible Solar 20A','SolarSafe','SS-F20','Protección contra sobrecorrientes',3.00,7.00,50),(17,'Caja de conexiones IP65','SolarBox','SB-IP65','Protección para conexiones exteriores',15.00,28.00,20),(18,'Interruptor DC 1000V 32A','PVSwitch','PVS-32DC','Desconexión segura de corriente continua',20.00,35.00,15),(19,'Medidor de Energía Solar Digital','Victron','VIC-METER','Monitorea consumo y generación solar',45.00,80.00,10),(20,'Sensor de Temperatura para Batería','BatterySense','BS-TEMP','Optimiza la carga según la temperatura',10.00,18.00,25),(21,'Crimpadora para conectores solares','ToolTech','TT-CRIMP','Herramienta para MC4 y similares',25.00,45.00,12),(22,'Pelacables Solar Profesional','WirePro','WP-STRIP','Para cables solares de 2.5 a 6 mm²',12.00,22.00,20),(23,'Lámpara Solar LED 100W','GreenLight','GL-100LED','Lámpara exterior con panel integrado',35.00,65.00,22),(24,'Foco Solar con Sensor de Movimiento','LumiSolar','LS-SENSOR','Activación automática al detectar movimiento',20.00,38.00,30),(25,'Bomba de Agua Solar 12V','AgroSolar','AS-WP12','Ideal para riego con energía solar',90.00,150.00,7),(26,'Ventilador Solar 20W','BreezeSun','BS-FAN20','Refresca espacios usando energía solar',25.00,45.00,18);
+INSERT INTO `productos` VALUES (1,'Panel Solar Monocristalino 400W','Trina Solar.','TS-400M','Alta eficiencia y rendimiento incluso en sombra',150.00,260.00,20),(2,'Panel Solar Flexible 100W','Renogy','RNG-FX100','Ideal para caravanas y superficies curvas',85.00,145.00,20),(3,'Inversor Solar 3000W Onda Pura','Growatt','GROW-3000','Convierte la energía solar en corriente alterna',280.00,480.00,10),(4,'Inversor Híbrido 5000W','Huawei','SUN2000-5KTL','Compatible con baterías y red eléctrica',450.00,750.00,8),(5,'Batería Litio 12V 100Ah','Battle Born','BB-12100','Larga vida útil y carga rápida',450.00,700.00,12),(6,'Batería AGM 12V 200Ah','Trojan','TRO-200AGM','Batería sellada libre de mantenimiento',300.00,520.00,15),(7,'Controlador de Carga MPPT 40A','Victron','VIC-40MPPT','Optimiza la carga de baterías desde el panel',110.00,180.00,18),(8,'Controlador PWM 30A','EPEVER','EP-PWM30','Regulador económico para sistemas pequeños',35.00,60.00,25),(9,'Kit Solar Básico 200W','EcoKit','EK-200','Incluye panel, regulador y cableado',220.00,350.00,10),(10,'Kit Solar Portátil 100W','Allpowers','AP-K100','Ideal para camping y emergencias',120.00,200.00,14),(11,'Cable Solar 4mm Rojo - 10m','SolarCable','SC-4R10','Cable resistente a rayos UV y altas temperaturas',10.00,18.00,40),(12,'Conectores MC4 (par)','SolarTech','MC4-ST','Conectores estándar para paneles solares',2.00,5.00,100),(13,'Cable Solar 6mm Negro - 10m','SolarCable','SC-6N10','Aislamiento doble y alta conductividad',12.00,22.00,30),(14,'Soporte Inclinación Panel Techo Plano','SunMount','SM-TPF','Aluminio resistente para instalación fija',30.00,55.00,16),(15,'Estructura para 4 Paneles','PanelRack','PR-4P','Estructura ajustable para techo metálico',80.00,140.00,8),(16,'Fusible Solar 20A','SolarSafe','SS-F20','Protección contra sobrecorrientes',3.00,7.00,50),(17,'Caja de conexiones IP65','SolarBox','SB-IP65','Protección para conexiones exteriores',15.00,28.00,20),(18,'Interruptor DC 1000V 32A','PVSwitch','PVS-32DC','Desconexión segura de corriente continua',20.00,35.00,15),(19,'Medidor de Energía Solar Digital','Victron','VIC-METER','Monitorea consumo y generación solar',45.00,80.00,10),(20,'Sensor de Temperatura para Batería','BatterySense','BS-TEMP','Optimiza la carga según la temperatura',10.00,18.00,25),(21,'Crimpadora para conectores solares','ToolTech','TT-CRIMP','Herramienta para MC4 y similares',25.00,45.00,12),(22,'Pelacables Solar Profesional','WirePro','WP-STRIP','Para cables solares de 2.5 a 6 mm²',12.00,22.00,20),(23,'Lámpara Solar LED 100W','GreenLight','GL-100LED','Lámpara exterior con panel integrado',35.00,65.00,22),(24,'Foco Solar con Sensor de Movimiento','LumiSolar','LS-SENSOR','Activación automática al detectar movimiento',20.00,38.00,30),(25,'Bomba de Agua Solar 12V','AgroSolar','AS-WP12','Ideal para riego con energía solar',90.00,150.00,7),(27,'Panel Solar','Tech','AS-23','Panel Solar 1000W',500.00,1000.00,0);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `NOMBRE_USUARIO` (`NOMBRE_USUARIO`),
   UNIQUE KEY `CORREO` (`CORREO`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +194,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Ivan Alejandro Ochoa Vega','AOchoa','Tecuala #1910','AOchoa@gmail.com','$2a$10$PjZeLBnu396d0GExQcW.9.iCMscTkVD4l4D6.Yx5pTQGzk/m5Lj1O','admin'),(2,'Issac Andre Arellano','IArellano','Casa Blanca #2019','IArellano@gmail.com','$2a$10$KqNcL/hy0t5Yrg8BkAFe5.PglsbGkwf1JvziTIcgppcAZs9Sb3r9i','admin'),(3,'Carlos Armando Clark','AClark','Paris #100','AClark@gmail.com','$2a$10$Ukxvixdp9ZjdWEJPmZ5OfOP9BJ8RY.rNto/4hKJEo0ELGRhEO.tce','cliente'),(4,'Ivan Guillermo Becerra','IBecerra','Centro #234','IBecerra@gmail.com','$2a$10$UIhgsVjuJJ21HxUeXsfbX.FehxwvOVV3kix0baAX4MuocxsAYQjbq','cliente'),(5,'Victor Manuel Ochoa','VOchoa','Colonia Las Fuentes','VOchoa@gmail.com','$2a$10$o5CkXrv601onujGOyG1JbuqdlvSwUtMv5Bcv0DfwMhLKngyqBAidm','cliente'),(6,'Angel Garcia Gracia','AGarcia','Volcano #334','AGarcia@gmail.com','$2a$10$Mfemz4LeoDWEmWCKOSP5.upaoCVQyBH1RhUIo9Y9ITOOiHqqcChy6','cliente');
+INSERT INTO `usuario` VALUES (1,'Ivan Alejandro Ochoa Vega','AOchoa','Tecuala #1910','AOchoa@gmail.com','$2a$10$PjZeLBnu396d0GExQcW.9.iCMscTkVD4l4D6.Yx5pTQGzk/m5Lj1O','admin'),(2,'Issac Andre Arellano','IArellano','Casa Blanca #2019','IArellano@gmail.com','$2a$10$KqNcL/hy0t5Yrg8BkAFe5.PglsbGkwf1JvziTIcgppcAZs9Sb3r9i','admin'),(3,'Carlos Armando Clark','AClark','Paris #100','AClark@gmail.com','$2a$10$Ukxvixdp9ZjdWEJPmZ5OfOP9BJ8RY.rNto/4hKJEo0ELGRhEO.tce','cliente'),(4,'Ivan Guillermo Becerra','IBecerra','Centro #234','IBecerra@gmail.com','$2a$10$UIhgsVjuJJ21HxUeXsfbX.FehxwvOVV3kix0baAX4MuocxsAYQjbq','cliente'),(5,'Victor Manuel Ochoa','VOchoa','Colonia Las Fuentes','VOchoa@gmail.com','$2a$10$o5CkXrv601onujGOyG1JbuqdlvSwUtMv5Bcv0DfwMhLKngyqBAidm','cliente'),(6,'Angel Garcia Gracia','AGarcia','Volcano #334','AGarcia@gmail.com','$2a$10$Mfemz4LeoDWEmWCKOSP5.upaoCVQyBH1RhUIo9Y9ITOOiHqqcChy6','cliente'),(7,'Martin Valdez','MValdez','Obregon #23','mValdez@gmail.com','$2a$10$dggCKWZTXJ.NwHLv/WNcpOXN15aa4gnlVPsYe1NrQZW0hwlpf/lEy','cliente');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +213,7 @@ CREATE TABLE `ventas` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +222,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (1,'2025-05-01 10:00:00',3,1500.00),(2,'2025-05-02 11:30:00',4,1000.00),(3,'2025-05-03 15:00:00',5,800.00),(4,'2025-03-04 09:00:00',3,2000.00),(5,'2025-04-05 17:45:00',6,1200.00),(6,'2025-04-06 14:30:00',3,500.00),(7,'2025-04-07 10:00:00',4,1800.00),(8,'2025-04-08 13:15:00',5,750.00),(9,'2025-05-09 16:00:00',3,1200.00),(10,'2025-05-10 12:00:00',4,1500.00),(11,'2025-05-11 10:30:00',5,1000.00),(12,'2025-05-12 11:45:00',3,800.00),(13,'2025-03-13 10:15:00',6,1500.00),(14,'2025-03-14 09:30:00',4,1200.00),(15,'2025-03-15 15:00:00',5,600.00),(16,'2025-05-07 14:34:21',5,1300.00),(17,'2025-05-07 14:42:42',5,1300.00);
+INSERT INTO `ventas` VALUES (1,'2025-05-01 10:00:00',3,1500.00),(2,'2025-05-02 11:30:00',4,1000.00),(3,'2025-05-03 15:00:00',5,800.00),(4,'2025-03-04 09:00:00',3,2000.00),(5,'2025-04-05 17:45:00',6,1200.00),(6,'2025-04-06 14:30:00',3,500.00),(7,'2025-04-07 10:00:00',4,1800.00),(8,'2025-04-08 13:15:00',5,750.00),(9,'2025-05-09 16:00:00',3,1200.00),(10,'2025-05-10 12:00:00',4,1500.00),(11,'2025-05-11 10:30:00',5,1000.00),(12,'2025-05-12 11:45:00',3,800.00),(13,'2025-03-13 10:15:00',6,1500.00),(14,'2025-03-14 09:30:00',4,1200.00),(15,'2025-03-15 15:00:00',5,600.00),(16,'2025-05-07 14:34:21',5,1300.00),(17,'2025-05-07 14:42:42',5,1300.00),(18,'2025-05-07 17:04:35',5,1300.00);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,8 +271,8 @@ DELIMITER ;;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
-/*!50003 SET time_zone             = '+00:00' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `liberar_reservas_expiradas` ON SCHEDULE EVERY 30 SECOND STARTS '2025-05-07 21:29:57' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+/*!50003 SET time_zone             = 'SYSTEM' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `liberar_reservas_expiradas` ON SCHEDULE EVERY 2 MINUTE STARTS '2025-05-07 16:48:57' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
     DECLARE v_done INT DEFAULT FALSE;
     DECLARE v_producto_id INT;
     DECLARE v_cantidad INT;
@@ -1410,4 +1410,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-07 14:52:39
+-- Dump completed on 2025-05-07 17:13:12
